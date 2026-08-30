@@ -1,0 +1,267 @@
+import type { InductionPathway } from '../types/clinical';
+import { CONTENT_VERSION, PENDING_REVIEW, sourceRef } from './version';
+
+/** Slide 3 — initiation preconditions. */
+export const inductionIntro = {
+  title: 'Initiation of Suboxone Maintenance',
+  steps: [
+    'Patient meets criteria for diagnosis of opioid use disorder (OUD).',
+    'Patient agrees to Suboxone maintenance.',
+    'Choose induction method — depends on recent substance use and level of tolerance.',
+  ],
+  emphasis:
+    'The method is designed to promptly initiate maintenance treatment while avoiding precipitated withdrawal.',
+  source: sourceRef('Initiation of Suboxone Maintenance', 3),
+};
+
+/**
+ * Induction pathways — slides 3, 4 and 5.
+ *
+ * Slide 4 lays out five patient situations as columns, each with its induction
+ * method underneath. Slide 5 gives the timing tree for the two opioid-positive
+ * situations. Slide 6 supplies the response when a patient on treatment is
+ * fentanyl-positive without buprenorphine on board.
+ *
+ * The star badge on two of slide 4's columns is defined by that slide's
+ * top-left legend as "Consider Inpatient Detox" — it marks the fentanyl and
+ * methadone-transition pathways, and drives `considerInpatientDetox` below.
+ *
+ * Branching follows the source: it keys on time since last use, not on a
+ * repeat of the UDS question that already defines the situation.
+ */
+export const inductionPathways: InductionPathway[] = [
+  {
+    id: 'induction_fentanyl',
+    situation: 'fentanyl',
+    situationLabel: 'Current fentanyl use',
+    udsDescription: 'UDS positive for FENT',
+    title: 'Induction with current fentanyl use',
+    followUps: [
+      {
+        id: 'fent_last_use',
+        question: "How long has it been since the patient's last use?",
+        options: [
+          { value: 'gte_24h', label: '24+ hours' },
+          { value: 'lt_24h', label: 'Less than 24 hours' },
+        ],
+      },
+    ],
+    outcomes: [
+      {
+        id: 'induction_fentanyl_24h',
+        when: { fent_last_use: 'gte_24h' },
+        title: 'Rapid low-dose induction',
+        interpretation:
+          'At least 24 hours since last use — begin rapid low-dose induction.',
+        steps: [
+          'Wait at least 24 hrs from last use.',
+          'Take 1/8 of a film every hour × 8 hrs — rapid low-dose induction (slide 5 states this as 1 mg buprenorphine every hour × 8 hrs).',
+          'Then start 8 mg BID maintenance.',
+        ],
+        actions: [],
+        considerInpatientDetox: true,
+        source: sourceRef('Induction method — fentanyl', 4),
+        review: PENDING_REVIEW,
+        contentVersion: CONTENT_VERSION,
+        entryStatus: 'documented',
+      },
+      {
+        id: 'induction_fentanyl_lt24h',
+        when: { fent_last_use: 'lt_24h' },
+        title: 'Wait to 24 hours, then rapid induction',
+        interpretation:
+          'Under 24 hours since last use — waiting reduces the risk of precipitated withdrawal.',
+        steps: [
+          'Advise the patient to wait 24 hrs from last use, then proceed with rapid induction.',
+        ],
+        actions: ['Frequent appointments, close follow-up.', 'Narcan prescription.'],
+        considerInpatientDetox: true,
+        source: sourceRef(
+          'Follow-up UDS response — UDS positive for FENT only',
+          6,
+        ),
+        review: PENDING_REVIEW,
+        contentVersion: CONTENT_VERSION,
+        entryStatus: 'documented',
+      },
+    ],
+    source: sourceRef('Choose induction method — fentanyl', 4),
+    review: PENDING_REVIEW,
+    contentVersion: CONTENT_VERSION,
+    entryStatus: 'documented',
+  },
+
+  {
+    id: 'induction_rx_opioid',
+    situation: 'rx_opioid',
+    situationLabel: 'Current prescription opioid use',
+    udsDescription: 'UDS positive for OXY or OPI',
+    title: 'Induction with current prescription opioid use',
+    followUps: [
+      {
+        id: 'rx_uds',
+        question: 'Is oxycodone or another opioid present on UDS?',
+        options: [
+          { value: 'oxy', label: 'OXY positive' },
+          { value: 'opi', label: 'OPI positive' },
+          { value: 'negative', label: 'Negative' },
+        ],
+      },
+    ],
+    outcomes: [
+      {
+        id: 'induction_rx_oxy',
+        when: { rx_uds: 'oxy' },
+        title: 'Oxycodone positive',
+        interpretation: 'Wait 12 hours, then start maintenance dosing.',
+        steps: [
+          'If oxycodone: wait 12 hrs, then start maintenance 8 mg BID.',
+        ],
+        actions: [],
+        gaps: [
+          'Slide 4 specifies a 12-hour wait for oxycodone, while the slide 5 timing tree branches on ">24 hrs since last dose" before starting maintenance immediately. Confirm which interval applies before use.',
+        ],
+        source: sourceRef('Induction method — prescription opioid', 4),
+        review: PENDING_REVIEW,
+        contentVersion: CONTENT_VERSION,
+        entryStatus: 'documented',
+      },
+      {
+        id: 'induction_rx_opi',
+        when: { rx_uds: 'opi' },
+        title: 'Opiate positive',
+        interpretation:
+          'After more than 24 hours since the last dose, start maintenance immediately.',
+        steps: [
+          'More than 24 hrs since last dose — start BUP maintenance immediately.',
+        ],
+        actions: [],
+        gaps: [
+          'Slide 5 gives this timing for current prescription opioid use generally; slide 4 states the 12-hour interval specifically for oxycodone. Confirm which applies.',
+        ],
+        source: sourceRef('Induction timing — current Rx opioid use', 5),
+        review: PENDING_REVIEW,
+        contentVersion: CONTENT_VERSION,
+        entryStatus: 'documented',
+      },
+      {
+        id: 'induction_rx_negative',
+        when: { rx_uds: 'negative' },
+        title: 'UDS negative for opioids',
+        interpretation:
+          'This is the opioid-negative pathway — dose lower for an opioid-naïve state.',
+        steps: [
+          'Start lower than typical due to opioid naïve state.',
+          'Start 4 mg daily.',
+        ],
+        actions: [],
+        source: sourceRef('Induction method — opioid negative', 4),
+        review: PENDING_REVIEW,
+        contentVersion: CONTENT_VERSION,
+        entryStatus: 'documented',
+      },
+    ],
+    source: sourceRef('Choose induction method — prescription opioid', 4),
+    review: PENDING_REVIEW,
+    contentVersion: CONTENT_VERSION,
+    entryStatus: 'documented',
+  },
+
+  {
+    id: 'induction_opioid_negative',
+    situation: 'opioid_negative',
+    situationLabel: 'Opioid-negative with history of OUD',
+    udsDescription: 'UDS negative for OPI / FENT / OXY / MTD',
+    title: 'Induction in an opioid-negative patient with a history of OUD',
+    followUps: [],
+    outcomes: [
+      {
+        id: 'induction_opioid_negative_result',
+        title: 'Start low — opioid-naïve state',
+        interpretation:
+          'Start lower than typical because the patient is opioid naïve.',
+        steps: [
+          'Start lower than typical due to opioid naïve state.',
+          'Start 4 mg daily.',
+        ],
+        actions: [],
+        source: sourceRef('Induction method — opioid negative', 4),
+        review: PENDING_REVIEW,
+        contentVersion: CONTENT_VERSION,
+        entryStatus: 'documented',
+      },
+    ],
+    source: sourceRef('Choose induction method — opioid negative', 4),
+    review: PENDING_REVIEW,
+    contentVersion: CONTENT_VERSION,
+    entryStatus: 'documented',
+  },
+
+  {
+    id: 'induction_on_suboxone',
+    situation: 'on_suboxone',
+    situationLabel: 'Already taking Suboxone',
+    udsDescription: 'UDS positive for BUP',
+    title: 'Patient already taking Suboxone',
+    followUps: [],
+    outcomes: [
+      {
+        id: 'induction_on_suboxone_result',
+        title: 'Continue standard dosing',
+        interpretation: 'Continue standard dosing.',
+        steps: ['Continue standard dosing.'],
+        actions: [],
+        source: sourceRef('Induction method — already on Suboxone', 4),
+        review: PENDING_REVIEW,
+        contentVersion: CONTENT_VERSION,
+        entryStatus: 'documented',
+      },
+    ],
+    source: sourceRef('Choose induction method — already on Suboxone', 4),
+    review: PENDING_REVIEW,
+    contentVersion: CONTENT_VERSION,
+    entryStatus: 'documented',
+  },
+
+  {
+    id: 'induction_methadone',
+    situation: 'methadone',
+    situationLabel: 'Transitioning from methadone',
+    title: 'Transition to Suboxone from methadone',
+    followUps: [],
+    outcomes: [
+      {
+        id: 'induction_methadone_result',
+        title: 'Taper, wait, then rapid induction',
+        interpretation:
+          'Taper methadone below 40 mg daily before starting buprenorphine.',
+        steps: [
+          'Taper down methadone to below 40 mg daily.',
+          'Wait 24 hrs.',
+          'Start 1/8 film every hour × 8.',
+        ],
+        actions: [],
+        considerInpatientDetox: true,
+        source: sourceRef('Induction method — transitioning from methadone', 4),
+        review: PENDING_REVIEW,
+        contentVersion: CONTENT_VERSION,
+        entryStatus: 'documented',
+      },
+    ],
+    source: sourceRef('Choose induction method — methadone transition', 4),
+    review: PENDING_REVIEW,
+    contentVersion: CONTENT_VERSION,
+    entryStatus: 'documented',
+  },
+];
+
+/**
+ * Escalation banner. Slide 4's star legend reads "Consider Inpatient Detox" and
+ * badges the fentanyl and methadone-transition columns, so this now fires on
+ * defined criteria rather than as a standing note.
+ */
+export const escalationBanner = {
+  title: 'Consider Inpatient Detox',
+  body: 'The All4Knox clinical summary flags this induction pathway for consideration of inpatient detoxification.',
+  source: sourceRef('Choose induction method — star legend', 4),
+};

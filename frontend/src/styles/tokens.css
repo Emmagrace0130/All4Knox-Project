@@ -1,0 +1,77 @@
+/* All4Knox design tokens.
+   Visual direction: guided-interview product UI in the TurboTax mould —
+   friendly, high contrast, generous whitespace, one decision at a time. */
+
+:root {
+  /* Neutrals — cool near-white page, pure white cards */
+  --bg: #f5f7fa;
+  --bg-alt: #eef2f7;
+  --surface: #ffffff;
+  --surface-sunken: #f2f5f9;
+  --line: #dbe3ec;
+  --line-strong: #c2cfdd;
+
+  --ink: #10202e;
+  --ink-2: #3d5063;
+  --muted: #64778c;
+
+  /* Brand — vivid, confident blue */
+  --brand: #0077c5;
+  --brand-hover: #0064a8;
+  --brand-dark: #004b7f;
+  --brand-soft: #e7f3fc;
+  --brand-line: #9dcdee;
+  --brand-ring: rgba(0, 119, 197, 0.25);
+
+  /* Success — used for completed steps and result screens */
+  --ok: #0f7a45;
+  --ok-hover: #0c6338;
+  --ok-soft: #e6f5ed;
+  --ok-line: #a4d9bd;
+
+  /* Status */
+  --warn: #8a5300;
+  --warn-soft: #fff5e3;
+  --warn-line: #f0c887;
+
+  --danger: #b3261e;
+  --danger-soft: #fdeeec;
+  --danger-line: #f2b4ae;
+
+  --info: #0077c5;
+  --info-soft: #e7f3fc;
+  --info-line: #9dcdee;
+
+  /* Typography */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Spacing */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 88px;
+
+  /* Shape — noticeably rounder than a typical clinical UI */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(16, 32, 46, 0.06);
+  --shadow: 0 2px 8px rgba(16, 32, 46, 0.08);
+  --shadow-lg: 0 12px 32px rgba(16, 32, 46, 0.12);
+  --shadow-card: 0 1px 3px rgba(16, 32, 46, 0.08), 0 8px 24px rgba(16, 32, 46, 0.05);
+
+  --content-max: 1120px;
+  --reading-max: 760px;
+  /* The guided interview column */
+  --interview-max: 720px;
+}

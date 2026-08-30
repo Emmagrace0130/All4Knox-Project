@@ -1,0 +1,54 @@
+import { CONTENT_VERSION, PENDING_REVIEW, sourceRef } from './version';
+
+/** Buprenorphine-naloxone — slides 8 and 9. */
+export const buprenorphineBasics = {
+  title: 'Buprenorphine-Naloxone',
+  components: ['Buprenorphine', 'Naloxone'],
+  sections: [
+    {
+      id: 'what-is-suboxone',
+      title: 'What is Suboxone?',
+      points: [
+        'The buprenorphine-naloxone combination formulation is "Suboxone".',
+        'Buprenorphine is the active ingredient.',
+        'Suboxone is the only FDA approved formulation to treat opioid use disorder (OUD).',
+        'Buprenorphine monoproduct "Subutex" is not an appropriate option for treating OUD.',
+      ],
+    },
+    {
+      id: 'naloxone',
+      title: 'Why naloxone is in it',
+      points: [
+        'Naloxone is not absorbed effectively when taken sublingually.',
+        'Naloxone is only present to prevent injection misuse.',
+        'There has never been a documented anaphylactic reaction to naloxone — naloxone ("Narcan") is available over the counter.',
+        'Patients sometimes conflate an allergic reaction with precipitated withdrawal.',
+      ],
+    },
+    {
+      id: 'safety',
+      title: 'Safety',
+      points: [
+        'Suboxone is incredibly safe. Per the MSDS the LD50 is around 40,000 mg — impossible to ingest a lethal amount.',
+        'However, in combination with other substances there is risk of over-sedation and even overdose.',
+        'The major safety risk of prescribing Suboxone is precipitated withdrawal.',
+      ],
+    },
+  ],
+  /** Slide 9 — the mechanism, rendered as a step diagram. */
+  precipitatedWithdrawal: {
+    title: 'Precipitated Withdrawal',
+    steps: [
+      'Full opioid agonist (e.g. fentanyl) occupies the mu opioid receptor',
+      'Buprenorphine has high affinity for the mu opioid receptor',
+      'Buprenorphine actively displaces the full agonist',
+      'Replacement with partial activation from buprenorphine',
+      'Effectively causes 50% of opioid withdrawal instantly',
+    ],
+    note: 'This is very uncomfortable and can even be dangerous.',
+  },
+  source: sourceRef('Buprenorphine-naloxone', 8),
+  safetySource: sourceRef('Buprenorphine-naloxone — safety', 9),
+  review: PENDING_REVIEW,
+  contentVersion: CONTENT_VERSION,
+};

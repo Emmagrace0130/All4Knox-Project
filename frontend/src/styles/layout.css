@@ -1,0 +1,243 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header ------------------------------------------------------------ */
+
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.site-header__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--s-3) var(--s-5);
+  display: flex;
+  align-items: center;
+  gap: var(--s-6);
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  color: inherit;
+  flex-shrink: 0;
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.brand__mark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  background: var(--brand);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.brand__name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.015em;
+}
+
+.brand__tagline {
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
+/* Navigation -------------------------------------------------------- */
+
+.nav {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nav::-webkit-scrollbar {
+  display: none;
+}
+
+.nav__list {
+  display: flex;
+  gap: var(--s-1);
+  justify-content: flex-end;
+}
+
+.nav__link {
+  display: block;
+  white-space: nowrap;
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--radius-sm);
+  color: var(--ink-2);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.nav__link:hover {
+  background: var(--surface-sunken);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.nav__link--active {
+  background: var(--brand-soft);
+  color: var(--brand-dark);
+  font-weight: 600;
+}
+
+/* Page -------------------------------------------------------------- */
+
+.page {
+  flex: 1;
+  padding: var(--s-6) var(--s-5) var(--s-8);
+}
+
+.page__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+.page--reading .page__inner {
+  max-width: var(--reading-max);
+}
+
+.page__back {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: var(--s-4);
+}
+
+.page__header {
+  margin-bottom: var(--s-6);
+}
+
+.page__eyebrow {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--brand);
+  margin-bottom: var(--s-2);
+}
+
+.page__title {
+  font-size: 1.9rem;
+  letter-spacing: -0.02em;
+}
+
+.page__lede {
+  margin-top: var(--s-3);
+  color: var(--ink-2);
+  max-width: 62ch;
+  font-size: 1.02rem;
+}
+
+/* Two-column tool layout -------------------------------------------- */
+
+.tool-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: var(--s-6);
+  align-items: start;
+}
+
+.tool-layout__steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  align-items: flex-start;
+}
+
+.tool-layout__steps > * {
+  width: 100%;
+}
+
+.tool-layout__result {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  position: sticky;
+  top: 88px;
+}
+
+@media (max-width: 900px) {
+  .tool-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .tool-layout__result {
+    position: static;
+  }
+
+  .site-header__inner {
+    gap: var(--s-3);
+  }
+
+  .nav__list {
+    justify-content: flex-start;
+  }
+}
+
+/* Footer ------------------------------------------------------------ */
+
+.site-footer {
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  margin-top: auto;
+}
+
+.site-footer__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--s-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.site-footer__emergency {
+  font-size: 0.85rem;
+  color: var(--ink-2);
+  border-left: 3px solid var(--danger-line);
+  padding-left: var(--s-3);
+  max-width: 90ch;
+}
+
+.site-footer__note {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.site-footer__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  font-size: 0.78rem;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  padding-top: var(--s-3);
+  margin-top: var(--s-2);
+}
