@@ -72,7 +72,7 @@ interview.
 | **Branch** | `gj_dev` at `3a0b4cc`, pushed. `main` at `36fa675` — merge pending |
 | **Database** | SQLite at `/data/all4knox.db` on the `all4knox-data` volume |
 | **First admin** | Seeded from `SEED_ADMIN_*` in `.env`. **Blank those out and change the password after first sign-in.** |
-| **Clinical review** | **0 of 29 blocks reviewed.** Workflow is built at `/review`; no reviewer recruited. |
+| **Clinical review** | **0 of 29 blocks reviewed.** Workflow is built at `/review`. Clinical contact is Dr. Ryan Alexander (McNabb medical director) — sign-off not yet started. |
 | **Tests** | 44 backend tests passing · frontend build + lint clean |
 | **Control** | `./a4k` — see `./a4k help` |
 
@@ -140,10 +140,11 @@ docker compose up -d          # env is read at container start, not per request
 
 ### What is NOT done
 
-- **No clinical review has happened — 0 of 29.** The workflow to do it now
-  exists at `/review`, but no clinician has been recruited. This is correct and
-  deliberate — but it means the toolkit
-  is not usable for real patient care. See §6.
+- **No clinical review has happened — 0 of 29.** The workflow exists at
+  `/review` and there is now a named clinical contact — **Dr. Ryan Alexander**,
+  medical director at one of the McNabb Centers — but no block has been signed
+  off yet. Until that happens the toolkit is not usable for real patient care.
+  See §6.
 - `all4knox.rubyrecon.com` is not live (Emma owns that domain — see §5).
 - `LETSENCRYPT_EMAIL` in `.env` is blank; expiry warnings go nowhere.
 - Phase 2 tools (COWS calculator, OUD diagnosis helper, naloxone guide,
@@ -367,7 +368,15 @@ count against Let's Encrypt rate limits (see rules-of-engagement §5).
 **Nothing in this toolkit has been reviewed by a clinician.** All 29 content
 blocks report `reviewedBy: null`, `reviewedDate: null`. The UI says so on every
 result, in the footer, and on `/clinical-sources`. `GET /api/sources` reports
-`reviewedCount: 0`.
+`reviewedCount: 0` — verified live on 2026-08-31.
+
+**The clinical contact is Dr. Ryan Alexander**, medical director at one of the
+McNabb Centers, and he is the audience for the demo. That is a different thing
+from having a reviewer: being the clinical point of contact is not the same
+commitment as putting your name on 29 blocks of clinical guidance. The open
+question is whether he takes the reviewer role himself or names someone on his
+staff. Until one of those happens, the count stays at 0 and this section stands
+exactly as written.
 
 This is the correct state — the alternative (blank fields rendered as if review
 had happened) would be a fabricated clinical attestation. `test_content.py`
@@ -423,7 +432,9 @@ full phased plan:
    for the very first boot.
 1. Set `LETSENCRYPT_EMAIL` in `.env` so cert-expiry warnings reach a human.
 2. Get McNabb Center referral details verified (unblocks a whole content class).
-3. Identify a named clinical reviewer and start working through the 29 blocks.
+3. Confirm with **Dr. Ryan Alexander** who signs off the 29 blocks — him or
+   someone he names — then create that person's clinician account
+   (`POST /api/admin/users`, role `clinician`) and walk them through `/review`.
 4. Add `all4knox.rubyrecon.com` once Emma has added the DNS record (§5).
 5. Begin the literature review track — see
    [`research/publication-plan.md`](research/publication-plan.md).

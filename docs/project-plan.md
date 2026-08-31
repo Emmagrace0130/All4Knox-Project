@@ -5,9 +5,10 @@ pilot for the McNabb Center and (b) a defensible research contribution.
 
 **Status legend:** ✅ done · 🟡 in progress · ⬜ not started · 🔒 blocked
 
-**As of 2026-08-31 (end of overnight session):** Phase 0 and Phase 1 complete
-except two items needing a human; Phase 2.5 guided UX done and the review
-workflow built; Phase 2 itself blocked on recruiting a clinician.
+**As of 2026-08-31:** Phase 0 and Phase 1 complete except items needing a
+human; Phase 2.5 guided UX done and the review workflow built. Phase 2 is no
+longer blocked on *finding* a clinician — Dr. Ryan Alexander is the clinical
+contact — but on confirming who signs off and then doing the 29 reviews.
 
 Milestones are **exit criteria**, not dates: a phase is done when its criteria
 are demonstrably met, and each is written so you can check it rather than
@@ -53,7 +54,7 @@ citations and refuses off-corpus ones.
 | 1.13 | Landing page, sign-in, account pages | Gerald | ✅ |
 | 1.14 | `./a4k` control CLI | Gerald | ✅ |
 | 1.15 | Header nav clipping + toolkit card overlap | Gerald | ✅ verified at 6 widths |
-| 1.16 | Commit and push the overnight work | Gerald | ⬜ ~7,100 lines uncommitted |
+| 1.16 | Commit and push the overnight work | Gerald | ✅ `3a0b4cc` on `gj_dev`, 7,235 lines |
 | 1.5 | `LETSENCRYPT_EMAIL` set in `.env` | Gerald | ⬜ still blank as of 2026-08-31 |
 | 1.6 | `all4knox.rubyrecon.com` DNS + vhost | Emma | 🔒 re-checked 2026-08-31: still resolves to the parking host |
 | 1.7 | Walk the demo path end to end on a phone | both | ⬜ |
@@ -72,8 +73,8 @@ and it says so honestly — but "honestly unreviewed" is not "usable".
 | # | Item | Notes |
 | --- | --- | --- |
 | 2.0 | Review workflow built (`/review`) | ✅ 2026-08-31 — see [`clinical-review-plan.md`](clinical-review-plan.md) |
-| 2.1 | Name a clinical reviewer | A licensed TN prescriber with OUD experience. **Nothing else in Phase 2 can start without this.** |
-| 2.1b | Create their clinician account and have them add credentials | One `POST /api/admin/users` + their sign-in |
+| 2.1 | Name a clinical reviewer | 🟡 Clinical contact established: **Dr. Ryan Alexander**, medical director at a McNabb Center, and the demo audience. Still to confirm: whether he is the named reviewer or nominates someone. **Nothing else in Phase 2 can start until that is settled.** |
+| 2.1b | Create their clinician account and have them add credentials | One `POST /api/admin/users` + their sign-in. Currently curl-only — see 2.5.8; doing this in front of a clinician is a bad look, so the admin UI matters more than its phase number suggests. |
 | 2.2 | Review all 29 content blocks | Record reviewer, review date, effective date, next review date |
 | 2.3 | Resolve the oxycodone wait-time ambiguity | Slide 4 (12 hrs) vs slide 5 (>24 hrs) — currently both are shown |
 | 2.4 | Verify McNabb Center referral details | Address, phone, payer acceptance, services, MAT/detox availability |
@@ -239,7 +240,7 @@ Lightweight, because two people do not need Jira.
 | # | Blocker | Owner | Unblocks |
 | --- | --- | --- | --- |
 | B1 | Commit + push the overnight work; merge `gj_dev` → `main` | Gerald/Emma | everything downstream |
-| B2 | **Recruit a clinical reviewer** | Gerald/Emma | all of Phase 2, the pilot, both field papers |
+| B2 | **Confirm the named clinical reviewer** — Dr. Ryan Alexander is the contact; settle whether he signs off or nominates | Gerald/Emma | all of Phase 2, the pilot, both field papers |
 | B3 | Decide PHI-in-conversations policy (retention / encryption / refuse-to-store) | Gerald | the pilot |
 | B4 | `all4knox.rubyrecon.com` DNS A record | Emma | the second public hostname |
 | B5 | `LETSENCRYPT_EMAIL` in `.env` | Gerald | cert-expiry warnings reaching a human |
