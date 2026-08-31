@@ -1,6 +1,11 @@
 # Session Handoff — All4Knox Clinical Provider Toolkit
 
-**Last updated:** 2026-08-31 (overnight session before the 11:30 demo)
+**Last updated:** 2026-08-31, end of the overnight session before the 11:30 demo.
+
+**Branch:** `gj_dev`. `ed3cb88` is pushed; **~7,100 lines of later work are
+uncommitted** (36 files modified, 25 new). `main` is still at `36fa675` —
+merge pending on GitHub. Always check `git log --oneline --all` and
+`git status` before assuming which branch has what.
 **Maintainers:** Emma (repo owner, `Emmagrace0130/All4Knox-Project`) · Gerald Jones
 **Partner:** McNabb Center, Knoxville TN — this app is a pilot tool for them.
 
@@ -18,11 +23,15 @@ Run this before you change anything:
 ```bash
 cd /home/gerald/GITS_REPOS/GIT_PLAY_GROUNDs/All4Knox-Project
 
-git log --oneline -10          # what actually landed since this doc's date
-git status                     # uncommitted work in progress?
-docker compose ps              # is the stack up, and healthy?
-curl -s localhost:8410/api/health | python3 -m json.tool
-ls docs/                       # have new docs appeared?
+git log --oneline -10   # what actually landed since this doc's date
+git status              # uncommitted work in progress? (expect a lot right now)
+./a4k status            # is the stack up and healthy?
+./a4k health            # API, assistant, index, public site
+ls docs/                # have new docs appeared?
+
+# how much clinical content has actually been reviewed
+curl -s localhost:8410/api/sources | python3 -c \
+  "import sys,json; d=json.load(sys.stdin); print(d['reviewedCount'],'of',d['total'])"
 ```
 
 **If what you find disagrees with this document, the repo wins.** Fix this
@@ -42,6 +51,10 @@ grep -rn "TODO\|FIXME" backend/app frontend/src --include='*.py' --include='*.ts
 `docker` command.** This is a shared server with ~100 containers belonging to
 other people.
 
+**Working on the React app?** [`frontend-guide.md`](frontend-guide.md) is a full
+walkthrough of its structure, patterns and conventions — §9 covers the guided
+interview.
+
 ---
 
 ## 1. Where the project stands
@@ -55,11 +68,70 @@ other people.
 | **Local debug** | API `127.0.0.1:8410`, web `127.0.0.1:8411` |
 | **Containers** | `all4knox-api`, `all4knox-web` — both healthy |
 | **Assistant** | `gpt-oss:20b` via host Ollama; 31-chunk vector index; ~6 s to first answer |
+| **Branch** | `gj_dev` — `ed3cb88` pushed; later work uncommitted |
+| **Database** | SQLite at `/data/all4knox.db` on the `all4knox-data` volume |
+| **First admin** | Seeded from `SEED_ADMIN_*` in `.env`. **Blank those out and change the password after first sign-in.** |
+| **Clinical review** | **0 of 29 blocks reviewed.** Workflow is built at `/review`; no reviewer recruited. |
+| **Tests** | 44 backend tests passing · frontend build + lint clean |
+| **Control** | `./a4k` — see `./a4k help` |
+
+### Routes
+
+| Route | What |
+| --- | --- |
+| `/` | Landing page — mission, partners, routing, toolkit cards |
+| `/toolkit` | Toolkit dashboard |
+| `/toolkit/{prescribing,start,uds,dosing}` | The four decision tools |
+| `/toolkit/{...}/guided` | Guided "TurboTax" interview variants |
+| `/ask` | Ask All4Knox assistant (persistent conversation) |
+| `/review` | Clinical review workspace |
+| `/clinical-sources` | Source + version register |
+| `/sign-in`, `/account` | Optional accounts |
+| `/learn/buprenorphine`, `/referrals`, `/resources`, `/about` | Reference |
+
+### Ollama: two working paths, one active
+
+`OLLAMA_BASE_URL` is `http://host.docker.internal:11434` — **direct to the host
+daemon, no authentication**. That is the active path: fewer hops, no TLS
+handshake, no dependency on the shared proxy.
+
+`OLLAMA_USERNAME` / `OLLAMA_PASSWORD` are also set in `.env` and loaded into the
+container, but **currently unused** — the direct path does not ask for them.
+They are not dead weight: they are a *verified* fallback. Confirmed
+2026-08-31 that `https://ollama.viridian.ise.utk.edu` returns 401 without them
+and HTTP 200 with them (60 models visible).
+
+To switch to the proxy path — needed only if the API ever moves off this host:
+
+```bash
+# .env
+OLLAMA_BASE_URL=https://ollama.viridian.ise.utk.edu
+docker compose up -d          # env is read at container start, not per request
+```
 
 ### What works end to end
 
 - All four Phase-1 decision tools (prescribing, induction, UDS, dosing) served
   by FastAPI, rendered by the existing React UI.
+- **Accounts, roles and persistent assistant conversations** — visitors get a
+  session-scoped conversation that survives tab switches and is wiped after
+  inactivity; basic/clinician/admin accounts; per-user generation settings;
+  admin-managed system prompts. See
+  [`accounts-and-assistant-plan.md`](accounts-and-assistant-plan.md).
+- **Markdown rendering** of assistant answers, via a renderer that structurally
+  cannot emit raw HTML.
+- **Landing page at `/`** — mission, partners (McNabb Center, Applied Systems
+  Lab), routing by intent, and the toolkit cards. `/toolkit` is the dashboard.
+- **Sign-in and account pages**, with a header account control.
+- **Clinical review workspace** at `/review` — clinicians record authoritative
+  sign-off, admins record internal QA that never counts. Reviews bind to a hash
+  of the reviewed text, so editing content invalidates the approval. See
+  [`clinical-review-plan.md`](clinical-review-plan.md).
+- **`./a4k`** — one CLI for start/stop/rebuild/logs/health/tests, scoped to
+  this project's containers.
+- **Guided "TurboTax" interview** for all four tools at
+  `/toolkit/<tool>/guided` — the presentation the McNabb Center asked for.
+  Full-view pages are unchanged and reachable from every guided screen.
 - Referral directory, resources, and the clinical sources/version register.
 - "Ask All4Knox" retrieval assistant with streaming answers, citations and
   structural refusal.
@@ -67,8 +139,9 @@ other people.
 
 ### What is NOT done
 
-- **No clinical review has happened.** All 29 content blocks report
-  `reviewedBy: null`. This is correct and deliberate — but it means the toolkit
+- **No clinical review has happened — 0 of 29.** The workflow to do it now
+  exists at `/review`, but no clinician has been recruited. This is correct and
+  deliberate — but it means the toolkit
   is not usable for real patient care. See §6.
 - `all4knox.rubyrecon.com` is not live (Emma owns that domain — see §5).
 - `LETSENCRYPT_EMAIL` in `.env` is blank; expiry warnings go nowhere.
@@ -197,16 +270,41 @@ disagreement"*.
 
 ---
 
+## 3c. Traps found the hard way — do not reintroduce these
+
+Every one of these was a live bug during the 2026-08-31 session. They are
+listed together because each is invisible to a casual test.
+
+| Trap | Symptom | Fix |
+| --- | --- | --- |
+| **Parallel session minting** | First assistant question returned 404 | Every endpoint mints a session when a request arrives without a cookie. On first load three calls fired in parallel with no cookie, each minting its own. React runs child effects *before* parent effects, so the page beat the provider. **Any new page that creates server-side state must wait for `identityLoading` to clear.** |
+| **Seed-admin race** | A uvicorn worker died on every cold start | All workers saw an empty users table and raced to insert. Check-then-insert is not atomic across processes; the loser now swallows the integrity error. |
+| **Editable safety prompt** | An admin could silently disable every guardrail | The system prompt is split: `SAFETY_PREAMBLE` is immutable and always prepended; only `STYLE_PROMPT` is editable. |
+| **`justify-content: flex-end` on an overflow-scrolling flex container** | Nav items hidden behind the logo at *every* width; `scrollWidth` reported no overflow | Overflow goes off the **left** edge where scroll cannot reach. Use `width: max-content` + `margin-left: auto`. |
+| **Missing grid-item rule** | Toolkit card content overlapped the row below | `.tool-card__link` had `height: 100%` with no `.tool-card` rule, so anything appended overflowed the cell. |
+| **Retrieval floor set by feel** | Off-corpus questions reached the model | `RAG_MIN_SCORE` must be *measured*: `backend/tools/calibrate_threshold.py`. Re-measure after any embedding-model or corpus change. |
+| **Testing against production** | A fabricated clinical attestation appeared live | An API test recorded a real-looking review signed by "Dr Test Reviewer". Deleted immediately. **If you test against the live system, clean up in the same breath.** |
+
+---
+
 ## 4. Common tasks
+
+**Use `./a4k` for everything.** It is scoped to All4Knox containers so it
+cannot touch a neighbour's work on this shared box. `./a4k help` lists it all.
 
 ```bash
 cd /home/gerald/GITS_REPOS/GIT_PLAY_GROUNDs/All4Knox-Project
 
-# status / logs
+./a4k status      # containers, ports, public URL
+./a4k rebuild     # after code changes
+./a4k logs api    # follow logs
+./a4k health      # API + assistant + index + public site
+./a4k warm        # before a demo
+./a4k check       # content + tests + build + lint
+
+# the raw equivalents, if you prefer
 docker compose ps
 docker compose logs -f api
-
-# rebuild after code changes
 docker compose up -d --build
 
 # run the test suite
@@ -317,6 +415,9 @@ model**, since a cold `gpt-oss:20b` load is a visible pause.
 **Then, in priority order** — see [`project-plan.md`](project-plan.md) for the
 full phased plan:
 
+0. **Sign in as the seeded admin, change the password, and blank
+   `SEED_ADMIN_EMAIL` / `SEED_ADMIN_PASSWORD` in `.env`.** They are only needed
+   for the very first boot.
 1. Set `LETSENCRYPT_EMAIL` in `.env` so cert-expiry warnings reach a human.
 2. Get McNabb Center referral details verified (unblocks a whole content class).
 3. Identify a named clinical reviewer and start working through the 29 blocks.
@@ -331,7 +432,10 @@ full phased plan:
 | Date | Who | What changed |
 | --- | --- | --- |
 | 2026-08-30 | Emma | Initial commit, website skeleton, React/Vite frontend (Phase 1 tools, local content) |
-| 2026-08-31 | Gerald + Claude | FastAPI backend; mechanical content export; TS↔Python parity harness (302 cases); RAG assistant on `gpt-oss:20b` with measured refusal threshold; full containerisation; live HTTPS at all4knox.axiomsystemslab.com; docs (handoff, ROE, project plan, publication plan) |
+| 2026-08-31 | Gerald + Claude | Clinical review workspace (`/review`): clinician sign-off vs admin QA enforced in code, content-hash invalidation, append-only audit trail. Landing page at `/`, sign-in + account pages, `./a4k` CLI. Fixed the header nav clipping and the toolkit card overlap. 44 tests. |
+| 2026-08-31 | Gerald + Claude | Accounts + roles (visitor/basic/clinician/admin) on SQLite; persistent assistant conversations with inactivity sweep; per-user generation settings with server-side clamping; admin system-prompt variants with an **immutable safety preamble**; markdown rendering. Fixed three bugs found while building: seed-admin worker race, parallel session-minting race (404 on first question), and an admin being able to publish a prompt with no safety rules. 29/29 API + 8/8 browser checks. |
+| 2026-08-31 | Gerald + Claude | Guided "TurboTax" interview wired up for all four tools (`useInterviewFlow` + the previously-unused `guided/` components and `guided.css`); 12/12 browser click-through checks. Agent design specified in project-plan Phase 2.5 with spike numbers. |
+| 2026-08-31 | Gerald + Claude | `ed3cb88` on `gj_dev` — FastAPI backend; mechanical content export; TS↔Python parity harness (302 cases); RAG assistant on `gpt-oss:20b` with measured refusal threshold; full containerisation; live HTTPS at all4knox.axiomsystemslab.com; docs (handoff, ROE, project plan, publication plan). 73 files, +11,778 lines. `.env` verified absent from history. |
 
 **Append a row when you finish a session.** Keep it to what changed and why —
 the git log has the detail.

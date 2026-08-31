@@ -71,16 +71,29 @@ class OllamaClient:
             raise OllamaError(f"no embeddings returned for {len(texts)} inputs")
         return embeddings
 
-    async def chat(self, messages: list[dict[str, str]], temperature: float = 0.1) -> str:
+    @staticmethod
+    def _options(overrides: dict[str, Any] | None) -> dict[str, Any]:
+        """Drop unset keys so Ollama applies its own defaults for them."""
+        base = {"temperature": 0.1}
+        if overrides:
+            base.update({k: v for k, v in overrides.items() if v is not None})
+        return base
+
+    async def chat(
+        self,
+        messages: list[dict[str, str]],
+        options: dict[str, Any] | None = None,
+        model: str | None = None,
+    ) -> str:
         """Single-shot chat completion."""
         async with self._client() as client:
             resp = await client.post(
                 "/api/chat",
                 json={
-                    "model": self._model,
+                    "model": model or self._model,
                     "messages": messages,
                     "stream": False,
-                    "options": {"temperature": temperature},
+                    "options": self._options(options),
                 },
             )
             if resp.status_code >= 400:
@@ -91,7 +104,10 @@ class OllamaClient:
         return (data.get("message") or {}).get("content", "")
 
     async def chat_stream(
-        self, messages: list[dict[str, str]], temperature: float = 0.1
+        self,
+        messages: list[dict[str, str]],
+        options: dict[str, Any] | None = None,
+        model: str | None = None,
     ) -> AsyncIterator[str]:
         """Token stream, so the demo shows an answer forming rather than a spinner."""
         import json as _json
@@ -101,10 +117,10 @@ class OllamaClient:
                 "POST",
                 "/api/chat",
                 json={
-                    "model": self._model,
+                    "model": model or self._model,
                     "messages": messages,
                     "stream": True,
-                    "options": {"temperature": temperature},
+                    "options": self._options(options),
                 },
             ) as resp:
                 if resp.status_code >= 400:

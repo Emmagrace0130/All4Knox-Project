@@ -22,8 +22,10 @@ Built with the **McNabb Center**, Knoxville TN.
 | [`backend/`](backend/) | FastAPI service — clinical rules + RAG assistant |
 | [`docker-compose.yml`](docker-compose.yml) | Both services, wired for the shared server |
 | [`docs/session-handoff.md`](docs/session-handoff.md) | **Start here** — project state, gotchas, common tasks |
+| [`docs/frontend-guide.md`](docs/frontend-guide.md) | Walkthrough of the React app — structure, patterns, conventions |
 | [`docs/rules-of-engagement.md`](docs/rules-of-engagement.md) | **Read before any `docker` command** — shared server |
 | [`docs/project-plan.md`](docs/project-plan.md) | Phases, milestones, tracking |
+| [`docs/clinical-review-plan.md`](docs/clinical-review-plan.md) | How clinical sign-off works, and why admins cannot do it |
 | [`docs/research/`](docs/research/) | Literature review, publication and funding plan |
 | [`docs/source-extraction.md`](docs/source-extraction.md) | What was transcribed from the clinical summary, by slide |
 

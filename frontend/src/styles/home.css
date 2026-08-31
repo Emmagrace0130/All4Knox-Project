@@ -1,0 +1,488 @@
+/* ==========================================================================
+   Landing page + account forms
+   ========================================================================== */
+
+/* --- hero ---------------------------------------------------------------- */
+.splash-hero {
+  padding: var(--s-8) 0 var(--s-7);
+  max-width: 46rem;
+}
+
+.splash-hero__eyebrow {
+  margin: 0 0 var(--s-4);
+  display: inline-block;
+  padding: var(--s-1) var(--s-3);
+  border-radius: var(--radius-pill);
+  background: var(--brand-soft);
+  border: 1px solid var(--brand-line);
+  color: var(--brand-dark);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.splash-hero__title {
+  margin: 0 0 var(--s-4);
+  font-size: clamp(2rem, 4.2vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.splash-hero__lede {
+  margin: 0 0 var(--s-5);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+
+.splash-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-bottom: var(--s-5);
+}
+
+.splash-hero__meta {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+/* --- mission ------------------------------------------------------------- */
+.splash-mission {
+  padding: var(--s-6) 0;
+  border-top: 1px solid var(--line);
+}
+
+.splash-mission__heading {
+  margin: 0 0 var(--s-5);
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-weight: 650;
+}
+
+.splash-mission__grid {
+  display: grid;
+  gap: var(--s-5);
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.splash-mission__grid h3 {
+  margin: 0 0 var(--s-2);
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.splash-mission__grid p {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.65;
+  font-size: 0.9375rem;
+}
+
+/* --- routing by intent --------------------------------------------------- */
+.splash-audiences {
+  padding: var(--s-6) 0 var(--s-5);
+}
+
+.splash-audiences__list {
+  list-style: none;
+  margin: var(--s-4) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s-4);
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+}
+
+.splash-audience {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: var(--s-5);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.splash-audience h3 {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--ink);
+}
+
+.splash-audience p {
+  margin: 0;
+  flex: 1;
+  color: var(--ink-2);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.splash-audience__cta {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--brand-dark);
+}
+
+/* --- partners ------------------------------------------------------------ */
+.splash-partners {
+  padding: var(--s-6) 0;
+  border-top: 1px solid var(--line);
+}
+
+.splash-partners__list {
+  list-style: none;
+  margin: var(--s-4) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s-5);
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+}
+
+.splash-partner {
+  display: flex;
+  gap: var(--s-4);
+  align-items: flex-start;
+}
+
+/* Sized so a real logo can drop straight in without reflowing the layout. */
+.splash-partner__logo {
+  flex: none;
+  width: 96px;
+  height: 96px;
+  display: grid;
+  place-items: center;
+  padding: var(--s-3);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.splash-partner__logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Until we have permission to use a mark, show the name — never a broken
+   image, and never a placeholder that implies an endorsement. */
+.splash-partner__wordmark {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.25;
+  color: var(--muted);
+}
+
+.splash-partner__role {
+  margin: 0 0 var(--s-1);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  font-weight: 650;
+}
+
+.splash-partner__name {
+  margin: 0 0 var(--s-2);
+  font-size: 1.0625rem;
+  color: var(--ink);
+}
+
+.splash-partner__blurb {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+/* --- status -------------------------------------------------------------- */
+.splash-status {
+  margin: var(--s-6) 0 0;
+  padding: var(--s-5);
+  background: var(--warn-soft);
+  border: 1px solid var(--warn-line);
+  border-radius: var(--radius-lg);
+}
+
+.splash-status__heading {
+  margin: 0 0 var(--s-3);
+  font-size: 0.9375rem;
+  color: var(--warn);
+}
+
+.splash-status p {
+  margin: 0 0 var(--s-2);
+  color: var(--ink-2);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+.splash-status p:last-child { margin-bottom: 0; }
+
+/* --- auth + settings forms ---------------------------------------------- */
+.auth-form {
+  margin: var(--s-5) 0 var(--s-4);
+  display: grid;
+  gap: var(--s-4);
+  max-width: 26rem;
+}
+
+.auth-form__field { display: grid; gap: var(--s-2); }
+
+.auth-form__label {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--ink);
+}
+
+.auth-form__input {
+  font: inherit;
+  padding: var(--s-3);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+}
+.auth-form__input:focus-visible {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 4px var(--brand-ring);
+}
+
+.auth-form__error {
+  margin: 0;
+  color: var(--danger);
+  font-size: 0.875rem;
+  font-weight: 550;
+}
+
+.auth-form__note {
+  margin: var(--s-4) 0 0;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  max-width: 34rem;
+}
+
+.setting-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--s-3) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.setting-row__label {
+  display: grid;
+  gap: 2px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--ink);
+}
+
+.setting-row__hint {
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: var(--muted);
+  max-width: 26rem;
+}
+
+.setting-row__control {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.setting-row__input {
+  font: inherit;
+  width: 6.5rem;
+  padding: var(--s-2);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.setting-row__range {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+
+@media (max-width: 640px) {
+  .splash-hero { padding: var(--s-6) 0 var(--s-5); }
+  .splash-partner { flex-direction: column; }
+}
+
+/* ==========================================================================
+   Clinical review workspace
+   ========================================================================== */
+
+.review-layout {
+  display: grid;
+  grid-template-columns: minmax(18rem, 22rem) 1fr;
+  gap: var(--s-5);
+  margin-top: var(--s-5);
+  align-items: start;
+}
+
+.review-queue {
+  position: sticky;
+  top: 5rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.review-queue__summary {
+  padding: var(--s-4);
+  border-bottom: 1px solid var(--line);
+  font-size: 0.9375rem;
+  color: var(--ink-2);
+}
+
+.review-queue__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1);
+  padding: var(--s-3) var(--s-3) 0;
+}
+
+.review-queue__filter {
+  font: inherit;
+  font-size: 0.75rem;
+  padding: var(--s-1) var(--s-2);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+}
+.review-queue__filter:hover { border-color: var(--brand-line); color: var(--brand-dark); }
+.review-queue__filter.is-active {
+  background: var(--brand-soft);
+  border-color: var(--brand-line);
+  color: var(--brand-dark);
+  font-weight: 650;
+}
+
+.review-queue__list {
+  list-style: none;
+  margin: 0;
+  padding: var(--s-3);
+  max-height: 60vh;
+  overflow-y: auto;
+  display: grid;
+  gap: var(--s-1);
+}
+
+.review-queue__item {
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  display: grid;
+  gap: 2px;
+  padding: var(--s-3);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: none;
+  cursor: pointer;
+}
+.review-queue__item:hover { background: var(--surface-sunken); }
+.review-queue__item.is-selected {
+  background: var(--brand-soft);
+  border-color: var(--brand-line);
+}
+.review-queue__title { font-weight: 600; font-size: 0.875rem; color: var(--ink); }
+.review-queue__module { font-size: 0.75rem; color: var(--muted); }
+
+.review-panel { min-width: 0; }
+
+.review-detail {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: var(--s-5);
+}
+
+.review-detail__title { margin: var(--s-2) 0 var(--s-2); font-size: 1.25rem; }
+.review-detail__meta { margin: 0; font-size: 0.8125rem; color: var(--muted); }
+
+.review-detail__content { margin-top: var(--s-5); }
+
+/* The reviewer signs off on this exact text, so show it verbatim. */
+.review-detail__text {
+  margin: var(--s-3) 0 var(--s-2);
+  padding: var(--s-4);
+  background: var(--surface-sunken);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+.review-detail__hash {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+
+.review-form {
+  margin-top: var(--s-5);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+}
+
+.review-form__decisions {
+  border: none;
+  margin: 0 0 var(--s-4);
+  padding: 0;
+  display: grid;
+  gap: var(--s-2);
+}
+
+.review-form__decision {
+  display: flex;
+  gap: var(--s-3);
+  align-items: flex-start;
+  padding: var(--s-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 0.9375rem;
+}
+.review-form__decision:hover { border-color: var(--brand-line); background: var(--brand-soft); }
+
+.review-history { margin-top: var(--s-5); padding-top: var(--s-5); border-top: 1px solid var(--line); }
+.review-history__note { margin: 0 0 var(--s-3); font-size: 0.8125rem; color: var(--muted); }
+.review-history__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-3); }
+
+.review-history__item {
+  display: flex;
+  gap: var(--s-3);
+  align-items: flex-start;
+  padding: var(--s-3);
+  background: var(--surface-sunken);
+  border-radius: var(--radius);
+}
+
+.review-history__decision { margin: 0; font-weight: 600; font-size: 0.875rem; text-transform: capitalize; }
+.review-history__meta { margin: 2px 0 0; font-size: 0.75rem; color: var(--muted); font-family: var(--font-mono); }
+.review-history__comments { margin: var(--s-2) 0 0; font-size: 0.875rem; color: var(--ink-2); }
+
+.tag--danger { background: var(--danger-soft); color: var(--danger); border-color: var(--danger-line); }
+
+@media (max-width: 960px) {
+  .review-layout { grid-template-columns: 1fr; }
+  .review-queue { position: static; }
+}

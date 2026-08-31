@@ -45,8 +45,19 @@ services:
       RAG_MIN_SCORE: ${RAG_MIN_SCORE:-0.35}
       RAG_AUTO_INGEST: ${RAG_AUTO_INGEST:-true}
       ASSISTANT_ENABLED: ${ASSISTANT_ENABLED:-true}
+
+      # Accounts, sessions, conversations, settings, prompts
+      DATABASE_PATH: ${DATABASE_PATH:-/data/all4knox.db}
+      VISITOR_SESSION_TTL_MINUTES: ${VISITOR_SESSION_TTL_MINUTES:-120}
+      ACCOUNT_SESSION_TTL_DAYS: ${ACCOUNT_SESSION_TTL_DAYS:-30}
+      COOKIE_SECURE: ${COOKIE_SECURE:-true}
+      SEED_ADMIN_EMAIL: ${SEED_ADMIN_EMAIL:-}
+      SEED_ADMIN_PASSWORD: ${SEED_ADMIN_PASSWORD:-}
     volumes:
       - all4knox-vector-store:/data/vector_store
+      # SQLite lives on its own volume: accounts and conversations must survive
+      # a rebuild, and must NOT be discarded when the index is rebuilt.
+      - all4knox-data:/data
     extra_hosts:
       # Lets the container reach the host's Ollama daemon on Linux.
       - "host.docker.internal:host-gateway"
@@ -95,6 +106,8 @@ services:
 volumes:
   # Embeddings are expensive to recompute; keep them across restarts.
   all4knox-vector-store: {}
+  # Accounts, sessions, conversations, settings and prompts.
+  all4knox-data: {}
 
 networks:
   # Private to this stack — the API is not reachable from other projects.

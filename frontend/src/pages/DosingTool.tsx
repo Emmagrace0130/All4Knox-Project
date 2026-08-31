@@ -48,6 +48,12 @@ export function DosingTool() {
       lede={`Primary treatment goal: ${dosingOverview.goal.toLowerCase()}`}
       backTo={{ to: '/', label: 'Toolkit' }}
     >
+      <p className="mode-switch print-hide">
+        <Link to="/toolkit/dosing/guided">
+          <span aria-hidden="true">◈</span> Use the guided walkthrough instead
+        </Link>
+      </p>
+
       <div className="tool-layout">
         <div className="tool-layout__steps">
           <section className="intro-card">

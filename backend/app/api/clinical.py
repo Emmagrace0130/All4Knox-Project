@@ -16,7 +16,7 @@ from app.models.clinical import (
     UDSPanel,
     UDSResult,
 )
-from app.services import content, rules
+from app.services import content, review, rules
 
 router = APIRouter()
 
@@ -173,12 +173,24 @@ def get_sources() -> dict[str, Any]:
     counts = {"documented": 0, "partial": 0, "pending": 0}
     for entry in entries:
         counts[entry["entryStatus"]] = counts.get(entry["entryStatus"], 0) + 1
-    reviewed = len([e for e in entries if e["review"]["reviewedDate"]])
+
+    # Review state comes from the review records, not from the static content
+    # metadata — that is the whole point of the review system. A block whose
+    # text changed after sign-off reports as `stale`, not as reviewed.
+    review_queue = review.queue()
+    states = {b["id"]: b for b in review_queue["blocks"]}
+    enriched = [
+        {**entry, "reviewState": states.get(entry["id"], {}).get("state", "unreviewed"),
+         "latestReview": states.get(entry["id"], {}).get("latestClinical")}
+        for entry in entries
+    ]
+
     return {
-        "entries": entries,
+        "entries": enriched,
         "counts": counts,
+        "reviewCounts": review_queue["counts"],
         "total": len(entries),
-        "reviewedCount": reviewed,
+        "reviewedCount": review_queue["reviewedCount"],
         "review": content.load("version")["review"],
         **_meta(),
     }

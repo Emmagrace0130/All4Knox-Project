@@ -20,7 +20,7 @@
   padding: var(--s-3) var(--s-5);
   display: flex;
   align-items: center;
-  gap: var(--s-6);
+  gap: var(--s-4);
   flex-wrap: wrap;
 }
 
@@ -29,7 +29,8 @@
   align-items: center;
   gap: var(--s-3);
   color: inherit;
-  flex-shrink: 0;
+  /* Never shrink and never be overlapped: the brand owns its space. */
+  flex: 0 0 auto;
 }
 
 .brand:hover {
@@ -69,7 +70,7 @@
 /* Navigation -------------------------------------------------------- */
 
 .nav {
-  flex: 1;
+  flex: 1 1 auto;
   min-width: 0;
   overflow-x: auto;
   scrollbar-width: none;
@@ -82,7 +83,20 @@
 .nav__list {
   display: flex;
   gap: var(--s-1);
-  justify-content: flex-end;
+  /*
+   * `margin-left: auto` + `width: max-content`, NOT `justify-content: flex-end`.
+   *
+   * In a scrollable (overflow-x) flex container, `justify-content: flex-end`
+   * pushes any overflow off the LEFT edge, where scrollWidth does not report
+   * it and no amount of scrolling reaches it. The items simply disappear under
+   * whatever sits to the left — here, the brand. This bit the nav the moment
+   * an eighth item was added.
+   *
+   * With max-content the list keeps its intrinsic width and scrolls correctly
+   * from the left; the auto margin still right-aligns it whenever it fits.
+   */
+  width: max-content;
+  margin-left: auto;
 }
 
 .nav__link {
@@ -105,6 +119,72 @@
   background: var(--brand-soft);
   color: var(--brand-dark);
   font-weight: 600;
+}
+
+/* Header account control -------------------------------------------- */
+
+.site-header__account {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.account-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-2);
+  font-size: 0.8125rem;
+  font-weight: 550;
+  cursor: pointer;
+}
+.account-chip:hover {
+  border-color: var(--brand-line);
+  background: var(--brand-soft);
+  color: var(--brand-dark);
+  text-decoration: none;
+}
+.account-chip__role {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+.account-chip__avatar {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-pill);
+  background: var(--brand);
+  color: #fff;
+  font-size: 0.625rem;
+  font-weight: 700;
+}
+
+/*
+ * Below this width the eight nav items plus the brand and the account control
+ * cannot share a row without crowding, so the nav takes a row of its own
+ * rather than being squeezed or clipped.
+ */
+@media (max-width: 1180px) {
+  .nav {
+    flex: 1 0 100%;
+    order: 3;
+    padding-top: var(--s-1);
+  }
+  .nav__list {
+    margin-left: 0;
+    justify-content: flex-start;
+  }
+  .site-header__account {
+    margin-left: auto;
+  }
 }
 
 /* Page -------------------------------------------------------------- */
@@ -194,10 +274,6 @@
 
   .site-header__inner {
     gap: var(--s-3);
-  }
-
-  .nav__list {
-    justify-content: flex-start;
   }
 }
 

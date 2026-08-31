@@ -1,0 +1,264 @@
+#!/usr/bin/env bash
+#
+# a4k — All4Knox control script
+#
+# Everything you need to run this stack, scoped so it can only ever touch
+# All4Knox containers. This machine is shared with ~40 other projects; see
+# docs/rules-of-engagement.md. Nothing here uses a bare `docker` verb that
+# could reach a neighbour's container.
+#
+#   ./a4k help
+#
+set -euo pipefail
+
+cd "$(dirname "${BASH_SOURCE[0]}")"
+
+URL="https://all4knox.axiomsystemslab.com"
+API_LOCAL="http://localhost:${ALL4KNOX_API_PORT:-8410}"
+WEB_LOCAL="http://localhost:${ALL4KNOX_WEB_PORT:-8411}"
+
+b()  { printf '\033[1m%s\033[0m\n' "$*"; }
+ok() { printf '  \033[32m✓\033[0m %s\n' "$*"; }
+no() { printf '  \033[31m✗\033[0m %s\n' "$*"; }
+info(){ printf '  \033[2m%s\033[0m\n' "$*"; }
+
+need_env() {
+  if [[ ! -f .env ]]; then
+    no ".env is missing. Copy the template first:"
+    info "cp .env.example .env   # then fill in the blanks"
+    exit 1
+  fi
+}
+
+code() { curl -sS -o /dev/null -w '%{http_code}' --max-time "${2:-15}" "$1" 2>/dev/null || echo "---"; }
+
+cmd_help() {
+  cat <<'TXT'
+a4k — All4Knox control script
+
+  Running the stack
+    ./a4k up                 start (build only if images are missing)
+    ./a4k down               stop and remove the containers (KEEPS all data)
+    ./a4k restart [svc]      restart everything, or just api | web
+    ./a4k rebuild [svc]      rebuild images and restart. Use after code changes.
+    ./a4k status             containers, ports, public URL, assistant health
+
+  Watching it
+    ./a4k logs [svc]         follow logs (ctrl-C to stop)
+    ./a4k health             one-shot health check of every endpoint
+    ./a4k warm               load the model so the first demo answer is fast
+
+  Development
+    ./a4k test               backend test suite (incl. TS/Python parity)
+    ./a4k build-web          typecheck + build the frontend
+    ./a4k lint               lint the frontend
+    ./a4k content            regenerate backend content + parity from src/content
+    ./a4k check              content + test + build-web + lint, in order
+    ./a4k shell [svc]        shell inside a running container
+
+  Assistant
+    ./a4k reindex            rebuild the vector index from approved content
+    ./a4k sweep              expire idle visitor sessions now
+
+  Danger zone (asks first)
+    ./a4k reset-index        delete the vector index volume, then re-ingest
+    ./a4k reset-data         DELETE ALL accounts, sessions and conversations
+
+Everything is scoped to All4Knox containers. This is a shared server —
+see docs/rules-of-engagement.md before running any raw docker command.
+TXT
+}
+
+cmd_up() {
+  need_env
+  b "Starting All4Knox…"
+  docker compose up -d
+  cmd_status
+}
+
+cmd_down() {
+  b "Stopping All4Knox…"
+  # Deliberately no -v: volumes hold accounts, conversations and the index.
+  docker compose down
+  ok "stopped (data volumes kept — use 'reset-data' to erase)"
+}
+
+cmd_restart() {
+  need_env
+  local svc="${1:-}"
+  if [[ -n "$svc" ]]; then
+    b "Restarting $svc…"; docker compose restart "$svc"
+  else
+    b "Restarting All4Knox…"; docker compose restart
+  fi
+  sleep 3; cmd_status
+}
+
+cmd_rebuild() {
+  need_env
+  local svc="${1:-}"
+  if [[ -n "$svc" ]]; then
+    b "Rebuilding $svc…"; docker compose up -d --build "$svc"
+  else
+    b "Rebuilding All4Knox…"; docker compose up -d --build
+  fi
+  sleep 5; cmd_status
+}
+
+cmd_status() {
+  b "Containers"
+  docker compose ps --format '  {{.Name}}  {{.Status}}  {{.Ports}}' 2>/dev/null || no "not running"
+  echo
+  b "Endpoints"
+  local h; h=$(code "$API_LOCAL/api/health" 8)
+  [[ "$h" == "200" ]] && ok "api    $API_LOCAL  ($h)" || no "api    $API_LOCAL  ($h)"
+  local w; w=$(code "$WEB_LOCAL/" 8)
+  [[ "$w" == "200" ]] && ok "web    $WEB_LOCAL  ($w)" || no "web    $WEB_LOCAL  ($w)"
+  local p; p=$(code "$URL/" 15)
+  [[ "$p" == "200" ]] && ok "public $URL  ($p)" || no "public $URL  ($p)"
+}
+
+cmd_logs() {
+  local svc="${1:-}"
+  if [[ -n "$svc" ]]; then docker compose logs -f --tail 80 "$svc"
+  else docker compose logs -f --tail 80; fi
+}
+
+cmd_health() {
+  b "All4Knox health"
+  local h; h=$(code "$API_LOCAL/api/health" 8)
+  [[ "$h" == "200" ]] && ok "API responding" || { no "API not responding ($h)"; return 1; }
+
+  curl -sS --max-time 15 "$API_LOCAL/api/health" | python3 -c '
+import sys, json
+d = json.load(sys.stdin)
+print("  content version : " + str(d["contentVersion"]))
+print("  environment     : " + str(d["appEnv"]))
+print("  bundles loaded  : " + str(len(d["bundles"])))
+print("  assistant       : " + ("enabled" if d["assistantEnabled"] else "disabled"))
+'
+  echo
+  b "Assistant"
+  curl -sS --max-time 25 "$API_LOCAL/api/assistant/status" | python3 -c '
+import sys, json
+d = json.load(sys.stdin)
+if not d.get("enabled"):
+    print("  disabled: " + str(d.get("reason", "")))
+    raise SystemExit
+o = d.get("ollama", {}) or {}
+i = d.get("index", {}) or {}
+g = d.get("generation", {}) or {}
+print("  model           : " + str(d.get("model")))
+print("  ollama reachable: " + str(o.get("reachable")))
+print("  model pulled    : " + str(o.get("modelAvailable")))
+print("  index chunks    : " + str(i.get("chunks")) + " (" + str(i.get("dimensions")) + "-dim)")
+print("  refusal floor   : " + str(d.get("minScore")))
+if g:
+    print("  temperature     : " + str(g.get("temperature")))
+if d.get("lastError"):
+    print("  last error      : " + str(d["lastError"]))
+'
+  echo
+  b "Public site"
+  local p; p=$(code "$URL/" 15)
+  [[ "$p" == "200" ]] && ok "$URL ($p)" || no "$URL ($p)"
+}
+
+cmd_warm() {
+  b "Warming the model (first answer after eviction is slow)…"
+  local t0 t1
+  t0=$(date +%s)
+  curl -sS --max-time 300 -X POST "$API_LOCAL/api/assistant/ask" \
+    -H 'Content-Type: application/json' \
+    -d '{"question":"How should I interpret BUP positive with fentanyl?"}' >/dev/null
+  t1=$(date +%s)
+  ok "model warm (took $((t1 - t0))s)"
+  info "run this within ~10 minutes of a demo"
+}
+
+cmd_test() {
+  b "Backend tests"
+  docker run --rm -v "$PWD/backend":/app -w /app -e HOME=/tmp python:3.12-slim \
+    sh -c "pip install -q pytest pydantic pydantic-settings email-validator httpx numpy 2>/dev/null; python -m pytest tests/ -q"
+}
+
+node_run() {
+  docker run --rm --user "$(id -u):$(id -g)" -v "$PWD":/work -w /work/frontend \
+    -e npm_config_cache=/tmp/.npm node:22-alpine sh -c "$1"
+}
+
+cmd_build_web() { b "Frontend typecheck + build"; node_run "npm run build"; }
+cmd_lint()      { b "Frontend lint";             node_run "npm run lint"; }
+
+cmd_content() {
+  b "Regenerating backend content + parity fixture from frontend/src/content"
+  node_run "npm run export:content && npm run export:parity"
+  ok "regenerated — commit the JSON alongside your content change"
+}
+
+cmd_check() {
+  cmd_content; echo; cmd_test; echo; cmd_build_web; echo; cmd_lint
+  echo; ok "all checks passed"
+}
+
+cmd_shell() {
+  local svc="${1:-api}"
+  docker compose exec "$svc" sh
+}
+
+cmd_reindex() {
+  b "Rebuilding the vector index from approved clinical content…"
+  curl -sS --max-time 300 -X POST "$API_LOCAL/api/assistant/reindex" | python3 -m json.tool
+}
+
+cmd_sweep() {
+  b "Expiring idle visitor sessions…"
+  info "requires an admin session; use the API directly if this 403s"
+  curl -sS --max-time 30 -X POST "$API_LOCAL/api/admin/sweep" | python3 -m json.tool
+}
+
+confirm() {
+  printf '\033[33m%s\033[0m\n' "$1"
+  read -r -p "Type 'yes' to continue: " reply
+  [[ "$reply" == "yes" ]] || { info "cancelled"; exit 1; }
+}
+
+cmd_reset_index() {
+  confirm "This deletes the vector index volume. It will be rebuilt from approved content on next start."
+  docker compose down
+  docker volume rm all4knox-project_all4knox-vector-store 2>/dev/null || true
+  docker compose up -d
+  ok "index volume removed; re-ingest happens on startup"
+}
+
+cmd_reset_data() {
+  confirm "This DELETES ALL accounts, sessions and conversations. It cannot be undone."
+  docker compose down
+  docker volume rm all4knox-project_all4knox-data 2>/dev/null || true
+  docker compose up -d
+  ok "database volume removed; a fresh one is created on startup"
+  info "set SEED_ADMIN_* in .env before starting if you need an admin again"
+}
+
+case "${1:-help}" in
+  up)          shift; cmd_up "$@" ;;
+  down)        shift; cmd_down "$@" ;;
+  restart)     shift; cmd_restart "$@" ;;
+  rebuild)     shift; cmd_rebuild "$@" ;;
+  status|ps)   shift; cmd_status "$@" ;;
+  logs)        shift; cmd_logs "$@" ;;
+  health)      shift; cmd_health "$@" ;;
+  warm)        shift; cmd_warm "$@" ;;
+  test)        shift; cmd_test "$@" ;;
+  build-web)   shift; cmd_build_web "$@" ;;
+  lint)        shift; cmd_lint "$@" ;;
+  content)     shift; cmd_content "$@" ;;
+  check)       shift; cmd_check "$@" ;;
+  shell)       shift; cmd_shell "$@" ;;
+  reindex)     shift; cmd_reindex "$@" ;;
+  sweep)       shift; cmd_sweep "$@" ;;
+  reset-index) shift; cmd_reset_index "$@" ;;
+  reset-data)  shift; cmd_reset_data "$@" ;;
+  help|-h|--help) cmd_help ;;
+  *) no "unknown command: $1"; echo; cmd_help; exit 1 ;;
+esac

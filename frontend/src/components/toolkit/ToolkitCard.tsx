@@ -16,6 +16,12 @@ export function ToolkitCard({ card }: { card: ToolkitCardDef }) {
           <span aria-hidden="true"> →</span>
         </span>
       </Link>
+      {card.guidedTo ? (
+        // Outside the card's own <Link> — anchors cannot be nested.
+        <Link to={card.guidedTo} className="tool-card__guided print-hide">
+          <span aria-hidden="true">◈</span> Guided walkthrough
+        </Link>
+      ) : null}
     </li>
   );
 }

@@ -236,3 +236,139 @@
     padding: var(--s-4);
   }
 }
+
+/* --------------------------------------------------------------------------
+   Markdown rendered from model output
+   -------------------------------------------------------------------------- */
+.md > *:first-child { margin-top: 0; }
+.md > *:last-child  { margin-bottom: 0; }
+
+.md p {
+  margin: 0 0 var(--s-3);
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+.md h3, .md h4, .md h5, .md h6 {
+  margin: var(--s-4) 0 var(--s-2);
+  line-height: 1.3;
+  color: var(--ink);
+}
+.md h3 { font-size: 1.0625rem; }
+.md h4 { font-size: 0.9375rem; }
+.md h5, .md h6 { font-size: 0.875rem; color: var(--ink-2); }
+
+.md ul, .md ol {
+  margin: 0 0 var(--s-3);
+  padding-left: var(--s-5);
+}
+.md li { margin-bottom: var(--s-2); line-height: 1.6; }
+.md li > ul, .md li > ol { margin-top: var(--s-2); }
+
+.md strong { font-weight: 650; color: var(--ink); }
+.md em { font-style: italic; }
+.md del { opacity: 0.7; }
+
+.md code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--surface-sunken);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+
+.md-code {
+  margin: 0 0 var(--s-3);
+  padding: var(--s-3) var(--s-4);
+  background: var(--surface-sunken);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow-x: auto;
+}
+.md-code code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+}
+
+.md blockquote {
+  margin: 0 0 var(--s-3);
+  padding: var(--s-2) var(--s-4);
+  border-left: 3px solid var(--brand-line);
+  background: var(--brand-soft);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  color: var(--ink-2);
+}
+
+.md hr {
+  margin: var(--s-4) 0;
+  border: none;
+  border-top: 1px solid var(--line);
+}
+
+.md a {
+  color: var(--brand-dark);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Tables can be wide; scroll them rather than the page. */
+.md-table-wrap {
+  margin: 0 0 var(--s-3);
+  overflow-x: auto;
+}
+.md-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.875rem;
+}
+.md-table th,
+.md-table td {
+  border: 1px solid var(--line);
+  padding: var(--s-2) var(--s-3);
+  text-align: left;
+  vertical-align: top;
+}
+.md-table th {
+  background: var(--surface-sunken);
+  font-weight: 650;
+}
+
+/* --------------------------------------------------------------------------
+   Conversation transcript
+   -------------------------------------------------------------------------- */
+.assistant__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--s-3);
+  border-bottom: 1px solid var(--line);
+}
+
+.assistant__session {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+/* The provider's own turn — visually distinct from the model's answer. */
+.assistant__turn-question {
+  margin: 0;
+  padding: var(--s-3) var(--s-4);
+  background: var(--surface-sunken);
+  border-radius: var(--radius-lg);
+  color: var(--ink);
+  font-weight: 550;
+  align-self: flex-end;
+  max-width: 90%;
+  margin-left: auto;
+}
+
+.assistant {
+  display: flex;
+  flex-direction: column;
+}

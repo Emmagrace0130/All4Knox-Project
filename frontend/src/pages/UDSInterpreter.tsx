@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '../components/common/Button';
 import { CheckboxGroup } from '../components/forms/CheckboxGroup';
 import { PageContainer } from '../components/layout/PageContainer';
@@ -67,6 +68,12 @@ export function UDSInterpreter() {
       lede="Select every substance detected on the screen. Interpretation updates as you go."
       backTo={{ to: '/', label: 'Toolkit' }}
     >
+      <p className="mode-switch print-hide">
+        <Link to="/toolkit/uds/guided">
+          <span aria-hidden="true">◈</span> Use the guided walkthrough instead
+        </Link>
+      </p>
+
       <div className="tool-layout">
         <div className="tool-layout__steps print-hide">
           <CheckboxGroup

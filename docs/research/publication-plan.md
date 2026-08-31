@@ -28,7 +28,7 @@ This project sits next to an existing body of work in the same lab:
 
 | Repo | What it is |
 | --- | --- |
-| `OPIOID_SD_MODEL_OPTIMIZATION` | Hybrid System Dynamics + ABM of the **Tennessee** opioid epidemic, with LLM-powered heterogeneous agents |
+| `OPIOID_SD_MODEL_OPTIMIZATION` | Hybrid System Dynamics + ABM of the **Tennessee** opioid epidemic, with LLM-powered heterogeneous agents. **Currently AnyLogic-based; a Python-only re-implementation is planned** (see below) |
 | `Annual_OUD_SD_ABM` | NSDUH-backed data foundation for annual OUD SD/ABM work |
 | `WSC25_ABM_LLM` | Winter Simulation Conference work on ABM + LLM |
 | **`All4Knox-Project`** | **A provider-side intervention in the same system** |
@@ -61,6 +61,27 @@ the clinical partner, and the tool in the same hands.
 
 *Risk:* it requires the pilot (Phase 4) to actually run and produce measurements.
 Without field data this argument collapses into a description.
+
+**The planned Python re-implementation matters here.** The SD/ABM model is
+currently built in AnyLogic, and is being re-implemented in a Python-only
+framework for easier long-term development. That is not just a maintenance win
+for this argument — it is close to a precondition for it:
+
+- All4Knox's backend is already Python. A Python model can be driven from the
+  same process, the same test suite, and the same CI as the toolkit, instead of
+  being coupled through file exports from a GUI simulation environment.
+- The feedback leg of the loop (measured provider behaviour → model parameters
+  → re-estimated population impact) becomes a *programmatic* step that can be
+  re-run whenever new pilot data arrives, rather than a manual re-parameterise
+  in AnyLogic. Reviewers ask how often the loop was closed and whether it was
+  reproducible; "automatically, on every data refresh" is a much stronger answer.
+- Reproducibility: an open-source Python model can ship as a supplement.
+  AnyLogic models generally cannot be run by reviewers, which weakens any
+  claim resting on the model's behaviour.
+
+**Sequencing implication:** the Python port does not block the *first* paper
+(1b, which does not involve the model at all), but it is on the critical path
+for 1a. Worth confirming its timeline against the pilot's, since 1a needs both.
 
 ### 1b. The safety-architecture argument — publishable sooner, narrower
 

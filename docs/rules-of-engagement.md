@@ -36,17 +36,27 @@ These are not "be careful" commands. They are **never** to be run on this host.
 | `systemctl restart docker` | Restarts every container on the box. |
 | Restarting or stopping `ollama` (host service, PID from `pgrep ollama`) | Shared by several projects. Unloading a model mid-inference breaks their runs. |
 
-**Safe equivalents, scoped to this project only:**
+**Use `./a4k` — it is scoped to All4Knox containers by construction:**
 
 ```bash
 cd /home/gerald/GITS_REPOS/GIT_PLAY_GROUNDs/All4Knox-Project
 
-docker compose ps                 # our two containers
-docker compose logs -f api        # our logs
-docker compose up -d --build      # rebuild + restart ours
-docker compose restart api        # restart ours
-docker compose down               # stop ours (keeps the vector-store volume)
+./a4k help          # every command
+./a4k status        # containers, ports, public URL
+./a4k up            # start
+./a4k down          # stop (KEEPS all data)
+./a4k restart api   # restart one service
+./a4k rebuild       # rebuild images + restart, after code changes
+./a4k logs api      # follow logs
+./a4k health        # API, assistant, index, public site
+./a4k warm          # load the model before a demo
+./a4k check         # content + tests + build + lint
 ```
+
+The raw equivalents are `docker compose ...` from this directory. Either way,
+**never add `-v` to `docker compose down`** unless you intend to delete the
+accounts database and the vector index. `./a4k reset-data` and
+`./a4k reset-index` exist for that and both demand a typed confirmation.
 
 Never add `-v` to `docker compose down` unless you intend to delete the vector
 index. It is rebuildable, but rebuilding costs an Ollama round-trip on next

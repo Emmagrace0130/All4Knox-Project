@@ -70,6 +70,12 @@ export function StartSuboxoneTool() {
       lede="Choose an induction method based on recent substance use and level of tolerance."
       backTo={{ to: '/', label: 'Toolkit' }}
     >
+      <p className="mode-switch print-hide">
+        <Link to="/toolkit/start/guided">
+          <span aria-hidden="true">◈</span> Use the guided walkthrough instead
+        </Link>
+      </p>
+
       <section className="intro-card print-hide">
         <h2 className="intro-card__title">{inductionIntro.title}</h2>
         <ol className="list list--numbered">

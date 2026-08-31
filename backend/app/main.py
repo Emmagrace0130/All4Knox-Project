@@ -20,11 +20,19 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api import assistant_routes, clinical, content_routes
+from app.api import (
+    assistant_routes,
+    auth_routes,
+    clinical,
+    content_routes,
+    review_routes,
+    settings_routes,
+)
+from app.core import db
 from app.core.config import get_settings
 from app.models.clinical import HealthResult
 from app.rag.assistant import Assistant
-from app.services import content
+from app.services import auth, content
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s %(levelname)-8s %(name)s: %(message)s"
@@ -35,6 +43,24 @@ log = logging.getLogger("all4knox")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     settings = get_settings()
+
+    # Persistence first: accounts, sessions and conversations all depend on it.
+    db.configure(settings.database_path)
+    log.info("database ready at %s", settings.database_path)
+
+    try:
+        seeded = auth.ensure_seed_admin(
+            settings.seed_admin_email, settings.seed_admin_password
+        )
+    except Exception as exc:  # noqa: BLE001 - seeding must never block boot
+        log.warning("seed admin creation skipped: %s", exc)
+        seeded = None
+    if seeded:
+        log.warning(
+            "seeded the first admin account (%s) — remove SEED_ADMIN_* from .env "
+            "and change the password after first sign-in",
+            settings.seed_admin_email,
+        )
 
     bundles = content.verify_all()
     log.info(
@@ -63,7 +89,33 @@ async def lifespan(app: FastAPI):
     else:
         log.info("assistant disabled by configuration")
 
+    async def sweep_sessions() -> None:
+        """
+        Periodically delete inactive visitor sessions and their conversations.
+
+        A lazy sweep on request alone would leave a quiet server holding
+        visitor data indefinitely, which is exactly what "wiped after
+        inactivity" is supposed to prevent.
+        """
+        while True:
+            try:
+                await asyncio.sleep(600)
+                removed = auth.sweep_expired(
+                    settings.visitor_session_ttl_minutes,
+                    settings.account_session_ttl_days,
+                )
+                if removed["visitorSessions"] or removed["accountSessions"]:
+                    log.info("session sweep removed %s", removed)
+            except asyncio.CancelledError:
+                raise
+            except Exception as exc:  # noqa: BLE001 - a sweep failure must not kill the app
+                log.warning("session sweep failed: %s", exc)
+
+    sweeper = asyncio.create_task(sweep_sessions())
+
     yield
+
+    sweeper.cancel()
 
 
 app = FastAPI(
@@ -81,7 +133,9 @@ _settings = get_settings()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=_settings.cors_origin_list,
-    allow_credentials=False,
+    # Session cookies must travel on cross-origin dev requests
+    # (npm run dev on :5173 against the containerised API).
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -89,6 +143,9 @@ app.add_middleware(
 app.include_router(clinical.router, prefix="/api")
 app.include_router(content_routes.router, prefix="/api")
 app.include_router(assistant_routes.router, prefix="/api")
+app.include_router(auth_routes.router, prefix="/api")
+app.include_router(settings_routes.router, prefix="/api")
+app.include_router(review_routes.router, prefix="/api")
 
 
 @app.get("/api/health", response_model=HealthResult, tags=["meta"])

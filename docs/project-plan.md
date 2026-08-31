@@ -5,6 +5,10 @@ pilot for the McNabb Center and (b) a defensible research contribution.
 
 **Status legend:** ✅ done · 🟡 in progress · ⬜ not started · 🔒 blocked
 
+**As of 2026-08-31 (end of overnight session):** Phase 0 and Phase 1 complete
+except two items needing a human; Phase 2.5 guided UX done and the review
+workflow built; Phase 2 itself blocked on recruiting a clinician.
+
 Milestones are **exit criteria**, not dates: a phase is done when its criteria
 are demonstrably met, and each is written so you can check it rather than
 argue about it.
@@ -41,8 +45,17 @@ citations and refuses off-corpus ones.
 | 1.2 | Backend wired to all four decision tools | Gerald | ✅ |
 | 1.3 | Assistant answering with citations | Gerald | ✅ |
 | 1.4 | Pre-demo checklist incl. model warm-up | Gerald | ✅ |
-| 1.5 | `LETSENCRYPT_EMAIL` set in `.env` | Gerald | ⬜ |
-| 1.6 | `all4knox.rubyrecon.com` DNS + vhost | Emma | 🔒 needs registrar access |
+| 1.8 | Ollama proxy credentials verified as a fallback | Gerald | ✅ |
+| 1.9 | Merge `gj_dev` → `main` on GitHub | Emma/Gerald | 🟡 in progress |
+| 1.10 | Guided "TurboTax" interview for all four tools | Gerald | ✅ verified by browser click-through |
+| 1.11 | Accounts, roles, persistent assistant conversations | Gerald | ✅ |
+| 1.12 | Markdown rendering of assistant answers | Gerald | ✅ |
+| 1.13 | Landing page, sign-in, account pages | Gerald | ✅ |
+| 1.14 | `./a4k` control CLI | Gerald | ✅ |
+| 1.15 | Header nav clipping + toolkit card overlap | Gerald | ✅ verified at 6 widths |
+| 1.16 | Commit and push the overnight work | Gerald | ⬜ ~7,100 lines uncommitted |
+| 1.5 | `LETSENCRYPT_EMAIL` set in `.env` | Gerald | ⬜ still blank as of 2026-08-31 |
+| 1.6 | `all4knox.rubyrecon.com` DNS + vhost | Emma | 🔒 re-checked 2026-08-31: still resolves to the parking host |
 | 1.7 | Walk the demo path end to end on a phone | both | ⬜ |
 
 **Exit criteria:** a McNabb Center attendee can open the public URL on their own
@@ -58,18 +71,75 @@ and it says so honestly — but "honestly unreviewed" is not "usable".
 
 | # | Item | Notes |
 | --- | --- | --- |
-| 2.1 | Name a clinical reviewer | A licensed TN prescriber with OUD experience |
+| 2.0 | Review workflow built (`/review`) | ✅ 2026-08-31 — see [`clinical-review-plan.md`](clinical-review-plan.md) |
+| 2.1 | Name a clinical reviewer | A licensed TN prescriber with OUD experience. **Nothing else in Phase 2 can start without this.** |
+| 2.1b | Create their clinician account and have them add credentials | One `POST /api/admin/users` + their sign-in |
 | 2.2 | Review all 29 content blocks | Record reviewer, review date, effective date, next review date |
 | 2.3 | Resolve the oxycodone wait-time ambiguity | Slide 4 (12 hrs) vs slide 5 (>24 hrs) — currently both are shown |
 | 2.4 | Verify McNabb Center referral details | Address, phone, payer acceptance, services, MAT/detox availability |
 | 2.5 | Verify Cherokee/River Valley, ReVida, Cedar Recovery | Same fields |
 | 2.6 | Confirm current TN prescribing + TennCare/BESMART rules | Rules change; the summary is a snapshot |
-| 2.7 | Add a review-workflow UI or process | So review is repeatable, not a one-off |
+| 2.7 | ~~Add a review-workflow UI or process~~ | ✅ built 2026-08-31 — `/review`, see [`clinical-review-plan.md`](clinical-review-plan.md) |
 | 2.8 | Set a review cadence | Skeleton §20 requires a next-review date on every block |
 
 **Exit criteria:** `GET /api/sources` reports `reviewedCount == 29`, every block
 carries a named reviewer and a next-review date, and no field renders as
 "not yet verified" without that being deliberate and true.
+
+---
+
+## Phase 2.5 — Guided interview + agent assist 🟡
+
+The McNabb Center described the experience they wanted as **TurboTax-like**.
+The guided interview delivering that is built (see
+[`frontend-guide.md`](frontend-guide.md) §9). The agent half is specified but
+not built.
+
+| # | Item | Status |
+| --- | --- | --- |
+| 2.5.1 | Guided interview for the four Phase-1 tools | ✅ |
+| 2.5.2 | Guided variants for Phase 3 tools as they land | ⬜ |
+| 2.5.3 | Decide whether guided becomes the default presentation | ⬜ needs McNabb feedback |
+| 2.5.4 | Tool-calling agent that **pre-fills** the interview | ⬜ see below |
+| 2.5.7 | Document upload with `uploaded` provenance tier | ⬜ schema exists, nothing writes to it |
+| 2.5.8 | Admin UI for prompts / users / system defaults | ⬜ API complete, curl-only |
+| 2.5.5 | Labelled eval set for agent argument extraction | ⬜ |
+| 2.5.6 | Rate limiting before any agent endpoint is public | ⬜ blocks 2.5.4 |
+
+### The agent design, and why it depends on the interview
+
+A spike on 2026-08-31 measured `gpt-oss:20b` mapping clinical prose onto
+structured tool calls:
+
+| Configuration | Result |
+| --- | --- |
+| Naive schemas, no validation | 3/6 correct arguments |
+| + enum coercion layer + repair round | 7/8 |
+| + described analyte fields | 6/6 on UDS extraction |
+
+Combined: **13/14**. The failures were *format* errors (`"MD"` for `"md_do"`),
+fixed by coercion — except one *semantic* failure: it silently dropped an
+analyte from a UDS panel. A dropped analyte is clinically meaningful and the
+clinician would never have seen it happen.
+
+That failure defines the architecture:
+
+> **The agent pre-fills the guided interview. It never runs a clinical engine
+> unsupervised.**
+
+Natural language → agent proposes structured answers → the interview shows them
+as editable chips → clinician confirms or corrects → the deterministic engine
+decides. The agent does language↔structure translation only; the clinical
+decision stays with the rule engines exactly as it is today.
+
+The confirmation step is not an extra safeguard bolted on — it is the interview
+screen that already exists. The customer's requested UX and the agent's safety
+requirement are the same screen.
+
+Every callable tool is an existing pure, read-only function with a pydantic
+model, so a confused agent has no side effect available to it. Estimated
+effort: roughly half a day plus a real eval set. Latency roughly doubles (two
+model calls), which is why 2.5.6 blocks it.
 
 ---
 
@@ -163,6 +233,19 @@ Lightweight, because two people do not need Jira.
 - **Git history** is the detail. Write commit messages that explain *why*.
 - **`GET /api/sources`** is the live clinical-content tracker: it reports the
   real review state of all 29 blocks and cannot drift from reality.
+
+### Current blockers, in order
+
+| # | Blocker | Owner | Unblocks |
+| --- | --- | --- | --- |
+| B1 | Commit + push the overnight work; merge `gj_dev` → `main` | Gerald/Emma | everything downstream |
+| B2 | **Recruit a clinical reviewer** | Gerald/Emma | all of Phase 2, the pilot, both field papers |
+| B3 | Decide PHI-in-conversations policy (retention / encryption / refuse-to-store) | Gerald | the pilot |
+| B4 | `all4knox.rubyrecon.com` DNS A record | Emma | the second public hostname |
+| B5 | `LETSENCRYPT_EMAIL` in `.env` | Gerald | cert-expiry warnings reaching a human |
+| B6 | Change the seeded admin password, blank `SEED_ADMIN_*` | Gerald | basic hygiene |
+
+---
 
 ### Definition of done (any clinical change)
 

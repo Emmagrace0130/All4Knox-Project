@@ -8,28 +8,32 @@
       "title": "Can I Prescribe?",
       "purpose": "Determine prescribing pathway based on insurance and clinician type.",
       "cta": "Check Prescribing Pathway",
-      "to": "/toolkit/prescribing"
+      "to": "/toolkit/prescribing",
+      "guidedTo": "/toolkit/prescribing/guided"
     },
     {
       "id": "start",
       "title": "Start Suboxone",
       "purpose": "Select an induction pathway based on recent opioid exposure.",
       "cta": "Choose Induction Method",
-      "to": "/toolkit/start"
+      "to": "/toolkit/start",
+      "guidedTo": "/toolkit/start/guided"
     },
     {
       "id": "uds",
       "title": "Interpret a UDS",
       "purpose": "Respond to BUP, fentanyl, methamphetamine, cocaine, opioid, oxycodone or methadone findings.",
       "cta": "Interpret UDS",
-      "to": "/toolkit/uds"
+      "to": "/toolkit/uds",
+      "guidedTo": "/toolkit/uds/guided"
     },
     {
       "id": "dosing",
       "title": "Dose & Cravings",
       "purpose": "Review maintenance dose guidance and next steps when cravings continue.",
       "cta": "Review Dosing",
-      "to": "/toolkit/dosing"
+      "to": "/toolkit/dosing",
+      "guidedTo": "/toolkit/dosing/guided"
     },
     {
       "id": "referrals",

@@ -6,6 +6,12 @@ export interface ToolkitCardDef {
   purpose: string;
   cta: string;
   to: string;
+  /**
+   * Guided ("one question per screen") variant, where one exists.
+   * The McNabb Center described the experience they wanted as TurboTax-like;
+   * this is the entry point to it. Same content and same rules as `to`.
+   */
+  guidedTo?: string;
 }
 
 export const toolkitCards: ToolkitCardDef[] = [
@@ -16,6 +22,7 @@ export const toolkitCards: ToolkitCardDef[] = [
       'Determine prescribing pathway based on insurance and clinician type.',
     cta: 'Check Prescribing Pathway',
     to: '/toolkit/prescribing',
+    guidedTo: '/toolkit/prescribing/guided',
   },
   {
     id: 'start',
@@ -23,6 +30,7 @@ export const toolkitCards: ToolkitCardDef[] = [
     purpose: 'Select an induction pathway based on recent opioid exposure.',
     cta: 'Choose Induction Method',
     to: '/toolkit/start',
+    guidedTo: '/toolkit/start/guided',
   },
   {
     id: 'uds',
@@ -31,6 +39,7 @@ export const toolkitCards: ToolkitCardDef[] = [
       'Respond to BUP, fentanyl, methamphetamine, cocaine, opioid, oxycodone or methadone findings.',
     cta: 'Interpret UDS',
     to: '/toolkit/uds',
+    guidedTo: '/toolkit/uds/guided',
   },
   {
     id: 'dosing',
@@ -39,6 +48,7 @@ export const toolkitCards: ToolkitCardDef[] = [
       'Review maintenance dose guidance and next steps when cravings continue.',
     cta: 'Review Dosing',
     to: '/toolkit/dosing',
+    guidedTo: '/toolkit/dosing/guided',
   },
   {
     id: 'referrals',

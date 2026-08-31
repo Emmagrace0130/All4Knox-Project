@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { AccountMenu } from './AccountMenu';
 import { Navigation } from './Navigation';
 
 export function Header() {
@@ -15,6 +16,7 @@ export function Header() {
           </span>
         </Link>
         <Navigation />
+        <AccountMenu />
       </div>
     </header>
   );

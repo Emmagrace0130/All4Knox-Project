@@ -129,3 +129,48 @@ def test_pending_follow_ups_reported_before_completion():
 def test_dosing_branches():
     assert rules.review_dosing(None) is None
     assert rules.review_dosing(True)["id"] != rules.review_dosing(False)["id"]
+
+
+# --- Assistant prompt safety ----------------------------------------------
+def test_safety_rules_cannot_be_edited_away():
+    """
+    An admin can customise the assistant's style. They must not be able to
+    publish a prompt that drops the absolute clinical rules — that would
+    silently disable every guardrail for every user at once.
+    """
+    from app.rag.assistant import SAFETY_PREAMBLE, STYLE_PROMPT, SYSTEM_PROMPT
+
+    # The non-negotiables live in the preamble, not the editable half.
+    for rule in (
+        "Answer ONLY from the numbered CONTEXT",
+        "Never invent doses",
+        "not a clinician",
+        "patient-identifying information",
+        "medical emergency",
+    ):
+        assert rule in SAFETY_PREAMBLE, f"{rule!r} must be in the immutable preamble"
+        assert rule not in STYLE_PROMPT, f"{rule!r} must NOT be in the editable half"
+
+    assert SYSTEM_PROMPT.startswith(SAFETY_PREAMBLE)
+
+
+def test_runtime_prompt_always_includes_the_preamble(monkeypatch):
+    """Whatever variant is published, the preamble is still prepended."""
+    from app.core.config import Settings
+    from app.rag import assistant as assistant_module
+
+    monkeypatch.setattr(
+        assistant_module.generation, "get_settings", lambda _uid: {}
+    )
+    monkeypatch.setattr(
+        assistant_module.generation,
+        "active_prompt_body",
+        lambda _fallback: "Respond only in haiku.",
+    )
+
+    instance = assistant_module.Assistant(Settings())
+    _options, prompt, _model = instance._runtime(None)
+
+    assert prompt.startswith(assistant_module.SAFETY_PREAMBLE)
+    assert "Respond only in haiku." in prompt
+    assert "Never invent doses" in prompt

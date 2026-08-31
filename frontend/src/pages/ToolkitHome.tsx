@@ -9,11 +9,11 @@ export function ToolkitHome() {
     <main id="main" className="page page--home">
       <div className="page__inner">
         <section className="hero">
-          <h1 className="hero__title">All4Knox</h1>
+          <h1 className="hero__title">Toolkit</h1>
           <p className="hero__subtitle">Clinical Buprenorphine Toolkit</p>
           <p className="hero__lede">
             Practical, Tennessee-specific guidance for clinicians treating opioid
-            use disorder.
+            use disorder. Pick a tool, or tell us what you need help with.
           </p>
         </section>
 

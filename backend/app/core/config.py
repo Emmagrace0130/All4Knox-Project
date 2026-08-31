@@ -35,6 +35,24 @@ class Settings(BaseSettings):
 
     assistant_enabled: bool = True
 
+    # --- persistence / accounts -------------------------------------------
+    database_path: Path = Path("/data/all4knox.db")
+
+    # A visitor session and everything hanging off it (conversations,
+    # messages) is DELETED after this many minutes of inactivity.
+    visitor_session_ttl_minutes: int = 120
+    # Signed-in sessions live longer but are not immortal.
+    account_session_ttl_days: int = 30
+
+    # Seed admin, created ONLY when the user table is completely empty.
+    # Leave blank in production once the first admin exists.
+    seed_admin_email: str = ""
+    seed_admin_password: str = ""
+
+    # Set true when served over HTTPS (the deployed site always is). Controls
+    # the Secure flag on the session cookie.
+    cookie_secure: bool = True
+
     cors_origins: str = "http://localhost:5173,http://localhost:8411"
 
     @property

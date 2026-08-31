@@ -78,6 +78,12 @@ export function PrescribingTool() {
       lede="Answer up to three questions to see the prescribing pathway recorded in the current All4Knox summary."
       backTo={{ to: '/', label: 'Toolkit' }}
     >
+      <p className="mode-switch print-hide">
+        <Link to="/toolkit/prescribing/guided">
+          <span aria-hidden="true">◈</span> Use the guided walkthrough instead
+        </Link>
+      </p>
+
       <div className="tool-layout">
         <div className="tool-layout__steps print-hide">
           <ClinicalAlert tone="info" title="Applies to">
