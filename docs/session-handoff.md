@@ -2,10 +2,11 @@
 
 **Last updated:** 2026-08-31, end of the overnight session before the 11:30 demo.
 
-**Branch:** `gj_dev`. `ed3cb88` is pushed; **~7,100 lines of later work are
-uncommitted** (36 files modified, 25 new). `main` is still at `36fa675` —
-merge pending on GitHub. Always check `git log --oneline --all` and
-`git status` before assuming which branch has what.
+**Branch:** `gj_dev` at `3a0b4cc` — the overnight work (7,235 lines across
+64 files) is **committed and pushed**. `main` is still at `36fa675`; the
+`gj_dev` → `main` merge is pending on GitHub and is Emma's call. Always check
+`git log --oneline --all` and `git status` before assuming which branch has
+what.
 **Maintainers:** Emma (repo owner, `Emmagrace0130/All4Knox-Project`) · Gerald Jones
 **Partner:** McNabb Center, Knoxville TN — this app is a pilot tool for them.
 
@@ -24,7 +25,7 @@ Run this before you change anything:
 cd /home/gerald/GITS_REPOS/GIT_PLAY_GROUNDs/All4Knox-Project
 
 git log --oneline -10   # what actually landed since this doc's date
-git status              # uncommitted work in progress? (expect a lot right now)
+git status              # uncommitted work in progress?
 ./a4k status            # is the stack up and healthy?
 ./a4k health            # API, assistant, index, public site
 ls docs/                # have new docs appeared?
@@ -68,7 +69,7 @@ interview.
 | **Local debug** | API `127.0.0.1:8410`, web `127.0.0.1:8411` |
 | **Containers** | `all4knox-api`, `all4knox-web` — both healthy |
 | **Assistant** | `gpt-oss:20b` via host Ollama; 31-chunk vector index; ~6 s to first answer |
-| **Branch** | `gj_dev` — `ed3cb88` pushed; later work uncommitted |
+| **Branch** | `gj_dev` at `3a0b4cc`, pushed. `main` at `36fa675` — merge pending |
 | **Database** | SQLite at `/data/all4knox.db` on the `all4knox-data` volume |
 | **First admin** | Seeded from `SEED_ADMIN_*` in `.env`. **Blank those out and change the password after first sign-in.** |
 | **Clinical review** | **0 of 29 blocks reviewed.** Workflow is built at `/review`; no reviewer recruited. |
@@ -240,7 +241,8 @@ docker run --rm --user "$(id -u):$(id -g)" -v "$PWD/..":/work -w /work/frontend 
   sh -c "npm ci && npm run export:content && npm run export:parity"
 # 3. re-run the backend tests
 cd .. && docker run --rm -v "$PWD/backend":/app -w /app -e HOME=/tmp python:3.12-slim \
-  sh -c "pip install -q pytest pydantic pydantic-settings && python -m pytest tests/ -q"
+  sh -c "pip install -q pytest pydantic pydantic-settings email-validator httpx numpy \
+        && python -m pytest tests/ -q"
 # 4. rebuild
 docker compose up -d --build
 ```
@@ -309,7 +311,8 @@ docker compose up -d --build
 
 # run the test suite
 docker run --rm -v "$PWD/backend":/app -w /app -e HOME=/tmp python:3.12-slim \
-  sh -c "pip install -q pytest pydantic pydantic-settings && python -m pytest tests/ -q"
+  sh -c "pip install -q pytest pydantic pydantic-settings email-validator httpx numpy \
+        && python -m pytest tests/ -q"
 
 # frontend typecheck + build
 docker run --rm --user "$(id -u):$(id -g)" -v "$PWD":/work -w /work/frontend \
