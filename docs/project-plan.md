@@ -56,7 +56,7 @@ citations and refuses off-corpus ones.
 | 1.15 | Header nav clipping + toolkit card overlap | Gerald | ✅ verified at 6 widths |
 | 1.16 | Commit and push the overnight work | Gerald | ✅ `3a0b4cc` on `gj_dev`, 7,235 lines |
 | 1.5 | `LETSENCRYPT_EMAIL` set in `.env` | Gerald | ⬜ still blank as of 2026-08-31 |
-| 1.6 | `all4knox.rubyrecon.com` DNS + vhost | Emma | 🔒 re-checked 2026-08-31: still resolves to the parking host |
+| 1.6 | `all4knox.rubyrecon.com` DNS + vhost | Emma | ✅ 2026-08-31 — Emma added the A record; SAN cert issued, both hosts serve 200 |
 | 1.7 | Walk the demo path end to end on a phone | both | ⬜ |
 
 **Exit criteria:** a McNabb Center attendee can open the public URL on their own
@@ -242,7 +242,6 @@ Lightweight, because two people do not need Jira.
 | B1 | Commit + push the overnight work; merge `gj_dev` → `main` | Gerald/Emma | everything downstream |
 | B2 | **Confirm the named clinical reviewer** — Dr. Ryan Alexander is the contact; settle whether he signs off or nominates | Gerald/Emma | all of Phase 2, the pilot, both field papers |
 | B3 | Decide PHI-in-conversations policy (retention / encryption / refuse-to-store) | Gerald | the pilot |
-| B4 | `all4knox.rubyrecon.com` DNS A record | Emma | the second public hostname |
 | B5 | `LETSENCRYPT_EMAIL` in `.env` | Gerald | cert-expiry warnings reaching a human |
 | B6 | Change the seeded admin password, blank `SEED_ADMIN_*` | Gerald | basic hygiene |
 

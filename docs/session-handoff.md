@@ -64,7 +64,7 @@ interview.
 
 | | |
 | --- | --- |
-| **Public URL** | <https://all4knox.axiomsystemslab.com> (valid Let's Encrypt cert, expires 2026-11-28) |
+| **Public URL** | <https://all4knox.axiomsystemslab.com> and <https://all4knox.rubyrecon.com> — one SAN cert covering both, expires 2026-11-29 |
 | **API** | `https://all4knox.axiomsystemslab.com/api/...` — same origin, proxied by our nginx |
 | **Local debug** | API `127.0.0.1:8410`, web `127.0.0.1:8411` |
 | **Containers** | `all4knox-api`, `all4knox-web` — both healthy |
@@ -145,7 +145,6 @@ docker compose up -d          # env is read at container start, not per request
   the medical director who heads the McNabb Center site running this pilot — but no block has been signed
   off yet. Until that happens the toolkit is not usable for real patient care.
   See §6.
-- `all4knox.rubyrecon.com` is not live (Emma owns that domain — see §5).
 - `LETSENCRYPT_EMAIL` in `.env` is blank; expiry warnings go nowhere.
 - Phase 2 tools (COWS calculator, OUD diagnosis helper, naloxone guide,
   follow-up checklist) are not built.
@@ -335,33 +334,33 @@ VITE_API_BASE_URL=http://localhost:8410/api npm run dev
 
 ---
 
-## 5. Adding `all4knox.rubyrecon.com` (Emma)
+## 5. `all4knox.rubyrecon.com` — done 2026-08-31
 
-The skeleton (§3) documents `all4knox.rubyrecon.com` as the working URL. It is
-not live because `rubyrecon.com` has a wildcard `*.rubyrecon.com` → parking host
-`207.207.210.x`, and `all4knox` has no explicit record to override it.
+Emma added the A record (`all4knox` → `160.36.100.65`, TTL 300) at the
+`rubyrecon.com` registrar, overriding the wildcard `*.rubyrecon.com` that had
+been sending the name to a Porkbun parking host.
 
-**Emma:** add an A record at the `rubyrecon.com` registrar —
-
-```text
-Type: A     Host: all4knox     Value: 160.36.100.65     TTL: 300
-```
-
-Then, **after confirming `getent hosts all4knox.rubyrecon.com` shows
-160.36.100.65**:
+`FRONTEND_VIRTUAL_HOST` now carries both names, comma-separated with no spaces,
+and drives `VIRTUAL_HOST` and `LETSENCRYPT_HOST` alike:
 
 ```bash
-# .env — comma-separated, NO spaces
+# .env
 FRONTEND_VIRTUAL_HOST=all4knox.axiomsystemslab.com,all4knox.rubyrecon.com
-
-docker compose up -d          # recreate web; acme-companion issues a SAN cert
-docker logs -f nginx-proxy-acme --tail 40
+docker compose up -d          # recreates web only; acme-companion does the rest
 ```
 
-No rebuild needed. **Do not do this before DNS resolves** — failed validations
-count against Let's Encrypt rate limits (see rules-of-engagement §5).
+acme-companion issued a single SAN certificate covering both names about 35
+seconds later. Verified: both hostnames return 200 with `ssl_verify_result=0`,
+`/api/health` answers through both, and the certificate's SAN list contains
+exactly the two names. Expires 2026-11-29.
 
----
+**If you ever add a third name**, the precondition is unchanged and is the whole
+reason this took two attempts across two days: every name in `LETSENCRYPT_HOST`
+must already resolve to `160.36.100.65` *before* the container starts. Check
+with `getent hosts <name>` and, because a stale local resolver will lie to you,
+against a public resolver too (`dig +short <name> @1.1.1.1`). Failed validations
+count against a Let's Encrypt rate limit; if DNS is wrong, fix DNS rather than
+retrying the certificate.
 
 ## 6. Clinical safety — the part that actually matters
 
@@ -378,6 +377,23 @@ commitment as putting your name on 29 blocks of clinical guidance. The open
 question is whether he takes the reviewer role himself or names someone on his
 staff. Until one of those happens, the count stays at 0 and this section stands
 exactly as written.
+
+**The content came from Dr. Alexander in the first place.** The All4Knox
+Clinical Summary 2026 is his; the toolkit's guidance was transcribed from it by
+hand, once, and checked against the slides. That changes the *shape* of the
+residual risk but not its existence: what is unverified is no longer whether the
+clinical judgement is sound, but whether we transcribed his judgement faithfully
+and whether the rule engines encode it correctly.
+
+That makes the review ask much smaller than it looks. He is not being asked to
+review a stranger's clinical reasoning — he is being asked to confirm that a
+system renders his own guidance correctly.
+
+**It does not, however, let anyone set `reviewedCount` to 29.** Authoring the
+source is not the same act as attesting that the software reproduces it, and no
+attestation exists until one is recorded through `/review`. Marking blocks
+reviewed on the strength of "he wrote it anyway" would be precisely the
+fabricated attestation this system was built to make impossible.
 
 This is the correct state — the alternative (blank fields rendered as if review
 had happened) would be a fabricated clinical attestation. `test_content.py`
@@ -436,7 +452,6 @@ full phased plan:
 3. Confirm with **Dr. Ryan Alexander** who signs off the 29 blocks — him or
    someone he names — then create that person's clinician account
    (`POST /api/admin/users`, role `clinician`) and walk them through `/review`.
-4. Add `all4knox.rubyrecon.com` once Emma has added the DNS record (§5).
 5. Begin the literature review track — see
    [`research/publication-plan.md`](research/publication-plan.md).
 
