@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { RadioGroup } from '../components/forms/RadioGroup';
 import { PageContainer } from '../components/layout/PageContainer';
 import { ResultCard } from '../components/toolkit/ResultCard';
+import { VerificationBadge } from '../components/common/VerificationBadge';
+import { useVerifiedResult } from '../hooks/useVerifiedResult';
+import * as api from '../services/api';
 import { SourceBadge } from '../components/toolkit/SourceBadge';
 import {
   dosingCravingsNo,
@@ -28,6 +31,15 @@ export function DosingTool() {
       : cravings === 'no'
         ? dosingCravingsNo
         : null;
+
+  const verification = useVerifiedResult(
+    guidance?.id ?? null,
+    () =>
+      api
+        .reviewDosing(cravings === null ? null : cravings === 'yes')
+        .then((r) => r.guidance?.id ?? null),
+    guidance !== null,
+  );
 
   return (
     <PageContainer
@@ -96,6 +108,7 @@ export function DosingTool() {
 
         <div className="tool-layout__result">
           {guidance ? (
+            <>
             <ResultCard
               guidance={guidance}
               inputs={[
@@ -104,6 +117,8 @@ export function DosingTool() {
                   : 'Ongoing cravings: no',
               ]}
             />
+              <VerificationBadge verification={verification} />
+            </>
           ) : (
             <p className="placeholder">
               Answer the cravings prompt to see next steps.

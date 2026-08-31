@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { BackendStatus } from './BackendStatus';
 import { EMERGENCY_NOTICE, PHI_NOTICE } from '../../content/governance';
 import { CONTENT_REVIEW, CONTENT_VERSION } from '../../content/version';
 
@@ -19,6 +20,8 @@ export function Footer() {
           </span>
           <span aria-hidden="true">·</span>
           <Link to="/clinical-sources">Clinical sources &amp; versions</Link>
+          <span aria-hidden="true">·</span>
+          <BackendStatus />
         </p>
       </div>
     </footer>

@@ -13,6 +13,9 @@ import {
   positiveKeys,
 } from '../services/udsRules';
 import { udsMonitoring } from '../content/uds';
+import { VerificationBadge } from '../components/common/VerificationBadge';
+import { useVerifiedResult } from '../hooks/useVerifiedResult';
+import * as api from '../services/api';
 import { UDS_ANALYTES } from '../types/clinical';
 import type { UDSAnalyteKey, UDSPanel } from '../types/clinical';
 
@@ -34,6 +37,14 @@ export function UDSInterpreter() {
 
   const result = useMemo(() => interpretUDS(panel), [panel]);
   const selected = positiveKeys(panel);
+
+  // Rendered instantly from the local rules above, then confirmed against
+  // the API. Both run the same logic (see backend/tests/test_parity.py).
+  const verification = useVerifiedResult(
+    result.primary?.id ?? null,
+    () => api.interpretUDS(panel).then((r) => r.primary?.id ?? null),
+    interpreted,
+  );
 
   const toggle = (key: UDSAnalyteKey) => {
     setConfirmedNegative(false);
@@ -107,6 +118,7 @@ export function UDSInterpreter() {
           ) : result.primary ? (
             <>
               <ResultCard guidance={result.primary} inputs={inputs} />
+              <VerificationBadge verification={verification} />
 
               {result.additional.length > 0 ? (
                 <section className="secondary-results">

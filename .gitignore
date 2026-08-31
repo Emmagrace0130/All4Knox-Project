@@ -1,0 +1,26 @@
+# --- secrets -----------------------------------------------------------------
+# NEVER commit real credentials. .env.example is the committed template.
+.env
+.env.*
+!.env.example
+
+# --- python ------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# --- node --------------------------------------------------------------------
+node_modules/
+dist/
+
+# --- generated / runtime -----------------------------------------------------
+# Vector index artefacts are rebuilt from the corpus; never commit them.
+backend/app/data/vector_store/
+*.npz
+
+# --- os / editor -------------------------------------------------------------
+.DS_Store
+*.swp

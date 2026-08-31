@@ -1,0 +1,558 @@
+{
+  "_generated": "DO NOT EDIT BY HAND. Generated from frontend/src/content by tools/exportContent.ts.",
+  "_regenerate": "cd frontend && npm run export:content",
+  "_sourceOfTruth": "frontend/src/content/",
+  "entries": [
+    {
+      "id": "rx_private_mddo",
+      "title": "Private insurance · MD/DO",
+      "module": "Tennessee prescribing",
+      "route": "/toolkit/prescribing",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Prescribing decision tree — Insured / Private / MD-DO",
+        "slide": 2
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "rx_private_nppa",
+      "title": "Private insurance · NP/PA",
+      "module": "Tennessee prescribing",
+      "route": "/toolkit/prescribing",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Prescribing decision tree — Insured / Private / NP-PA",
+        "slide": 2
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "rx_tenncare_besmart_mddo",
+      "title": "TennCare · BESMART enrolled · MD/DO",
+      "module": "Tennessee prescribing",
+      "route": "/toolkit/prescribing",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Prescribing decision tree — TennCare / BESMART / MD-DO",
+        "slide": 2
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "rx_tenncare_besmart_nppa",
+      "title": "TennCare · BESMART enrolled · NP/PA",
+      "module": "Tennessee prescribing",
+      "route": "/toolkit/prescribing",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Prescribing decision tree — TennCare / BESMART / NP-PA",
+        "slide": 2
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "rx_tenncare_not_besmart",
+      "title": "TennCare · non-BESMART provider",
+      "module": "Tennessee prescribing",
+      "route": "/toolkit/prescribing",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Prescribing decision tree — TennCare / non-BESMART provider",
+        "slide": 2
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "rx_uninsured",
+      "title": "Uninsured patient",
+      "module": "Tennessee prescribing",
+      "route": "/toolkit/prescribing",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Prescribing decision tree — Uninsured",
+        "slide": 2
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "induction_fentanyl_24h",
+      "title": "Current fentanyl use — Rapid low-dose induction",
+      "module": "Induction",
+      "route": "/toolkit/start",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Induction method — fentanyl",
+        "slide": 4
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "induction_fentanyl_lt24h",
+      "title": "Current fentanyl use — Wait to 24 hours, then rapid induction",
+      "module": "Induction",
+      "route": "/toolkit/start",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Follow-up UDS response — UDS positive for FENT only",
+        "slide": 6
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "induction_rx_oxy",
+      "title": "Current prescription opioid use — Oxycodone positive",
+      "module": "Induction",
+      "route": "/toolkit/start",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Induction method — prescription opioid",
+        "slide": 4
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "induction_rx_opi",
+      "title": "Current prescription opioid use — Opiate positive",
+      "module": "Induction",
+      "route": "/toolkit/start",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Induction timing — current Rx opioid use",
+        "slide": 5
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "induction_rx_negative",
+      "title": "Current prescription opioid use — UDS negative for opioids",
+      "module": "Induction",
+      "route": "/toolkit/start",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Induction method — opioid negative",
+        "slide": 4
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "induction_opioid_negative_result",
+      "title": "Opioid-negative with history of OUD — Start low — opioid-naïve state",
+      "module": "Induction",
+      "route": "/toolkit/start",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Induction method — opioid negative",
+        "slide": 4
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "induction_on_suboxone_result",
+      "title": "Already taking Suboxone — Continue standard dosing",
+      "module": "Induction",
+      "route": "/toolkit/start",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Induction method — already on Suboxone",
+        "slide": 4
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "induction_methadone_result",
+      "title": "Transitioning from methadone — Taper, wait, then rapid induction",
+      "module": "Induction",
+      "route": "/toolkit/start",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Induction method — transitioning from methadone",
+        "slide": 4
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "uds_bup_only",
+      "title": "BUP positive only",
+      "module": "UDS interpretation",
+      "route": "/toolkit/uds",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Interpreting UDS Results — BUP +",
+        "slide": 7
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "uds_bup_negative",
+      "title": "BUP negative",
+      "module": "UDS interpretation",
+      "route": "/toolkit/uds",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Interpreting UDS Results — BUP −",
+        "slide": 7
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "uds_bup_stimulant",
+      "title": "BUP positive + stimulant positive",
+      "module": "UDS interpretation",
+      "route": "/toolkit/uds",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Interpreting UDS Results — BUP+, MET/COC+",
+        "slide": 7
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "uds_bup_opioid",
+      "title": "BUP positive + opioid positive",
+      "module": "UDS interpretation",
+      "route": "/toolkit/uds",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Interpreting UDS Results — BUP+, FENT*+",
+        "slide": 7
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "uds_bup_neg_opioid",
+      "title": "BUP negative + opioid positive",
+      "module": "UDS interpretation",
+      "route": "/toolkit/uds",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Interpreting UDS Results — BUP −, FENT*+",
+        "slide": 7
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "dosing_overview",
+      "title": "Suboxone Dosing",
+      "module": "Maintenance dosing",
+      "route": "/toolkit/dosing",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Suboxone Dosing",
+        "slide": 11
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "dosing_limits",
+      "title": "FDA label vs Tennessee dose limits",
+      "module": "Maintenance dosing",
+      "route": "/toolkit/dosing",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Suboxone Dosing — FDA label vs Tennessee limits",
+        "slide": 11
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "dosing_no_cravings",
+      "title": "Cravings controlled",
+      "module": "Maintenance dosing",
+      "route": "/toolkit/dosing",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Suboxone Dosing",
+        "slide": 11
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "partial"
+    },
+    {
+      "id": "dosing_ongoing_cravings",
+      "title": "Ongoing cravings",
+      "module": "Maintenance dosing",
+      "route": "/toolkit/dosing",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Suboxone Dosing",
+        "slide": 11
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "uds_monitoring",
+      "title": "UDS at each appointment",
+      "module": "UDS interpretation",
+      "route": "/toolkit/uds",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Interpreting UDS Results",
+        "slide": 12
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "learn_buprenorphine",
+      "title": "Buprenorphine-Naloxone",
+      "module": "Education",
+      "route": "/learn/buprenorphine",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Buprenorphine-naloxone",
+        "slide": 8
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "referral_mcnabb",
+      "title": "McNabb",
+      "module": "Referral directory",
+      "route": "/referrals",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Prescribing decision tree — Uninsured; Suboxone Dosing",
+        "slide": 2
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "partial"
+    },
+    {
+      "id": "referral_cherokee",
+      "title": "Cherokee / River Valley",
+      "module": "Referral directory",
+      "route": "/referrals",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Prescribing decision tree — Uninsured; Suboxone Dosing",
+        "slide": 2
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "partial"
+    },
+    {
+      "id": "referral_revida",
+      "title": "ReVida",
+      "module": "Referral directory",
+      "route": "/referrals",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Suboxone Dosing — referral options",
+        "slide": 11
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "partial"
+    },
+    {
+      "id": "referral_cedar-recovery",
+      "title": "Cedar Recovery",
+      "module": "Referral directory",
+      "route": "/referrals",
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Suboxone Dosing — referral options",
+        "slide": 11
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.1",
+      "entryStatus": "partial"
+    }
+  ]
+}

@@ -17,6 +17,9 @@ import {
   isPrescribingComplete,
   needsBesmart,
 } from '../services/prescribingRules';
+import { VerificationBadge } from '../components/common/VerificationBadge';
+import { useVerifiedResult } from '../hooks/useVerifiedResult';
+import * as api from '../services/api';
 import type {
   BesmartStatus,
   Coverage,
@@ -42,6 +45,12 @@ export function PrescribingTool() {
   const pathway = useMemo(
     () => (complete ? evaluatePrescribing(input) : null),
     [complete, input],
+  );
+
+  const verification = useVerifiedResult(
+    pathway?.id ?? null,
+    () => api.evaluatePrescribing(input).then((r) => r.pathway?.id ?? null),
+    complete,
   );
 
   const setCoverage = (coverage: Coverage) =>
@@ -141,6 +150,7 @@ export function PrescribingTool() {
                 inputs={inputSummary}
                 details={pathway.details}
               />
+              <VerificationBadge verification={verification} />
               {input.coverage === 'uninsured' ? (
                 <p className="result-followup print-hide">
                   <Link to="/referrals">

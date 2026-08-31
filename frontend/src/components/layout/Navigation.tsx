@@ -7,6 +7,7 @@ const navItems = [
   { to: '/toolkit/uds', label: 'UDS Interpreter' },
   { to: '/toolkit/dosing', label: 'Dosing' },
   { to: '/toolkit/prescribing', label: 'TN Prescribing' },
+  { to: '/ask', label: 'Ask All4Knox' },
   { to: '/referrals', label: 'Referrals' },
   { to: '/resources', label: 'Resources' },
   { to: '/about', label: 'About' },

@@ -7,6 +7,7 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { About } from '../pages/About';
+import { AskAll4Knox } from '../pages/AskAll4Knox';
 import { ClinicalSources } from '../pages/ClinicalSources';
 import { DosingTool } from '../pages/DosingTool';
 import { LearnBuprenorphine } from '../pages/LearnBuprenorphine';
@@ -49,6 +50,7 @@ export function AppRouter() {
           <Route path="toolkit/prescribing" element={<PrescribingTool />} />
           <Route path="toolkit/start" element={<StartSuboxoneTool />} />
           <Route path="toolkit/uds" element={<UDSInterpreter />} />
+          <Route path="ask" element={<AskAll4Knox />} />
           <Route path="toolkit/dosing" element={<DosingTool />} />
           <Route path="learn/buprenorphine" element={<LearnBuprenorphine />} />
           <Route path="referrals" element={<ReferralDirectory />} />

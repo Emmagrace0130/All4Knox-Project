@@ -1,0 +1,19 @@
+{
+  "_generated": "DO NOT EDIT BY HAND. Generated from frontend/src/content by tools/exportContent.ts.",
+  "_regenerate": "cd frontend && npm run export:content",
+  "_sourceOfTruth": "frontend/src/content/",
+  "decisionSupportLabel": "Clinical Decision Support",
+  "decisionSupportNote": "Not a substitute for clinician judgment.",
+  "educationalLabel": "Educational Content",
+  "emergencyNotice": "This toolkit does not provide emergency medical care. For suspected overdose, severe withdrawal, respiratory depression, or another medical emergency, follow your organization's emergency protocol and obtain immediate medical assistance.",
+  "phiNotice": "No patient-identifying information is required or collected. Answers stay in your browser and are not transmitted or stored.",
+  "plannedTools": [
+    "OUD diagnosis helper",
+    "COWS calculator",
+    "Precipitated withdrawal guide",
+    "Naloxone quick guide",
+    "Medication interaction / sedation check",
+    "Follow-up visit checklist",
+    "Tennessee referral finder"
+  ]
+}

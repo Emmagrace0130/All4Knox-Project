@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Bundled output of tools/exportContent.ts and tools/parityFixtures.ts
+.export-build
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

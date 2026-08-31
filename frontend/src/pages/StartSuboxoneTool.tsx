@@ -16,6 +16,9 @@ import {
   findPathway,
   isInductionComplete,
 } from '../services/inductionRules';
+import { VerificationBadge } from '../components/common/VerificationBadge';
+import { useVerifiedResult } from '../hooks/useVerifiedResult';
+import * as api from '../services/api';
 import type { InductionSituation } from '../types/clinical';
 
 const situationOptions = inductionPathways.map((p) => ({
@@ -34,6 +37,15 @@ export function StartSuboxoneTool() {
   const outcome = useMemo(
     () => (complete ? evaluateInduction(pathway, answers) : null),
     [complete, pathway, answers],
+  );
+
+  const verification = useVerifiedResult(
+    outcome?.id ?? null,
+    () =>
+      api
+        .evaluateInduction(situation, answers)
+        .then((r) => r.outcome?.id ?? null),
+    complete,
   );
 
   const inputs = pathway
@@ -129,6 +141,7 @@ export function StartSuboxoneTool() {
                 inputs={inputs}
                 steps={outcome.steps}
               />
+              <VerificationBadge verification={verification} />
               {outcome.considerInpatientDetox ? (
                 <ClinicalAlert
                   tone="escalation"
