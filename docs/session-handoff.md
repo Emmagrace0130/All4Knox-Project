@@ -72,7 +72,7 @@ interview.
 | **Branch** | `gj_dev` at `3a0b4cc`, pushed. `main` at `36fa675` — merge pending |
 | **Database** | SQLite at `/data/all4knox.db` on the `all4knox-data` volume |
 | **First admin** | Seeded from `SEED_ADMIN_*` in `.env`. **Blank those out and change the password after first sign-in.** |
-| **Clinical review** | **0 of 29 blocks reviewed.** Workflow is built at `/review`. Clinical contact is Dr. Ryan Alexander (McNabb medical director) — sign-off not yet started. |
+| **Clinical review** | **0 of 29 blocks reviewed.** Workflow is built at `/review`. Clinical contact is Dr. Ryan Alexander (medical director, McNabb Center) — sign-off not yet started. |
 | **Tests** | 44 backend tests passing · frontend build + lint clean |
 | **Control** | `./a4k` — see `./a4k help` |
 
@@ -142,7 +142,7 @@ docker compose up -d          # env is read at container start, not per request
 
 - **No clinical review has happened — 0 of 29.** The workflow exists at
   `/review` and there is now a named clinical contact — **Dr. Ryan Alexander**,
-  medical director at one of the McNabb Centers — but no block has been signed
+  the medical director who heads the McNabb Center site running this pilot — but no block has been signed
   off yet. Until that happens the toolkit is not usable for real patient care.
   See §6.
 - `all4knox.rubyrecon.com` is not live (Emma owns that domain — see §5).
@@ -370,8 +370,9 @@ blocks report `reviewedBy: null`, `reviewedDate: null`. The UI says so on every
 result, in the footer, and on `/clinical-sources`. `GET /api/sources` reports
 `reviewedCount: 0` — verified live on 2026-08-31.
 
-**The clinical contact is Dr. Ryan Alexander**, medical director at one of the
-McNabb Centers, and he is the audience for the demo. That is a different thing
+**The clinical contact is Dr. Ryan Alexander**, the medical director who heads
+the McNabb Center site running this pilot, and he is the audience for the
+demo. That is a different thing
 from having a reviewer: being the clinical point of contact is not the same
 commitment as putting your name on 29 blocks of clinical guidance. The open
 question is whether he takes the reviewer role himself or names someone on his

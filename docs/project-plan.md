@@ -73,7 +73,7 @@ and it says so honestly — but "honestly unreviewed" is not "usable".
 | # | Item | Notes |
 | --- | --- | --- |
 | 2.0 | Review workflow built (`/review`) | ✅ 2026-08-31 — see [`clinical-review-plan.md`](clinical-review-plan.md) |
-| 2.1 | Name a clinical reviewer | 🟡 Clinical contact established: **Dr. Ryan Alexander**, medical director at a McNabb Center, and the demo audience. Still to confirm: whether he is the named reviewer or nominates someone. **Nothing else in Phase 2 can start until that is settled.** |
+| 2.1 | Name a clinical reviewer | 🟡 Clinical contact established: **Dr. Ryan Alexander**, medical director of the McNabb Center site running this pilot, and the demo audience. Still to confirm: whether he is the named reviewer or nominates someone. **Nothing else in Phase 2 can start until that is settled.** |
 | 2.1b | Create their clinician account and have them add credentials | One `POST /api/admin/users` + their sign-in. Currently curl-only — see 2.5.8; doing this in front of a clinician is a bad look, so the admin UI matters more than its phase number suggests. |
 | 2.2 | Review all 29 content blocks | Record reviewer, review date, effective date, next review date |
 | 2.3 | Resolve the oxycodone wait-time ambiguity | Slide 4 (12 hrs) vs slide 5 (>24 hrs) — currently both are shown |
