@@ -71,7 +71,7 @@ interview.
 | **API** | `https://all4knox.axiomsystemslab.com/api/...` — same origin, proxied by our nginx |
 | **Local debug** | API `127.0.0.1:8410`, web `127.0.0.1:8411` |
 | **Containers** | `all4knox-api`, `all4knox-web` — both healthy |
-| **Assistant** | `gpt-oss:20b` via host Ollama; three collections — toolkit (31 passages), TN guidelines (70), TennCare BESMART (34); one answer section per source; ~3 s single-source, 10–16 s when all three answer |
+| **Assistant** | `gpt-oss:20b` via host Ollama; three collections — toolkit (32 passages), TN guidelines (70), TennCare BESMART (34); one answer section per source; ~3 s single-source, 10–16 s when all three answer |
 | **Branch** | `gj_dev`, local commits not pushed. `main` at `36fa675` — merge pending |
 | **Database** | SQLite at `/data/all4knox.db` on the `all4knox-data` volume |
 | **First admin** | Seeded from `SEED_ADMIN_*` in `.env`. **Blank those out and change the password after first sign-in.** |
