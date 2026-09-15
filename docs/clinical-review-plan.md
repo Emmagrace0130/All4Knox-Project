@@ -1,7 +1,7 @@
 # Clinical Review — design and status
 
 **Built:** 2026-08-31. Backend, API and reviewer UI are live at `/review`.
-**Status:** 0 of 29 blocks reviewed. No clinician has been recruited yet.
+**Status:** 0 of 30 blocks reviewed. No clinician has been recruited yet.
 
 This is the gate on Phase 2 of [`project-plan.md`](project-plan.md): until
 blocks are reviewed, the toolkit is honestly unreviewed and not usable for real
@@ -89,7 +89,7 @@ renamed or deactivated account must never rewrite who attested to what.
 1. An admin creates a clinician account (`POST /api/admin/users`, role
    `clinician`).
 2. The clinician signs in and adds their credential at `/account`.
-3. `/review` lists all 29 blocks, unreviewed and stale first.
+3. `/review` lists all 30 blocks, unreviewed and stale first.
 4. Selecting a block shows the exact served text, its source slide, its hash,
    and the full history.
 5. They record approve / approve-with-changes / needs-info / reject, with

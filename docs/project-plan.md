@@ -10,7 +10,7 @@ human; Phase 2.5 guided UX done, the review workflow built, and the assistant
 now searches three collections (toolkit content, the Tennessee buprenorphine
 guidelines, TennCare BESMART) with one answer section per source. Phase 2 is no
 longer blocked on *finding* a clinician — Dr. Ryan Alexander is the clinical
-contact — but on confirming who signs off and then doing the 29 reviews. The
+contact — but on confirming who signs off and then doing the 30 reviews. The
 9/1 McNabb meeting added a UX backlog (see "McNabb feedback, 9/1").
 
 Milestones are **exit criteria**, not dates: a phase is done when its criteria
@@ -78,7 +78,7 @@ and it says so honestly — but "honestly unreviewed" is not "usable".
 | 2.0 | Review workflow built (`/review`) | ✅ 2026-08-31 — see [`clinical-review-plan.md`](clinical-review-plan.md) |
 | 2.1 | Name a clinical reviewer | 🟡 Clinical contact established: **Dr. Ryan Alexander**, medical director of the McNabb Center site running this pilot, and the demo audience. Still to confirm: whether he is the named reviewer or nominates someone. **Nothing else in Phase 2 can start until that is settled.** |
 | 2.1b | Create their clinician account and have them add credentials | One `POST /api/admin/users` + their sign-in. Currently curl-only — see 2.5.8; doing this in front of a clinician is a bad look, so the admin UI matters more than its phase number suggests. |
-| 2.2 | Review all 29 content blocks | Record reviewer, review date, effective date, next review date |
+| 2.2 | Review all 30 content blocks | Record reviewer, review date, effective date, next review date |
 | 2.3 | Resolve the oxycodone wait-time ambiguity | Slide 4 (12 hrs) vs slide 5 (>24 hrs) — currently both are shown |
 | 2.4 | Verify McNabb Center referral details | Address, phone, payer acceptance, services, MAT/detox availability |
 | 2.5 | Verify Cherokee/River Valley, ReVida, Cedar Recovery | Same fields |
@@ -86,7 +86,7 @@ and it says so honestly — but "honestly unreviewed" is not "usable".
 | 2.7 | ~~Add a review-workflow UI or process~~ | ✅ built 2026-08-31 — `/review`, see [`clinical-review-plan.md`](clinical-review-plan.md) |
 | 2.8 | Set a review cadence | Skeleton §20 requires a next-review date on every block |
 
-**Exit criteria:** `GET /api/sources` reports `reviewedCount == 29`, every block
+**Exit criteria:** `GET /api/sources` reports `reviewedCount == 30`, every block
 carries a named reviewer and a next-review date, and no field renders as
 "not yet verified" without that being deliberate and true.
 
@@ -111,7 +111,7 @@ not built.
 | 2.5.6 | Rate limiting before any agent endpoint is public | ⬜ blocks 2.5.4 — a nearly finished version is parked on `wip/agent-workstreams-2026-08-31`, with a broken test predicate documented in its commit message |
 | 2.5.9 | Reference collections: TN guidelines (Fall 2023), BESMART description (Mar 2023), BESMART education (May 2026) — one search tool each, measured floors | ✅ 2026-09-15 |
 | 2.5.10 | Per-source answer sections (one model call per source type) | ✅ 2026-09-15 — chosen after a single call misattributed thresholds between sources in 3/3 runs |
-| 2.5.11 | A person checks the 8 AI transcriptions against the page images, then sets `checkedBy` | ⬜ citations say "not yet checked" until then |
+| 2.5.11 | A person checks the 8 AI transcriptions against the page images, then sets `checkedBy` | 🟡 Gerald checking (2026-09-15); citations say "not yet checked" until then |
 | 2.5.12 | Obtain TennCare's **updated** BESMART Program Description (the Mar 2023 copy is superseded in part) | ⬜ |
 | 2.5.13 | Admin/clinician upload of new reference documents (meeting ask) — same pipeline as `./a4k reference` | ⬜ |
 | 2.5.14 | Server-written section headings render as small labels; make source sections visually distinct | ⬜ |
@@ -242,15 +242,14 @@ Lightweight, because two people do not need Jira.
 - **`docs/session-handoff.md` §8** is the session log — append a row per session.
 - **Git history** is the detail. Write commit messages that explain *why*.
 - **`GET /api/sources`** is the live clinical-content tracker: it reports the
-  real review state of all 29 blocks and cannot drift from reality.
+  real review state of all 30 blocks and cannot drift from reality.
 
 ### Current blockers, in order
 
 | # | Blocker | Owner | Unblocks |
 | --- | --- | --- | --- |
 | B1 | Push `gj_dev` (several local commits ahead of origin); merge `gj_dev` → `main` | Gerald/Emma | everything downstream |
-| B7 | **Is the GitHub repo public?** The committed reference passages contain the text of the May 2026 BESMART provider deck; confirm it may be redistributed before pushing | Gerald/Emma | pushing the reference collections |
-| B8 | Clinical questions raised by the reference documents (below) | Dr. Alexander | trustworthy dose-limit answers |
+| B8 | Clinical questions raised by the reference documents (below) — on the agenda for 9/18 (`docs/meeting_notes/mcnabb_meeting_9_18_26_agenda.md`) | Dr. Alexander | confirming the 2026.2 dose limits |
 | B2 | **Confirm the named clinical reviewer** — Dr. Ryan Alexander is the contact; settle whether he signs off or nominates | Gerald/Emma | all of Phase 2, the pilot, both field papers |
 | B3 | Decide PHI-in-conversations policy (retention / encryption / refuse-to-store) | Gerald | the pilot |
 | B5 | `LETSENCRYPT_EMAIL` in `.env` | Gerald | cert-expiry warnings reaching a human |
@@ -260,15 +259,26 @@ Lightweight, because two people do not need Jira.
 
 ### Clinical questions raised by the reference documents (2026-09-15)
 
-For Dr. Alexander, not a developer. The assistant shows every position with its
-source rather than choosing, but the toolkit's own content may need updating.
+For Dr. Alexander, not a developer. Full framing in
+`docs/meeting_notes/mcnabb_meeting_9_18_26_agenda.md`.
 
-1. **Dose limits.** Toolkit slide 11: 16 mg NP/PA, 20 mg most physicians (24 mg
-   with addiction consultation). TN guidelines 2023: document above 16 mg for
-   more than 30 days; consult or refer above 20 mg. TennCare BESMART, May 28
-   2026: BESMART MD/DO up to 32 mg without prior authorization for preferred
-   products; non-BESMART MD/DO 16 mg without PA. Is slide 11 still current?
-2. **First-dose COWS threshold.** The TN guidelines say both "give first dose
+1. **Dose limits — DISCREPANCY, decision taken, confirmation pending.** The
+   Clinical Summary (slide 2) gives BESMART MD/DO 20 mg (24 mg with addiction
+   consultation) and PA-always/16 mg for non-BESMART; slide 11 says 20 mg for
+   most physicians. TennCare's May 28, 2026 BESMART update gives BESMART MD/DO
+   32 mg without PA (preferred products) and non-BESMART MD/DO 16 mg without
+   PA, up to 32 mg with it. **Content version 2026.2 follows the May 2026
+   update** for TennCare pathways (Gerald, 2026-09-15); each changed pathway
+   shows the slide 2 figure and says the two differ. Private-insurance limits
+   are unchanged. If Dr. Alexander disagrees, revert in
+   `frontend/src/content/prescribing.ts` and bump the version.
+2. **Non-BESMART NP/PA.** The BESMART update says "all mid-level prescribers
+   must be BESMART"; slide 2 has a non-BESMART NP/PA pathway. Kept, marked as
+   an open gap.
+3. **State thresholds alongside the payer limit.** TN guidelines p. 19 / TCA
+   § 53-11-311: document above 16 mg and consult above 20 mg for more than 30
+   consecutive days. Shown as considerations on the changed pathways.
+4. **First-dose COWS threshold.** The TN guidelines say both "give first dose
    when COWS ≥ 7" (Appendix C) and "COWS of 11 or higher is recommended" for
    office-based induction (Section II.D).
 

@@ -3,7 +3,8 @@
 **Last updated:** 2026-09-15 — logos, and the assistant's reference knowledge base.
 
 **Branch:** `gj_dev` — **several commits ahead of `origin/gj_dev` and not
-pushed** (see blocker B7 in the project plan before pushing). `main` is still
+pushed**. The GitHub repo is private (confirmed 2026-09-15), so the reference
+PDFs and their extracted text are committed. `main` is still
 at `36fa675`; the `gj_dev` → `main` merge is pending on GitHub and is Emma's
 call. Unfinished rate limiting, admin UI and CI work is parked on
 `wip/agent-workstreams-2026-08-31` — read its commit message before using any
@@ -74,7 +75,8 @@ interview.
 | **Branch** | `gj_dev`, local commits not pushed. `main` at `36fa675` — merge pending |
 | **Database** | SQLite at `/data/all4knox.db` on the `all4knox-data` volume |
 | **First admin** | Seeded from `SEED_ADMIN_*` in `.env`. **Blank those out and change the password after first sign-in.** |
-| **Clinical review** | **0 of 29 blocks reviewed.** Workflow is built at `/review`. Clinical contact is Dr. Ryan Alexander (medical director, McNabb Center) — sign-off not yet started. |
+| **Clinical content** | Version **2026.2** — TennCare dose limits follow TennCare's May 2026 BESMART update, not slide 2; pending Dr. Alexander's confirmation |
+| **Clinical review** | **0 of 30 blocks reviewed.** Workflow is built at `/review`. Clinical contact is Dr. Ryan Alexander (medical director, McNabb Center) — sign-off not yet started. |
 | **Tests** | 81 backend tests passing · frontend build + lint clean |
 | **Control** | `./a4k` — see `./a4k help` |
 
@@ -154,7 +156,7 @@ docker compose up -d          # env is read at container start, not per request
 
 ### What is NOT done
 
-- **No clinical review has happened — 0 of 29.** The workflow exists at
+- **No clinical review has happened — 0 of 30.** The workflow exists at
   `/review` and there is now a named clinical contact — **Dr. Ryan Alexander**,
   the medical director who heads the McNabb Center site running this pilot — but no block has been signed
   off yet. Until that happens the toolkit is not usable for real patient care.
@@ -388,7 +390,7 @@ retrying the certificate.
 
 ## 6. Clinical safety — the part that actually matters
 
-**Nothing in this toolkit has been reviewed by a clinician.** All 29 content
+**Nothing in this toolkit has been reviewed by a clinician.** All 30 content
 blocks report `reviewedBy: null`, `reviewedDate: null`. The UI says so on every
 result, in the footer, and on `/clinical-sources`. `GET /api/sources` reports
 `reviewedCount: 0` — verified live on 2026-08-31.
@@ -397,7 +399,7 @@ result, in the footer, and on `/clinical-sources`. `GET /api/sources` reports
 the McNabb Center site running this pilot, and he is the audience for the
 demo. That is a different thing
 from having a reviewer: being the clinical point of contact is not the same
-commitment as putting your name on 29 blocks of clinical guidance. The open
+commitment as putting your name on 30 blocks of clinical guidance. The open
 question is whether he takes the reviewer role himself or names someone on his
 staff. Until one of those happens, the count stays at 0 and this section stands
 exactly as written.
@@ -413,7 +415,7 @@ That makes the review ask much smaller than it looks. He is not being asked to
 review a stranger's clinical reasoning — he is being asked to confirm that a
 system renders his own guidance correctly.
 
-**It does not, however, let anyone set `reviewedCount` to 29.** Authoring the
+**It does not, however, let anyone set `reviewedCount` to 30.** Authoring the
 source is not the same act as attesting that the software reproduces it, and no
 attestation exists until one is recorded through `/review`. Marking blocks
 reviewed on the strength of "he wrote it anyway" would be precisely the
@@ -496,13 +498,15 @@ full phased plan:
    for the very first boot.
 1. Set `LETSENCRYPT_EMAIL` in `.env` so cert-expiry warnings reach a human.
 2. Get McNabb Center referral details verified (unblocks a whole content class).
-3. Confirm with **Dr. Ryan Alexander** who signs off the 29 blocks — him or
+3. Confirm with **Dr. Ryan Alexander** who signs off the 30 blocks — him or
    someone he names — then create that person's clinician account
    (`POST /api/admin/users`, role `clinician`) and walk them through `/review`.
-4. Answer blocker B7 (is the repo public?) before pushing: the reference
-   passages contain the text of the May 2026 BESMART provider deck.
-5. Have a person check the 8 AI transcriptions against their page images
-   (`backend/app/data/reference/transcriptions/`), then set `checkedBy`.
+4. **Friday 9/18 with Dr. Alexander** — agenda in
+   `docs/meeting_notes/mcnabb_meeting_9_18_26_agenda.md`. Top item: content
+   version 2026.2 moved the TennCare dose limits to TennCare's May 2026 BESMART
+   update ahead of his confirmation.
+5. Gerald is checking the 8 AI transcriptions against their page images
+   (`backend/app/data/reference/transcriptions/`); set `checkedBy` when done.
 6. Get the updated BESMART Program Description from TennCare.
 7. Begin the literature review track — see
    [`research/publication-plan.md`](research/publication-plan.md).
@@ -518,7 +522,7 @@ full phased plan:
 | 2026-08-31 | Gerald + Claude | Accounts + roles (visitor/basic/clinician/admin) on SQLite; persistent assistant conversations with inactivity sweep; per-user generation settings with server-side clamping; admin system-prompt variants with an **immutable safety preamble**; markdown rendering. Fixed three bugs found while building: seed-admin worker race, parallel session-minting race (404 on first question), and an admin being able to publish a prompt with no safety rules. 29/29 API + 8/8 browser checks. |
 | 2026-08-31 | Gerald + Claude | Guided "TurboTax" interview wired up for all four tools (`useInterviewFlow` + the previously-unused `guided/` components and `guided.css`); 12/12 browser click-through checks. Agent design specified in project-plan Phase 2.5 with spike numbers. |
 | 2026-08-31 | Gerald + Claude | `ed3cb88` on `gj_dev` — FastAPI backend; mechanical content export; TS↔Python parity harness (302 cases); RAG assistant on `gpt-oss:20b` with measured refusal threshold; full containerisation; live HTTPS at all4knox.axiomsystemslab.com; docs (handoff, ROE, project plan, publication plan). 73 files, +11,778 lines. `.env` verified absent from history. |
-| 2026-09-15 | Gerald + Claude | Logos: All4Knox lockup in the header, footer acknowledgements band (lab, McNabb Center), partner-card logos. Fixed sticky elements hidden under the two-row header (progress bar fully hidden in production). Reference knowledge base: TN guidelines + TennCare BESMART as separate search tools with measured floors; 8 AI transcriptions of image/table pages (unchecked); per-source answer sections after a single call misattributed thresholds 3/3; context-window budget, truncation notice, `RAG_REFERENCE_ENABLED` kill switch; compose `RAG_MIN_SCORE` default 0.35 → 0.65. 81 tests. |
+| 2026-09-15 | Gerald + Claude | Logos: All4Knox lockup in the header, footer acknowledgements band (lab, McNabb Center), partner-card logos. Fixed sticky elements hidden under the two-row header (progress bar fully hidden in production). Reference knowledge base: TN guidelines + TennCare BESMART as separate search tools with measured floors; 8 AI transcriptions of image/table pages (unchecked); per-source answer sections after a single call misattributed thresholds 3/3; context-window budget, truncation notice, `RAG_REFERENCE_ENABLED` kill switch; compose `RAG_MIN_SCORE` default 0.35 → 0.65. Content 2026.2: TennCare dose limits follow the May 2026 BESMART update (pending Dr. Alexander), non-BESMART pathway split by prescriber — 30 blocks. 81 tests. |
 
 **Append a row when you finish a session.** Keep it to what changed and why —
 the git log has the detail.
