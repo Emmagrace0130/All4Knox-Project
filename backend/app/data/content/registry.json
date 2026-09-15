@@ -19,7 +19,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -38,7 +38,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -47,9 +47,9 @@
       "module": "Tennessee prescribing",
       "route": "/toolkit/prescribing",
       "source": {
-        "document": "All4Knox Clinical Summary 2026",
-        "location": "Prescribing decision tree — TennCare / BESMART / MD-DO",
-        "slide": 2
+        "document": "TennCare BESMART Provider Education, May 28, 2026",
+        "location": "Buprenorphine Dose and PA Process Changes; Process Updates for BESMART Providers (slides 4–5)",
+        "slide": 4
       },
       "review": {
         "reviewedBy": null,
@@ -57,7 +57,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -76,12 +76,31 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
-      "id": "rx_tenncare_not_besmart",
-      "title": "TennCare · non-BESMART provider",
+      "id": "rx_tenncare_not_besmart_mddo",
+      "title": "TennCare · non-BESMART provider · MD/DO",
+      "module": "Tennessee prescribing",
+      "route": "/toolkit/prescribing",
+      "source": {
+        "document": "TennCare BESMART Provider Education, May 28, 2026",
+        "location": "Buprenorphine Dose and PA Process Changes; Process Updates for BESMART Providers (slides 4–5)",
+        "slide": 4
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.2",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "rx_tenncare_not_besmart_nppa",
+      "title": "TennCare · non-BESMART provider · NP/PA",
       "module": "Tennessee prescribing",
       "route": "/toolkit/prescribing",
       "source": {
@@ -95,8 +114,8 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
-      "entryStatus": "documented"
+      "contentVersion": "2026.2",
+      "entryStatus": "partial"
     },
     {
       "id": "rx_uninsured",
@@ -114,7 +133,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -133,7 +152,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -152,7 +171,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -171,7 +190,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -190,7 +209,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -209,7 +228,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -228,7 +247,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -247,7 +266,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -266,7 +285,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -285,7 +304,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -304,7 +323,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -323,7 +342,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -342,7 +361,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -361,7 +380,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -380,7 +399,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -399,7 +418,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -418,7 +437,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "partial"
     },
     {
@@ -437,7 +456,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -456,7 +475,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -475,7 +494,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -494,7 +513,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "partial"
     },
     {
@@ -513,7 +532,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "partial"
     },
     {
@@ -532,7 +551,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "partial"
     },
     {
@@ -551,7 +570,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "partial"
     }
   ]

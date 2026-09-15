@@ -141,8 +141,10 @@ def test_credential_is_snapshotted_onto_the_record():
 # --- the queue -------------------------------------------------------------
 def test_queue_covers_every_registry_block_and_starts_unreviewed():
     data = review.queue()
-    assert data["total"] == 29, f"expected 29 reviewable blocks, got {data['total']}"
-    assert data["counts"]["unreviewed"] == 29
+    # 29 blocks transcribed from the Clinical Summary, plus one from content
+    # version 2026.2 splitting the non-BESMART TennCare pathway by prescriber.
+    assert data["total"] == 30, f"expected 30 reviewable blocks, got {data['total']}"
+    assert data["counts"]["unreviewed"] == 30
     assert data["reviewedCount"] == 0
 
 

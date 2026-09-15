@@ -27,6 +27,9 @@ export const dosingLimits = {
     'In Tennessee there is an "arbitrary" limit of 16 mg for NPs and PAs.',
     'In Tennessee there is an "arbitrary" limit of 20 mg for most physicians, unless they are addiction specialists.',
     'This is not true in most other states, where dosing follows medication guidelines.',
+    // Not from slide 11. Added in content version 2026.2 so the dosing page
+    // does not contradict the prescribing tool, which follows this update.
+    'TennCare update (BESMART Provider Education, May 28, 2026): BESMART-enrolled MD/DO prescribers may prescribe preferred buprenorphine-naloxone products up to 32 mg a day without prior authorization. This differs from the 20 mg figure above, and is being confirmed with the McNabb Center.',
   ],
   referralNote:
     'Patients requiring doses above 16 mg or 20 mg per day can be referred to an addiction treatment specialist — McNabb, Cherokee/River Valley, ReVida or Cedar Recovery.',

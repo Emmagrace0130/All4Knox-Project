@@ -8,7 +8,7 @@ def test_every_bundle_loads():
 
 
 def test_version_is_reported():
-    assert content.content_version() == "2026.1"
+    assert content.content_version() == "2026.2"
     assert content.source_document() == "All4Knox Clinical Summary 2026"
 
 

@@ -4564,7 +4564,7 @@
         "prescriber": "md_do",
         "besmart": "not_enrolled"
       },
-      "pathway": "rx_tenncare_not_besmart",
+      "pathway": "rx_tenncare_not_besmart_mddo",
       "complete": true,
       "needsBesmart": true
     },
@@ -4594,7 +4594,7 @@
         "prescriber": "np_pa",
         "besmart": "not_enrolled"
       },
-      "pathway": "rx_tenncare_not_besmart",
+      "pathway": "rx_tenncare_not_besmart_nppa",
       "complete": true,
       "needsBesmart": true
     },
@@ -4624,7 +4624,7 @@
         "prescriber": null,
         "besmart": "not_enrolled"
       },
-      "pathway": "rx_tenncare_not_besmart",
+      "pathway": null,
       "complete": false,
       "needsBesmart": true
     },

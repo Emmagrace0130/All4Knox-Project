@@ -20,7 +20,7 @@
       "effectiveDate": null,
       "nextReviewDate": null
     },
-    "contentVersion": "2026.1"
+    "contentVersion": "2026.2"
   },
   "opioidFootnote": "Slide 7 footnotes this row \"*FENT or other opioid\", so it applies to fentanyl, opiates, oxycodone or methadone on the screen.",
   "rules": [
@@ -50,7 +50,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -81,7 +81,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -117,7 +117,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -161,7 +161,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     },
     {
@@ -205,7 +205,7 @@
         "effectiveDate": null,
         "nextReviewDate": null
       },
-      "contentVersion": "2026.1",
+      "contentVersion": "2026.2",
       "entryStatus": "documented"
     }
   ]
