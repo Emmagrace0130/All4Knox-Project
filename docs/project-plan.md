@@ -5,10 +5,13 @@ pilot for the McNabb Center and (b) a defensible research contribution.
 
 **Status legend:** ✅ done · 🟡 in progress · ⬜ not started · 🔒 blocked
 
-**As of 2026-08-31:** Phase 0 and Phase 1 complete except items needing a
-human; Phase 2.5 guided UX done and the review workflow built. Phase 2 is no
+**As of 2026-09-15:** Phase 0 and Phase 1 complete except items needing a
+human; Phase 2.5 guided UX done, the review workflow built, and the assistant
+now searches three collections (toolkit content, the Tennessee buprenorphine
+guidelines, TennCare BESMART) with one answer section per source. Phase 2 is no
 longer blocked on *finding* a clinician — Dr. Ryan Alexander is the clinical
-contact — but on confirming who signs off and then doing the 29 reviews.
+contact — but on confirming who signs off and then doing the 29 reviews. The
+9/1 McNabb meeting added a UX backlog (see "McNabb feedback, 9/1").
 
 Milestones are **exit criteria**, not dates: a phase is done when its criteria
 are demonstrably met, and each is written so you can check it rather than
@@ -105,7 +108,13 @@ not built.
 | 2.5.7 | Document upload with `uploaded` provenance tier | ⬜ schema exists, nothing writes to it |
 | 2.5.8 | Admin UI for prompts / users / system defaults | ⬜ API complete, curl-only |
 | 2.5.5 | Labelled eval set for agent argument extraction | ⬜ |
-| 2.5.6 | Rate limiting before any agent endpoint is public | ⬜ blocks 2.5.4 |
+| 2.5.6 | Rate limiting before any agent endpoint is public | ⬜ blocks 2.5.4 — a nearly finished version is parked on `wip/agent-workstreams-2026-08-31`, with a broken test predicate documented in its commit message |
+| 2.5.9 | Reference collections: TN guidelines (Fall 2023), BESMART description (Mar 2023), BESMART education (May 2026) — one search tool each, measured floors | ✅ 2026-09-15 |
+| 2.5.10 | Per-source answer sections (one model call per source type) | ✅ 2026-09-15 — chosen after a single call misattributed thresholds between sources in 3/3 runs |
+| 2.5.11 | A person checks the 8 AI transcriptions against the page images, then sets `checkedBy` | ⬜ citations say "not yet checked" until then |
+| 2.5.12 | Obtain TennCare's **updated** BESMART Program Description (the Mar 2023 copy is superseded in part) | ⬜ |
+| 2.5.13 | Admin/clinician upload of new reference documents (meeting ask) — same pipeline as `./a4k reference` | ⬜ |
+| 2.5.14 | Server-written section headings render as small labels; make source sections visually distinct | ⬜ |
 
 ### The agent design, and why it depends on the interview
 
@@ -150,8 +159,8 @@ The Phase-2 tools from skeleton §13 and §24.
 
 | # | Item | Skeleton ref |
 | --- | --- | --- |
-| 3.1 | COWS calculator | §13-B |
-| 3.2 | OUD diagnosis helper (DSM checklist) | §13-A |
+| 3.1 | COWS calculator — source now held: TN guidelines Appendix C (transcribed, unchecked) | §13-B |
+| 3.2 | OUD diagnosis helper (DSM checklist) — source now held: TN guidelines Appendix B | §13-A |
 | 3.3 | Precipitated withdrawal guide | §13-C |
 | 3.4 | Naloxone quick guide | §13-D |
 | 3.5 | Medication interaction / sedation check | §13-E |
@@ -239,13 +248,45 @@ Lightweight, because two people do not need Jira.
 
 | # | Blocker | Owner | Unblocks |
 | --- | --- | --- | --- |
-| B1 | Commit + push the overnight work; merge `gj_dev` → `main` | Gerald/Emma | everything downstream |
+| B1 | Push `gj_dev` (several local commits ahead of origin); merge `gj_dev` → `main` | Gerald/Emma | everything downstream |
+| B7 | **Is the GitHub repo public?** The committed reference passages contain the text of the May 2026 BESMART provider deck; confirm it may be redistributed before pushing | Gerald/Emma | pushing the reference collections |
+| B8 | Clinical questions raised by the reference documents (below) | Dr. Alexander | trustworthy dose-limit answers |
 | B2 | **Confirm the named clinical reviewer** — Dr. Ryan Alexander is the contact; settle whether he signs off or nominates | Gerald/Emma | all of Phase 2, the pilot, both field papers |
 | B3 | Decide PHI-in-conversations policy (retention / encryption / refuse-to-store) | Gerald | the pilot |
 | B5 | `LETSENCRYPT_EMAIL` in `.env` | Gerald | cert-expiry warnings reaching a human |
 | B6 | Change the seeded admin password, blank `SEED_ADMIN_*` | Gerald | basic hygiene |
 
 ---
+
+### Clinical questions raised by the reference documents (2026-09-15)
+
+For Dr. Alexander, not a developer. The assistant shows every position with its
+source rather than choosing, but the toolkit's own content may need updating.
+
+1. **Dose limits.** Toolkit slide 11: 16 mg NP/PA, 20 mg most physicians (24 mg
+   with addiction consultation). TN guidelines 2023: document above 16 mg for
+   more than 30 days; consult or refer above 20 mg. TennCare BESMART, May 28
+   2026: BESMART MD/DO up to 32 mg without prior authorization for preferred
+   products; non-BESMART MD/DO 16 mg without PA. Is slide 11 still current?
+2. **First-dose COWS threshold.** The TN guidelines say both "give first dose
+   when COWS ≥ 7" (Appendix C) and "COWS of 11 or higher is recommended" for
+   office-based induction (Section II.D).
+
+### McNabb feedback, 9/1 (backlog, not yet planned into phases)
+
+From `docs/meeting_notes/mcnabb_meeting_9_1_26.md`:
+
+- ✅ All4Knox logo in the header; lab and McNabb logos in a footer
+  acknowledgements band (2026-09-15)
+- ⬜ Interactive components easier to see; colour/domain grouping (e.g. Admin vs
+  Clinician blocks on the home page)
+- ⬜ In-app bugs / comments / suggestions channel the team can track
+- ⬜ Usage analytics (tools used, return visits) — needs a PHI and consent decision first
+- ⬜ Changelog / versions tab
+- ⬜ Prior authorization forms and examples (Dr. Alexander to provide)
+- ⬜ Admin/clinician tools to update the knowledge base (2.5.13)
+- ⬜ Acronym and terminology hints (hover/tap indicators)
+- ⬜ Survey tab on how well the app works
 
 ### Definition of done (any clinical change)
 

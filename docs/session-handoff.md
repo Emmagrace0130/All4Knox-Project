@@ -1,12 +1,14 @@
 # Session Handoff — All4Knox Clinical Provider Toolkit
 
-**Last updated:** 2026-08-31, end of the overnight session before the 11:30 demo.
+**Last updated:** 2026-09-15 — logos, and the assistant's reference knowledge base.
 
-**Branch:** `gj_dev` at `3a0b4cc` — the overnight work (7,235 lines across
-64 files) is **committed and pushed**. `main` is still at `36fa675`; the
-`gj_dev` → `main` merge is pending on GitHub and is Emma's call. Always check
-`git log --oneline --all` and `git status` before assuming which branch has
-what.
+**Branch:** `gj_dev` — **several commits ahead of `origin/gj_dev` and not
+pushed** (see blocker B7 in the project plan before pushing). `main` is still
+at `36fa675`; the `gj_dev` → `main` merge is pending on GitHub and is Emma's
+call. Unfinished rate limiting, admin UI and CI work is parked on
+`wip/agent-workstreams-2026-08-31` — read its commit message before using any
+of it. Always check `git log --oneline --all` and `git status` before assuming
+which branch has what.
 **Maintainers:** Emma (repo owner, `Emmagrace0130/All4Knox-Project`) · Gerald Jones
 **Partner:** McNabb Center, Knoxville TN — this app is a pilot tool for them.
 
@@ -68,12 +70,12 @@ interview.
 | **API** | `https://all4knox.axiomsystemslab.com/api/...` — same origin, proxied by our nginx |
 | **Local debug** | API `127.0.0.1:8410`, web `127.0.0.1:8411` |
 | **Containers** | `all4knox-api`, `all4knox-web` — both healthy |
-| **Assistant** | `gpt-oss:20b` via host Ollama; 31-chunk vector index; ~6 s to first answer |
-| **Branch** | `gj_dev` at `3a0b4cc`, pushed. `main` at `36fa675` — merge pending |
+| **Assistant** | `gpt-oss:20b` via host Ollama; three collections — toolkit (31 passages), TN guidelines (70), TennCare BESMART (34); one answer section per source; ~3 s single-source, 10–16 s when all three answer |
+| **Branch** | `gj_dev`, local commits not pushed. `main` at `36fa675` — merge pending |
 | **Database** | SQLite at `/data/all4knox.db` on the `all4knox-data` volume |
 | **First admin** | Seeded from `SEED_ADMIN_*` in `.env`. **Blank those out and change the password after first sign-in.** |
 | **Clinical review** | **0 of 29 blocks reviewed.** Workflow is built at `/review`. Clinical contact is Dr. Ryan Alexander (medical director, McNabb Center) — sign-off not yet started. |
-| **Tests** | 44 backend tests passing · frontend build + lint clean |
+| **Tests** | 81 backend tests passing · frontend build + lint clean |
 | **Control** | `./a4k` — see `./a4k help` |
 
 ### Routes
@@ -136,6 +138,18 @@ docker compose up -d          # env is read at container start, not per request
 - Referral directory, resources, and the clinical sources/version register.
 - "Ask All4Knox" retrieval assistant with streaming answers, citations and
   structural refusal.
+- **Reference knowledge base** (2026-09-15). Besides the toolkit content, the
+  assistant searches the *Tennessee Nonresidential Buprenorphine Treatment
+  Guidelines* (Fall 2023) and TennCare BESMART material (Program Description,
+  Mar 2023 — superseded in part; Provider Education, May 28 2026). The source
+  PDFs are in `docs/reference/`; `./a4k reference` turns them into
+  `backend/app/data/reference/passages/`. Each collection is its own search
+  tool with its own measured floor (`backend/app/rag/tools.py`), and **each
+  source type that matches is answered by its own model call** that sees only
+  that source's passages — see §6. `RAG_REFERENCE_ENABLED=false` in `.env`
+  turns the reference collections off without a rebuild.
+- **Branding** — All4Knox logo in the header; footer acknowledgements band with
+  the lab and McNabb Center logos; partner cards with logos on the home page.
 - Full containerisation, public HTTPS, automatic TLS renewal.
 
 ### What is NOT done
@@ -193,12 +207,15 @@ All4Knox-Project/
 │   │   ├── services/
 │   │   │   ├── content.py       # loads the generated JSON
 │   │   │   └── rules.py         # deterministic engines (ported from TS)
-│   │   ├── rag/                 # corpus.py, store.py, ollama_client.py, assistant.py
+│   │   ├── rag/                 # assistant.py, tools.py (one search tool per collection),
+│   │   │                        # corpus.py (toolkit), reference.py + chunking.py (reference docs),
+│   │   │                        # store.py, ollama_client.py
 │   │   ├── models/clinical.py   # pydantic request/response
 │   │   ├── core/config.py       # settings from env
-│   │   └── data/content/*.json  # GENERATED — do not hand-edit
-│   ├── tests/                   # 29 tests incl. TS/Python parity
-│   └── tools/calibrate_threshold.py
+│   │   ├── data/content/*.json  # GENERATED — do not hand-edit
+│   │   └── data/reference/      # manifest.json + transcriptions/ (hand) + passages/ (GENERATED)
+│   ├── tests/                   # 81 tests incl. TS/Python parity
+│   └── tools/                   # calibrate_threshold.py, extract_reference.py
 ├── frontend/
 │   ├── src/content/             # ← SOURCE OF TRUTH for clinical text
 │   ├── src/services/api.ts      # API client
@@ -286,6 +303,10 @@ listed together because each is invisible to a casual test.
 | **Missing grid-item rule** | Toolkit card content overlapped the row below | `.tool-card__link` had `height: 100%` with no `.tool-card` rule, so anything appended overflowed the cell. |
 | **Retrieval floor set by feel** | Off-corpus questions reached the model | `RAG_MIN_SCORE` must be *measured*: `backend/tools/calibrate_threshold.py`. Re-measure after any embedding-model or corpus change. |
 | **Testing against production** | A fabricated clinical attestation appeared live | An API test recorded a real-looking review signed by "Dr Test Reviewer". Deleted immediately. **If you test against the live system, clean up in the same breath.** |
+| **One model call over several sources** | Dose thresholds attributed to the wrong source (3 of 3 runs) | With toolkit, guideline and BESMART passages in one prompt, `gpt-oss:20b` credited the toolkit's "24 mg with consult" to the state guideline, even with a preamble rule forbidding it. Each source type now gets its own call that sees only its own passages. **Do not merge the sections back into one call to save latency.** |
+| **Silent context truncation** | Nothing visible — Ollama cuts the prompt | `gpt-oss:20b` runs with an 8192-token window on this host; an 18k-token prompt reported `prompt_eval_count=8191`. The server now budgets passages and history to fit (`fit_to_window`), caps the answer at half the window, and pins `num_ctx`. An answer that hits its length limit says so. |
+| **`Secure` session cookie over plain HTTP** | Every scripted request 404s on its own conversation | The cookie is `Secure`, so a script talking to `http://127.0.0.1:8410` never sends it back and each call mints a new visitor session. Script against `https://all4knox.axiomsystemslab.com/api`. |
+| **PDF tables and colour** | A dose rule attached to the wrong prescriber type | Text extraction scrambles slide tables, misses tables that are images, and loses red "update" text. Those pages are hand-transcribed in `data/reference/transcriptions/` and labelled "not yet checked by a person" until someone checks them. |
 
 ---
 
@@ -318,11 +339,14 @@ docker run --rm -v "$PWD/backend":/app -w /app -e HOME=/tmp python:3.12-slim \
 docker run --rm --user "$(id -u):$(id -g)" -v "$PWD":/work -w /work/frontend \
   -e npm_config_cache=/tmp/.npm node:22-alpine sh -c "npm ci && npm run build"
 
-# force a vector index rebuild (after changing content or embedding model)
-curl -X POST localhost:8410/api/assistant/reindex
+# force every collection index to rebuild (after changing content or embedding model)
+./a4k reindex
 
-# re-measure the retrieval refusal threshold
-python3 backend/tools/calibrate_threshold.py
+# re-extract the reference PDFs into passages — then READ THE DIFF
+./a4k reference
+
+# re-measure each collection's retrieval floor
+./a4k calibrate
 ```
 
 ### Frontend dev server against the containerised API
@@ -404,6 +428,11 @@ record reviewer, review date, effective date, and next review date.
 
 ### Two open clinical questions (need a clinician, not a developer)
 
+The reference documents added two more — dose limits across the toolkit,
+guideline and BESMART, and COWS ≥ 7 vs ≥ 11 within the guideline. They are
+listed in [`project-plan.md`](project-plan.md) under "Clinical questions raised
+by the reference documents".
+
 1. **Oxycodone wait time.** Slide 4 says wait 12 hrs; slide 5 branches on
    >24 hrs since last dose. The toolkit surfaces both rather than picking one.
 2. **Referral contact details.** The summary names McNabb, Cherokee/River
@@ -415,19 +444,37 @@ record reviewer, review date, effective date, and next review date.
 
 ### How the assistant is prevented from making things up
 
-Three independent layers:
+Independent layers:
 
-1. **Corpus** — built only from the approved clinical content
-   (`backend/app/rag/corpus.py`), not from the source PowerPoint or the web.
-2. **Retrieval floor** — `RAG_MIN_SCORE=0.65`. Below it the model is **never
-   called**, so it cannot answer from its own weights. This value is *measured,
-   not guessed*: on 2026-08-31, questions the content answers scored
-   **0.745–0.828**; unrelated clinical questions (warfarin, metformin,
-   pneumonia, chest pain, eczema, ECG) topped out at **0.579**. 0.65 sits in the
-   gap. Re-run `backend/tools/calibrate_threshold.py` after changing the
-   embedding model or the corpus.
-3. **System prompt** — refuse, cite by number, never invent doses/wait
-   times/phone numbers, never claim the toolkit covers something it does not.
+1. **Corpus** — the toolkit content (`backend/app/rag/corpus.py`) plus three
+   named reference documents (`backend/app/data/reference/manifest.json`).
+   Nothing from the web. Every passage is labelled with its source type,
+   issuer, date, pages, and whether its text was extracted or transcribed.
+2. **Retrieval floors, per collection** — below its floor a collection returns
+   nothing, and if every collection returns nothing the model is **never
+   called**. Measured 2026-09-15 with `./a4k calibrate`:
+
+   | Collection | On-corpus | Unrelated max | Floor |
+   | --- | --- | --- | --- |
+   | toolkit | 0.745–0.828 | 0.579 | 0.65 (`RAG_MIN_SCORE`) |
+   | TN guidelines | 0.682–0.844 | 0.602 | 0.64 |
+   | TennCare BESMART | 0.705–0.833 | 0.562 | 0.63 |
+
+   Near-domain questions (extended-release naltrexone, methadone clinic rules)
+   clear the floors; for those, layer 4 has to refuse, and on 2026-09-15 it did.
+3. **One model call per source type** — the call writing the guideline section
+   is never shown toolkit or BESMART passages, so it cannot attribute their
+   rules to the guideline. The server writes the section headings.
+4. **System prompt** — refuse, cite by number, never invent doses/wait
+   times/phone numbers; present disagreeing positions with source and date;
+   BESMART passages are payer rules, not dosing advice.
+5. **Context budget** — passages and history are fitted to the 8192-token
+   window server-side, so Ollama never silently truncates the prompt.
+
+**Residual risk, measured 2026-09-15:** a section can still misread its own
+source. In one of two runs the guideline section applied the statute's 16 mg
+limit for NPs/PAs to physicians. Sectioning cannot prevent that; the citations
+are the check, and the clinician must be able to read them.
 
 Verified behaviour: *"warfarin dose for atrial fibrillation"* → `refused: true`,
 0 citations, model never invoked. *"BUP positive with fentanyl"* → grounded
@@ -452,7 +499,12 @@ full phased plan:
 3. Confirm with **Dr. Ryan Alexander** who signs off the 29 blocks — him or
    someone he names — then create that person's clinician account
    (`POST /api/admin/users`, role `clinician`) and walk them through `/review`.
-5. Begin the literature review track — see
+4. Answer blocker B7 (is the repo public?) before pushing: the reference
+   passages contain the text of the May 2026 BESMART provider deck.
+5. Have a person check the 8 AI transcriptions against their page images
+   (`backend/app/data/reference/transcriptions/`), then set `checkedBy`.
+6. Get the updated BESMART Program Description from TennCare.
+7. Begin the literature review track — see
    [`research/publication-plan.md`](research/publication-plan.md).
 
 ---
@@ -466,6 +518,7 @@ full phased plan:
 | 2026-08-31 | Gerald + Claude | Accounts + roles (visitor/basic/clinician/admin) on SQLite; persistent assistant conversations with inactivity sweep; per-user generation settings with server-side clamping; admin system-prompt variants with an **immutable safety preamble**; markdown rendering. Fixed three bugs found while building: seed-admin worker race, parallel session-minting race (404 on first question), and an admin being able to publish a prompt with no safety rules. 29/29 API + 8/8 browser checks. |
 | 2026-08-31 | Gerald + Claude | Guided "TurboTax" interview wired up for all four tools (`useInterviewFlow` + the previously-unused `guided/` components and `guided.css`); 12/12 browser click-through checks. Agent design specified in project-plan Phase 2.5 with spike numbers. |
 | 2026-08-31 | Gerald + Claude | `ed3cb88` on `gj_dev` — FastAPI backend; mechanical content export; TS↔Python parity harness (302 cases); RAG assistant on `gpt-oss:20b` with measured refusal threshold; full containerisation; live HTTPS at all4knox.axiomsystemslab.com; docs (handoff, ROE, project plan, publication plan). 73 files, +11,778 lines. `.env` verified absent from history. |
+| 2026-09-15 | Gerald + Claude | Logos: All4Knox lockup in the header, footer acknowledgements band (lab, McNabb Center), partner-card logos. Fixed sticky elements hidden under the two-row header (progress bar fully hidden in production). Reference knowledge base: TN guidelines + TennCare BESMART as separate search tools with measured floors; 8 AI transcriptions of image/table pages (unchecked); per-source answer sections after a single call misattributed thresholds 3/3; context-window budget, truncation notice, `RAG_REFERENCE_ENABLED` kill switch; compose `RAG_MIN_SCORE` default 0.35 → 0.65. 81 tests. |
 
 **Append a row when you finish a session.** Keep it to what changed and why —
 the git log has the detail.
