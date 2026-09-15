@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { BackendStatus } from './BackendStatus';
 import { EMERGENCY_NOTICE, PHI_NOTICE } from '../../content/governance';
 import { CONTENT_REVIEW, CONTENT_VERSION } from '../../content/version';
+import logoLockup from '../../imgs/all4knox_logo_lockup.png';
+import aslLogo from '../../imgs/asl_logo_reversed_trimmed.png';
 
 export function Footer() {
   return (
@@ -24,6 +26,42 @@ export function Footer() {
           <BackendStatus />
         </p>
       </div>
+
+      {/*
+        Acknowledgements. The band is dark because the lab mark we have is the
+        reversed (white-text) version; the All4Knox mark has black text, so it
+        sits on its own light plate rather than being recoloured.
+      */}
+      <section className="site-ack" aria-label="Acknowledgements">
+        <div className="site-ack__inner">
+          <div className="site-ack__item">
+            <span className="site-ack__plate">
+              <img src={logoLockup} alt="All4Knox" width={340} height={205} />
+            </span>
+            <p className="site-ack__text">
+              All4Knox is a joint City of Knoxville / Knox County initiative.
+            </p>
+          </div>
+
+          <div className="site-ack__item">
+            <p className="site-ack__text">
+              <span className="site-ack__label">Clinical partner</span>
+              McNabb Center
+            </p>
+          </div>
+
+          <div className="site-ack__item">
+            <p className="site-ack__label">Developed by</p>
+            <img
+              className="site-ack__asl"
+              src={aslLogo}
+              alt="Applied Systems Lab, University of Tennessee, Knoxville"
+              width={556}
+              height={139}
+            />
+          </div>
+        </div>
+      </section>
     </footer>
   );
 }

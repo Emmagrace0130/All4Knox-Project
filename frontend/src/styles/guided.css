@@ -4,7 +4,8 @@
 
 .progress {
   position: sticky;
-  top: 0;
+  /* Directly under the sticky site header, which publishes its height. */
+  top: var(--header-h, 0px);
   z-index: 15;
   background: var(--surface);
   border-bottom: 1px solid var(--line);

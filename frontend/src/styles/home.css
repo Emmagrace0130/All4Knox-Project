@@ -333,7 +333,7 @@
 
 .review-queue {
   position: sticky;
-  top: 5rem;
+  top: calc(var(--header-h, 0px) + var(--s-4));
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
