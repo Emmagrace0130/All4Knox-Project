@@ -120,7 +120,7 @@ def delete_conversation(
 
 @router.post("/assistant/reindex", tags=["assistant"])
 async def reindex(request: Request) -> dict[str, Any]:
-    """Force a rebuild of the vector index from the approved content."""
+    """Force a rebuild of every collection index: toolkit content and reference documents."""
     assistant = _assistant(request)
     try:
         return await assistant.ensure_index(force=True)
@@ -135,7 +135,7 @@ async def ask(
     session: dict[str, Any] = Depends(get_session),
 ) -> dict[str, Any]:
     assistant = _assistant(request)
-    if not assistant.store.ready:
+    if not assistant.ready:
         try:
             await assistant.ensure_index()
         except OllamaError as exc:
@@ -157,7 +157,7 @@ async def ask_stream(
 ) -> StreamingResponse:
     """Server-sent events: citations first, then answer tokens."""
     assistant = _assistant(request)
-    if not assistant.store.ready:
+    if not assistant.ready:
         try:
             await assistant.ensure_index()
         except OllamaError as exc:

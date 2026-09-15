@@ -40,26 +40,73 @@ interface PendingTurn {
   refused: boolean;
 }
 
+/**
+ * What kind of source a passage is. The labels matter clinically: the same
+ * question can get a different answer from the toolkit, the state guideline
+ * and a TennCare payer rule, and the reader has to see which is which.
+ */
+const SOURCE_TYPES: Record<string, string> = {
+  toolkit: 'All4Knox toolkit',
+  tn_guidelines: 'TN state guideline',
+  tenncare_besmart: 'TennCare BESMART · payer rule',
+};
+
 function Citations({ citations }: { citations: Citation[] }) {
   if (citations.length === 0) return null;
+  // A document's currency note is shown once, on its first citation.
+  const notedDocuments = new Set<string>();
   return (
     <section className="assistant__sources">
       <h3 className="section-heading">Sources used ({citations.length})</h3>
       <ol className="assistant__citations">
-        {citations.map((citation) => (
-          <li key={`${citation.id}-${citation.index}`} className="assistant__citation">
-            <span className="assistant__citation-index">[{citation.index}]</span>
-            <div>
-              <Link to={citation.route}>{citation.title}</Link>
-              <p className="assistant__citation-meta">
-                {citation.module} · {citation.sourceDocument}
-                {citation.slide ? `, slide ${citation.slide}` : ''} · content
-                version {citation.contentVersion}
-              </p>
-              <p className="assistant__citation-review">{citation.reviewState}</p>
-            </div>
-          </li>
-        ))}
+        {citations.map((citation) => {
+          const collection = citation.collection ?? 'toolkit';
+          const isReference = collection !== 'toolkit';
+          const showCurrency =
+            isReference &&
+            !!citation.currencyNote &&
+            !notedDocuments.has(citation.sourceDocument);
+          if (showCurrency) notedDocuments.add(citation.sourceDocument);
+          return (
+            <li key={`${citation.id}-${citation.index}`} className="assistant__citation">
+              <span className="assistant__citation-index">[{citation.index}]</span>
+              <div>
+                <span className={`source-type source-type--${collection}`}>
+                  {SOURCE_TYPES[collection] ?? collection}
+                </span>
+                {citation.route ? (
+                  <Link to={citation.route}>{citation.title}</Link>
+                ) : (
+                  <span className="assistant__citation-title">{citation.title}</span>
+                )}
+                {isReference ? (
+                  <p className="assistant__citation-meta">
+                    {citation.module} · {citation.sourceLocation} · issued by{' '}
+                    {citation.issuer} · {citation.published}
+                  </p>
+                ) : (
+                  <p className="assistant__citation-meta">
+                    {citation.module} · {citation.sourceDocument}
+                    {citation.slide ? `, slide ${citation.slide}` : ''} · content
+                    version {citation.contentVersion}
+                  </p>
+                )}
+                {showCurrency && (
+                  <p className="assistant__citation-meta">{citation.currencyNote}</p>
+                )}
+                <p
+                  className={
+                    /not yet/.test(citation.reviewState)
+                      ? 'assistant__citation-review'
+                      : 'assistant__citation-meta'
+                  }
+                >
+                  {citation.reviewState}
+                </p>
+              </div>
+            </li>
+          );
+        })}
       </ol>
     </section>
   );

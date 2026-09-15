@@ -79,13 +79,23 @@ class OllamaClient:
             base.update({k: v for k, v in overrides.items() if v is not None})
         return base
 
+    @staticmethod
+    def _record_usage(chunk: dict[str, Any], usage: dict[str, Any] | None) -> None:
+        """Token counts from Ollama's final response, for checking the budget."""
+        if usage is not None and "prompt_eval_count" in chunk:
+            usage["promptTokens"] = chunk.get("prompt_eval_count")
+            usage["outputTokens"] = chunk.get("eval_count")
+            # "length" means the answer hit num_predict and was cut off.
+            usage["doneReason"] = chunk.get("done_reason")
+
     async def chat(
         self,
         messages: list[dict[str, str]],
         options: dict[str, Any] | None = None,
         model: str | None = None,
+        usage: dict[str, Any] | None = None,
     ) -> str:
-        """Single-shot chat completion."""
+        """Single-shot chat completion. Fills `usage` with token counts if given."""
         async with self._client() as client:
             resp = await client.post(
                 "/api/chat",
@@ -101,6 +111,7 @@ class OllamaClient:
                     f"chat request failed ({resp.status_code}): {resp.text[:300]}"
                 )
             data = resp.json()
+        self._record_usage(data, usage)
         return (data.get("message") or {}).get("content", "")
 
     async def chat_stream(
@@ -108,6 +119,7 @@ class OllamaClient:
         messages: list[dict[str, str]],
         options: dict[str, Any] | None = None,
         model: str | None = None,
+        usage: dict[str, Any] | None = None,
     ) -> AsyncIterator[str]:
         """Token stream, so the demo shows an answer forming rather than a spinner."""
         import json as _json
@@ -139,4 +151,5 @@ class OllamaClient:
                     if piece:
                         yield piece
                     if chunk.get("done"):
+                        self._record_usage(chunk, usage)
                         return

@@ -37,6 +37,17 @@ class Chunk:
     entry_status: str = ""
     review_state: str = "not yet clinically reviewed"
     extra: dict[str, Any] = field(default_factory=dict)
+    # Which collection the chunk belongs to, and what KIND of source it is.
+    # Defaults describe the toolkit content, so an index persisted before
+    # reference collections existed still loads. See app/rag/collections.py.
+    collection: str = "toolkit"
+    authority: str = "All4Knox toolkit content"
+    issuer: str | None = None
+    published: str | None = None
+    pages: str | None = None
+    # "extracted" from a PDF text layer, or "transcribed" from a page image.
+    method: str | None = None
+    currency_note: str | None = None
 
     def citation(self) -> dict[str, Any]:
         return {
@@ -50,6 +61,13 @@ class Chunk:
             "contentVersion": self.content_version,
             "entryStatus": self.entry_status,
             "reviewState": self.review_state,
+            "collection": self.collection,
+            "authority": self.authority,
+            "issuer": self.issuer,
+            "published": self.published,
+            "pages": self.pages,
+            "method": self.method,
+            "currencyNote": self.currency_note,
         }
 
 

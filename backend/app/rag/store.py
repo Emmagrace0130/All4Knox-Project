@@ -17,6 +17,7 @@ Qdrant or pgvector client; nothing outside this module needs to change, since
 from __future__ import annotations
 
 import json
+import os
 from dataclasses import asdict
 from pathlib import Path
 from typing import Any
@@ -54,17 +55,26 @@ class VectorStore:
         return self._fingerprint
 
     def save(self) -> None:
+        """
+        Write atomically. Every uvicorn worker builds a missing index on boot,
+        so two processes can save the same file at once; writing to a private
+        temp file and renaming means a reader sees one whole index or the
+        other, never an interleaving of both.
+        """
         if self._vectors is None:
             return
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        np.savez_compressed(
-            self.path,
-            vectors=self._vectors,
-            chunks=np.array(
-                [json.dumps(asdict(c)) for c in self._chunks], dtype=object
-            ),
-            fingerprint=np.array([self._fingerprint], dtype=object),
-        )
+        tmp = self.path.with_name(f"{self.path.name}.{os.getpid()}.tmp")
+        with open(tmp, "wb") as handle:
+            np.savez_compressed(
+                handle,
+                vectors=self._vectors,
+                chunks=np.array(
+                    [json.dumps(asdict(c)) for c in self._chunks], dtype=object
+                ),
+                fingerprint=np.array([self._fingerprint], dtype=object),
+            )
+        os.replace(tmp, self.path)
 
     def load(self) -> bool:
         """Load a persisted index. Returns False when there isn't a usable one."""

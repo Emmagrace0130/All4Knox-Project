@@ -1,0 +1,56 @@
+{
+  "about": "Reference documents the assistant may search, beyond the All4Knox toolkit content. Hand-maintained. Each document's passages are GENERATED into passages/<id>.json by backend/tools/extract_reference.py (./a4k reference). Page images that the PDF text layer omits or scrambles are hand-transcribed in transcriptions/<id>.json.",
+  "documents": [
+    {
+      "id": "tn-bup-guidelines-2023",
+      "collection": "tn_guidelines",
+      "title": "Tennessee Nonresidential Buprenorphine Treatment Guidelines (Fall 2023 Update)",
+      "shortTitle": "TN Buprenorphine Treatment Guidelines (Fall 2023)",
+      "issuer": "Tennessee Department of Mental Health and Substance Abuse Services (TDMHSAS) and Tennessee Department of Health (TDH)",
+      "published": "2023-10-31",
+      "edition": "Version 4-2023",
+      "documentType": "State clinical guideline",
+      "sourceFile": "docs/reference/Bupe_Treatment_Guidelines_Fall_2023.pdf",
+      "extraction": "sectioned",
+      "currencyNote": "Most recent edition held by All4Knox. Appendices H to K reproduce Tennessee statute and public chapters as they stood in 2023; later amendments are not reflected.",
+      "excludedPages": [
+        { "pages": [1, 2, 3, 4, 5], "reason": "Cover, commissioners' letter, contributor list and table of contents." },
+        { "pages": [30], "reason": "Appendix C (COWS): the item table is an embedded image with no text layer. Hand-transcribed instead." },
+        { "pages": [31, 32, 33, 34], "reason": "Appendix D: a blank sample physical exam form. Checkbox labels retrieve as noise." },
+        { "pages": [40, 41], "reason": "Appendix F: a blank Adverse Childhood Experiences questionnaire." }
+      ]
+    },
+    {
+      "id": "tenncare-besmart-pd-2023",
+      "collection": "tenncare_besmart",
+      "title": "Buprenorphine Enhanced and Supportive Medication-Assisted Recovery and Treatment (BESMART) Network Provider Requirements and Program Description",
+      "shortTitle": "BESMART Program Description (March 2023)",
+      "issuer": "Division of TennCare",
+      "published": "2023-03",
+      "edition": "Updated March 2023",
+      "documentType": "Payer program requirements (TennCare)",
+      "sourceFile": "docs/reference/BESMARTProgramDescription.pdf",
+      "extraction": "sectioned",
+      "currencyNote": "SUPERSEDED IN PART. TennCare's May 28, 2026 provider education says this program description has since been updated: induction and stabilization are now separate phases, counseling and psychotherapy are distinguished, and billing codes change on August 1, 2026. All4Knox does not hold the updated description. Where the two differ, the May 2026 material is newer.",
+      "excludedPages": []
+    },
+    {
+      "id": "tenncare-besmart-education-2026-05",
+      "collection": "tenncare_besmart",
+      "title": "BESMART Provider Education, May 28, 2026",
+      "shortTitle": "BESMART Provider Education (May 2026)",
+      "issuer": "Division of TennCare",
+      "published": "2026-05-28",
+      "edition": "May 28, 2026 presentation",
+      "documentType": "Payer program update (TennCare)",
+      "sourceFile": "docs/reference/BESMART Provider Education May2026 Final.pdf",
+      "extraction": "slides",
+      "currencyNote": "Newest TennCare BESMART material held by All4Knox. Some changes it announces take effect later: quality review tool changes on July 1, 2026 and billing codes on August 1, 2026.",
+      "excludedPages": [
+        { "pages": [1, 2, 3, 6, 12, 17, 20, 29], "reason": "Title, agenda, section-divider and Q&A slides." },
+        { "pages": [22, 23, 24, 26], "reason": "Charts whose values are not in the PDF text layer." },
+        { "pages": [25], "reason": "Outcomes infographic: the text layer detaches figures from their labels (e.g. an apparent 149% reduction), so it cannot be extracted faithfully." }
+      ]
+    }
+  ]
+}

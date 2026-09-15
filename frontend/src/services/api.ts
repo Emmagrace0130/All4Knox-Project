@@ -185,6 +185,16 @@ export interface Citation {
   entryStatus: string;
   reviewState: string;
   score: number;
+  // Present on answers since the reference collections were added. Older
+  // stored conversations lack them, so every consumer must treat them as
+  // optional and fall back to "toolkit".
+  collection?: 'toolkit' | 'tn_guidelines' | 'tenncare_besmart';
+  authority?: string;
+  issuer?: string | null;
+  published?: string | null;
+  pages?: string | null;
+  method?: 'extracted' | 'transcribed' | null;
+  currencyNote?: string | null;
 }
 
 export interface AssistantStatus {

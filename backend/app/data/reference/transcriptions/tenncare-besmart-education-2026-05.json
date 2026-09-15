@@ -1,0 +1,52 @@
+{
+  "documentId": "tenncare-besmart-education-2026-05",
+  "transcribedBy": "Claude (Anthropic AI model) in a working session with Gerald Jones",
+  "transcribedDate": "2026-09-15",
+  "checkedBy": null,
+  "checkedDate": null,
+  "method": "Read from rendered slide images at 100 to 150 dpi, because the PDF text layer scrambles these tables, omits them (embedded images), or drops meaning carried by colour. Wording follows the slide, including its spelling.",
+  "passages": [
+    {
+      "id": "slide-05-dose-pa-table",
+      "pages": [5],
+      "section": ["Buprenorphine Pharmacy Updates", "Buprenorphine Process Updates for BESMART Providers"],
+      "whyTranscribed": "The table's columns interleave in the text layer, and the slide marks updates in red, which text extraction loses.",
+      "text": "Buprenorphine process updates for BESMART providers, as a table of prescriber type by Dose Limits, PA Requirements and Monoproducts. The slide's key says: \"Current state is in black. Updates are in red.\" Each entry below is labelled with the colour it has on the slide.\nMD / DO:\n- Dose Limits: [black] Up to 24 mg for specific populations. [red] 32 mg/day (evidenced based dosing).\n- PA Requirements: [black] PA for non-preferred, preferred products (which includes monoproduct). [red] PA required for non-preferred products (which includes monoproduct, Requests outside of evidenced-based dose).\n- Monoproducts: [black] PA required for up to 24mg. [red] PA required for up to 32 mg (Evidence based dosing).\nNP / PA*:\n- Dose Limits: [black] 16 mg.\n- PA Requirements: [black] PA required for non-preferred products (up to 16 mg).\n- Monoproducts: [black] NP/PA may prescribe in CMHC and FQHCs (Injectable permitted in other settings).\n*No changes for mid-level prescribers, in compliance with state law. All mid-level prescribers must be BESMART."
+    },
+    {
+      "id": "slide-09-scopes-of-service",
+      "pages": [9],
+      "section": ["BESMART Program Description Updates", "BESMART PD Updates: Counseling and Psychotherapy"],
+      "whyTranscribed": "The Scopes of Service table is an embedded image.",
+      "text": "Scopes of Service in the updated BESMART Program Description.\nCounseling:\n- Address present-day issues such as stress, grief, relationship problems, or career challenges.\n- Short-term and transitional, supports program engagement across recovery phases.\n- Goal-oriented, focuses on coping skills and problem-solving.\n- Less intensive and not focused on deep psychological exploration.\nPsychotherapy:\n- Addresses deeper psychological issues rooted in past experiences or unconscious processes.\n- Long-term (months to years) and insight oriented, using established therapeutic frameworks (e.g., psychodynamic, cognitive behavioral therapy).\n- More intensive; explores personality, emotional patterns, and chronic mental health conditions.\n- Requires advanced training and supervised clinical experience.\n- Used to diagnose and treat complex mental health disorders."
+    },
+    {
+      "id": "slide-10-qualified-providers",
+      "pages": [10],
+      "section": ["BESMART Program Description Updates", "BESMART PD Updates: Counseling and Psychotherapy (Cont'd)"],
+      "whyTranscribed": "The Qualified Providers table is an embedded image; only the side bullets are in the text layer.",
+      "text": "Qualified Providers in the updated BESMART Program Description.\nAs of today (May 28, 2026): Counseling may be provided by qualified providers during the induction phase. Psychotherapy may be provided by qualified providers during any phase.\nCounselors: Licensed/ certified clinicians operating within their scope of practice, including:\n- Psychologist, Psychiatrist, Physician, Physician Assistant, Registered Nurse, Psychiatric-Mental Health Nurse Practitioner (PMHNP-BC); or\n- Licensed Professional Counselors (LPC), Licensed Clinical Social Worker (LCSW), Licensed Marriage and Family Therapist (LMFT), Licensed Alcohol and Drug Abuse Counselor (LADAC II); or\n- Licensed Alcohol and Drug Abuse Counselor (LADAC I); or\n- Certified Peer Recovery Specialist (CPRS); or\n- Holds at least a master's degree in counseling, psychology, or a related field and is under clinical supervision.*\n- Qualified graduate student, consistent with policy PRO 22-001 (Rev. 2).\n*If not independently licensed, must be under authorized clinical supervision per scope of practice requirements.\nPsychotherapists: Licensed clinicians operating within their scope of practice, including:\n- Psychologists (PhD or PsyD), psychiatrists (MD); or\n- Clinical social workers (LCSW), Licensed Marriage and Family Therapist (LMFT), Licensed Professional Counselors (LPC/MHSP), Psychiatric-Mental Health Nurse Practitioner (PMHNP-BC)\n- Holds at least a master's degree in counseling, psychology, or a related field and is under clinical supervision.*\n- Qualified graduate student, consistent with policy PRO 22-001 (Rev. 2).\n*If not independently licensed, must be under authorized clinical supervision per scope of practice requirements."
+    },
+    {
+      "id": "slide-13-billing-codes",
+      "pages": [13],
+      "section": ["BESMART Coding Updates", "BESMART Coding Updates"],
+      "whyTranscribed": "Transcribed row by row so each code stays attached to its phase and plan; the text layer runs the columns together.",
+      "text": "BESMART billing codes by phase of treatment and managed care organization. New billing codes take effect on August 1, 2026. Codes will be available on TennCare's Opioid Strategy webpage.\n- Induction: BlueCare H0014 HG; UnitedHealthcare H0014 HG; Wellpoint H0014 HG.\n- Stabilization: BlueCare G2172 HG; UnitedHealthcare H0033 HG U1; Wellpoint H0033 HG U1.\n- Stabilization without psychotherapy: BlueCare H0033 HG; UnitedHealthcare H0033 HG; Wellpoint H0033 HG.\n- Maintenance: BlueCare H0016 HG U1; UnitedHealthcare H0016 HG U1; Wellpoint H0016 HG U1.\n- Maintenance without psychotherapy: BlueCare H2036 HG; UnitedHealthcare H0016 HG; Wellpoint H0016 HG.\nOn the slide the two BlueCare codes that differ from the other plans, G2172 HG and H2036 HG, are in bold."
+    },
+    {
+      "id": "slide-18-qrt-appointment-frequency",
+      "pages": [18],
+      "section": ["Quality Review Tool (QRT) Updates", "QRT Updates: Appointment Frequency"],
+      "whyTranscribed": "The quality review standards are an embedded image; only the side bullets are in the text layer.",
+      "text": "BESMART Quality Review Tool (QRT), Section III: Appointment Frequency. Changes are effective July 1, 2026. Induction and Stabilization standards have been separated; the stabilization phase standard now reflects the requirement for psychotherapy; phase of treatment must be clearly documented.\nInduction Phase (Skip Standards 21-23 ONLY IF documentation of the induction phase is not available):\n- Standard 21: A patient in the induction phase of treatment has had: 1. One (1) to three (3) provider appointments scheduled weekly;\n- Standard 22: 2. Received counseling at each induction visit. Received other supportive services (as appropriate) at each induction visit, such as; peer support, illness management and recovery, or other health and behavioral management activities;\n- Standard 23: 3. Had one (1) observed random drug screen at least weekly.\nStabilization Phase (Skip Standards 24-26 if patient is NOT in the stabilization phase):\n- Standard 24: A patient in the stabilization phase of treatment has had: 1. Had a scheduled provider appointment at least every one (1) to three (3) weeks;\n- Standard 25: 2. Received psychotherapy at least monthly;\n- Standard 26: 3. Had one (1) observed random drug screen at least monthly."
+    },
+    {
+      "id": "slide-19-qrt-service-delivery",
+      "pages": [19],
+      "section": ["Quality Review Tool (QRT) Updates", "QRT Updates: Service Delivery"],
+      "whyTranscribed": "The quality review standards are an embedded image; only the side bullets are in the text layer.",
+      "text": "BESMART Quality Review Tool (QRT), Section IV: Service Delivery. Changes are effective July 1, 2026. Training and education is now required to be completed annually; a psychosocial assessment is required within 30 days of treatment initiation.\n- Standard 33: There is evidence in the clinical record of patient receiving training and education on the following topics (Note: These must be documented once with initial establishment of care, and annually): (a) Treatment options, including detoxification, benefits/risks associated with each option;\n- Standard 34: (b) Risk of neonatal abstinence syndrome for all female patients of childbearing age (ages 15-44);\n- Standard 35: (c) Prevention and treatment of chronic viral illnesses, such as HIV and hepatitis C;\n- Standard 36: (d) Therapeutic benefits and adverse effects of treatment medication;\n- Standard 37: (e) Risks for overdose, and\n- Standard 38: (f) Overdose prevention and reversal agents.\n- Standard 39: There is evidence that the Controlled Substance Monitoring Database (CSMD) was queried each time and prior to a prescription being ordered (e.g. e-scribed/called in/written).\n- Standard 40: A psychosocial assessment was completed within 30-days of treatment initiation, by a qualified professional within the patient's treatment team."
+    }
+  ]
+}

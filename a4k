@@ -57,7 +57,9 @@ a4k — All4Knox control script
     ./a4k shell [svc]        shell inside a running container
 
   Assistant
-    ./a4k reindex            rebuild the vector index from approved content
+    ./a4k reindex            rebuild every collection index (toolkit + reference docs)
+    ./a4k reference          re-extract reference PDFs into passages (then read the diff)
+    ./a4k calibrate          measure each collection's retrieval floor
     ./a4k sweep              expire idle visitor sessions now
 
   Danger zone (asks first)
@@ -196,6 +198,23 @@ cmd_content() {
   ok "regenerated — commit the JSON alongside your content change"
 }
 
+py_run() {
+  docker run --rm --user "$(id -u):$(id -g)" --add-host=host.docker.internal:host-gateway \
+    -v "$PWD":/work -w /work -e HOME=/tmp -e OLLAMA_URL=http://host.docker.internal:11434 \
+    python:3.12-slim sh -c "$1"
+}
+
+cmd_reference() {
+  b "Extracting reference documents into backend/app/data/reference/passages"
+  py_run "pip install -q --user pdfplumber 2>/dev/null; python -W ignore backend/tools/extract_reference.py"
+  ok "extracted — READ THE DIFF before committing: it changes what the assistant can say"
+}
+
+cmd_calibrate() {
+  b "Measuring retrieval floors per collection (embeds via host Ollama)"
+  py_run "pip install -q --user pydantic pydantic-settings email-validator httpx numpy 2>/dev/null; python backend/tools/calibrate_threshold.py"
+}
+
 cmd_check() {
   cmd_content; echo; cmd_test; echo; cmd_build_web; echo; cmd_lint
   echo; ok "all checks passed"
@@ -207,7 +226,7 @@ cmd_shell() {
 }
 
 cmd_reindex() {
-  b "Rebuilding the vector index from approved clinical content…"
+  b "Rebuilding every collection index (toolkit content + reference documents)…"
   curl -sS --max-time 300 -X POST "$API_LOCAL/api/assistant/reindex" | python3 -m json.tool
 }
 
@@ -256,6 +275,8 @@ case "${1:-help}" in
   check)       shift; cmd_check "$@" ;;
   shell)       shift; cmd_shell "$@" ;;
   reindex)     shift; cmd_reindex "$@" ;;
+  reference)   shift; cmd_reference "$@" ;;
+  calibrate)   shift; cmd_calibrate "$@" ;;
   sweep)       shift; cmd_sweep "$@" ;;
   reset-index) shift; cmd_reset_index "$@" ;;
   reset-data)  shift; cmd_reset_data "$@" ;;

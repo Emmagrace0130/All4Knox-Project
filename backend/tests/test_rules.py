@@ -147,6 +147,9 @@ def test_safety_rules_cannot_be_edited_away():
         "not a clinician",
         "patient-identifying information",
         "medical emergency",
+        "present each position with its source type and date",
+        "never present them as clinical dosing advice",
+        "must never be attributed to",
     ):
         assert rule in SAFETY_PREAMBLE, f"{rule!r} must be in the immutable preamble"
         assert rule not in STYLE_PROMPT, f"{rule!r} must NOT be in the editable half"

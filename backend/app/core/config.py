@@ -22,6 +22,13 @@ class Settings(BaseSettings):
     ollama_model: str = "gpt-oss:20b"
     ollama_embedding_model: str = "nomic-embed-text:latest"
     ollama_timeout: int = 120
+    # Context window requested on every chat call. Pinned explicitly rather
+    # than inherited from the Ollama server's default, which is a host setting
+    # that can change under us. 8192 matches that default on viridian
+    # (measured 2026-09-15), so requesting it does not force a reload of a
+    # gpt-oss:20b instance another project already has loaded. The assistant
+    # budgets passages and history to fit inside it (app/rag/assistant.py).
+    ollama_num_ctx: int = 8192
 
     # --- retrieval ---------------------------------------------------------
     vector_store_path: Path = Path("/data/vector_store/all4knox_index.npz")
@@ -32,6 +39,10 @@ class Settings(BaseSettings):
     # Re-measure after changing the embedding model or growing the corpus.
     rag_min_score: float = 0.65
     rag_auto_ingest: bool = True
+    # Search the reference collections (TN guidelines, TennCare BESMART) as
+    # well as the toolkit content. A kill switch: false returns the assistant
+    # to toolkit-only retrieval without a code change.
+    rag_reference_enabled: bool = True
 
     assistant_enabled: bool = True
 

@@ -23,7 +23,11 @@ BOUNDS: dict[str, tuple[float, float, float]] = {
     "temperature": (0.0, 1.5, 0.1),
     "top_p": (0.05, 1.0, 0.9),
     "top_k": (1, 200, 40),
-    "max_tokens": (64, 8192, 1024),
+    # gpt-oss counts its reasoning against this budget. At 1024, a question
+    # retrieving from all three collections used every token and stopped
+    # mid-table (measured 2026-09-15). The assistant also caps it at half the
+    # context window, whatever is stored here.
+    "max_tokens": (64, 8192, 2048),
     "repeat_penalty": (0.5, 2.0, 1.1),
 }
 

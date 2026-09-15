@@ -38,12 +38,16 @@ services:
       OLLAMA_MODEL: ${OLLAMA_MODEL:-gpt-oss:20b}
       OLLAMA_EMBEDDING_MODEL: ${OLLAMA_EMBEDDING_MODEL:-nomic-embed-text:latest}
       OLLAMA_TIMEOUT: ${OLLAMA_TIMEOUT:-120}
+      OLLAMA_NUM_CTX: ${OLLAMA_NUM_CTX:-8192}
 
       # Retrieval
       VECTOR_STORE_PATH: ${VECTOR_STORE_PATH:-/data/vector_store/all4knox_index.npz}
       RAG_TOP_K: ${RAG_TOP_K:-6}
-      RAG_MIN_SCORE: ${RAG_MIN_SCORE:-0.35}
+      # Measured floor (backend/tools/calibrate_threshold.py). The old 0.35
+      # default let off-corpus clinical questions reach the model.
+      RAG_MIN_SCORE: ${RAG_MIN_SCORE:-0.65}
       RAG_AUTO_INGEST: ${RAG_AUTO_INGEST:-true}
+      RAG_REFERENCE_ENABLED: ${RAG_REFERENCE_ENABLED:-true}
       ASSISTANT_ENABLED: ${ASSISTANT_ENABLED:-true}
 
       # Accounts, sessions, conversations, settings, prompts

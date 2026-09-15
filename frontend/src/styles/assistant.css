@@ -222,6 +222,37 @@
   color: var(--warn);
 }
 
+.assistant__citation-title {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* Source-type tag on each citation. Colour follows the kind of rule, so a
+   payer coverage rule never reads like clinical guidance at a glance. */
+.source-type {
+  display: inline-block;
+  margin: 0 var(--s-2) var(--s-1) 0;
+  padding: 1px var(--s-2);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--brand-line);
+  background: var(--brand-soft);
+  color: var(--brand-dark);
+  font-size: 0.6875rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  vertical-align: 1px;
+}
+.source-type--tn_guidelines {
+  border-color: var(--ok-line);
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+.source-type--tenncare_besmart {
+  border-color: var(--warn-line);
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+
 .assistant__version {
   margin: var(--s-5) 0 0;
   padding-top: var(--s-4);
