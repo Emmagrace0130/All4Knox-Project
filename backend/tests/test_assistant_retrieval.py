@@ -267,3 +267,12 @@ def test_index_round_trips_through_an_atomic_save(tmp_path):
     loaded = VectorStore(tmp_path / "idx.npz")
     assert loaded.load() and loaded.fingerprint == "fp1"
     assert loaded.search(_passage_vec(1), 1, 0.5)[0][0].collection == "tn_guidelines"
+
+
+def test_a_label_change_alone_invalidates_the_stored_index():
+    """Marking a transcription checked must reach citations without a manual reindex."""
+    before = _chunk("t1", "tenncare_besmart", "payer")
+    after = _chunk("t1", "tenncare_besmart", "payer")
+    after.review_state = "transcribed from a page image; checked against the source by Gerald Jones"
+    assert before.text == after.text
+    assert Assistant._fingerprint([before], "m") != Assistant._fingerprint([after], "m")

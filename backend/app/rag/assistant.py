@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import asyncio
 import hashlib
+import json
 import logging
 import math
 from dataclasses import dataclass
@@ -244,11 +245,18 @@ class Assistant:
     # -- index -------------------------------------------------------------
     @staticmethod
     def _fingerprint(chunks: list[Chunk], embed_model: str) -> str:
-        """Changes whenever the corpus text or the embedding model changes."""
+        """
+        Changes whenever the corpus text, any citation label, or the embedding
+        model changes. Labels count because the stored index carries them: if
+        only the text were hashed, marking a transcription as checked (or a
+        block as reviewed) would leave citations saying "not yet checked"
+        until someone remembered to force a reindex.
+        """
         digest = hashlib.sha256(embed_model.encode())
         for chunk in chunks:
             digest.update(chunk.id.encode())
             digest.update(chunk.text.encode())
+            digest.update(json.dumps(chunk.citation(), sort_keys=True).encode())
         return digest.hexdigest()
 
     async def ensure_index(self, force: bool = False) -> dict[str, Any]:
