@@ -349,6 +349,11 @@
   width: auto;
 }
 
+/* A wide wordmark: shorter, so its plate matches the square-ish All4Knox one. */
+.site-ack__plate--wide img {
+  height: 40px;
+}
+
 .site-ack__text {
   font-size: 0.82rem;
   line-height: 1.4;

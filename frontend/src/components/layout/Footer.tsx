@@ -4,6 +4,7 @@ import { EMERGENCY_NOTICE, PHI_NOTICE } from '../../content/governance';
 import { CONTENT_REVIEW, CONTENT_VERSION } from '../../content/version';
 import logoLockup from '../../imgs/all4knox_logo_lockup.png';
 import aslLogo from '../../imgs/asl_logo_reversed_trimmed.png';
+import mcnabbLogo from '../../imgs/mcnabb_logo_web.png';
 
 export function Footer() {
   return (
@@ -44,10 +45,10 @@ export function Footer() {
           </div>
 
           <div className="site-ack__item">
-            <p className="site-ack__text">
-              <span className="site-ack__label">Clinical partner</span>
-              McNabb Center
-            </p>
+            <p className="site-ack__label">Clinical partner</p>
+            <span className="site-ack__plate site-ack__plate--wide">
+              <img src={mcnabbLogo} alt="McNabb Center" width={600} height={184} />
+            </span>
           </div>
 
           <div className="site-ack__item">

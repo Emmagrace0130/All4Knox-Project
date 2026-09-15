@@ -3,6 +3,8 @@ import { LinkButton } from '../components/common/Button';
 import { ToolkitCard } from '../components/toolkit/ToolkitCard';
 import { toolkitCards } from '../content/toolkit';
 import { CONTENT_REVIEW, CONTENT_VERSION } from '../content/version';
+import aslLogo from '../imgs/asl_logo_reversed_trimmed.png';
+import mcnabbLogo from '../imgs/mcnabb_logo_web.png';
 
 /**
  * Landing page — mission, partners, and routing.
@@ -21,8 +23,11 @@ import { CONTENT_REVIEW, CONTENT_VERSION } from '../content/version';
  * Partner and related-site slots.
  *
  * `logo: null` renders the organisation's name as a text plate rather than a
- * broken image. Real marks drop in here when we have permission to use them —
- * we are not shipping a placeholder that implies an endorsement nobody granted.
+ * broken image. Only marks the organisation has supplied belong here — we are
+ * not shipping a placeholder that implies an endorsement nobody granted.
+ *
+ * `logoSurface` is the background the mark was designed for: the lab's mark
+ * is the reversed (white-text) version and disappears on a light plate.
  */
 const PARTNERS = [
   {
@@ -32,7 +37,8 @@ const PARTNERS = [
     blurb:
       'Behavioral health and addiction treatment across East Tennessee. All4Knox is being piloted as a tool for their providers.',
     href: null as string | null,
-    logo: null as string | null,
+    logo: mcnabbLogo as string | null,
+    logoSurface: 'light' as 'light' | 'dark',
   },
   {
     id: 'asl',
@@ -41,7 +47,8 @@ const PARTNERS = [
     blurb:
       'Industrial and systems engineering research at the University of Tennessee, Knoxville — the lab behind this toolkit.',
     href: null as string | null,
-    logo: null as string | null,
+    logo: aslLogo as string | null,
+    logoSurface: 'dark' as 'light' | 'dark',
   },
 ];
 
@@ -174,7 +181,9 @@ export function Home() {
           <ul className="splash-partners__list">
             {PARTNERS.map((partner) => (
               <li key={partner.id} className="splash-partner">
-                <div className="splash-partner__logo">
+                <div
+                  className={`splash-partner__logo splash-partner__logo--${partner.logoSurface}`}
+                >
                   {partner.logo ? (
                     <img src={partner.logo} alt={`${partner.name} logo`} />
                   ) : (
