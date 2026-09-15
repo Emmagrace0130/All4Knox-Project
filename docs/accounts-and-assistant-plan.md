@@ -81,8 +81,15 @@ system default. Every variant is versioned and attributed.
 ### 2.7 Document upload ⬜ NOT STARTED
 Schema is in place (`documents`, `document_chunks` with a `provenance` column)
 but nothing writes to it yet, and `corpus.py` does not read it. **Until this
-lands, every retrievable chunk is `approved` content** — the guarantee in §0
+lands, no retrievable chunk is `uploaded` content** — the guarantee in §0
 holds trivially.
+
+*Update 2026-09-15:* retrieval is no longer toolkit-only. Three published
+reference documents (TN guidelines, TennCare BESMART) are separate collections,
+built by a developer with `./a4k reference`, not uploaded. They are labelled by
+source type and answered in their own sections — see `session-handoff.md` §6
+and `backend/app/rag/tools.py`. Upload should reuse that extraction pipeline
+and give each uploaded document its own labelled collection.
 Clinician/admin upload → chunk → embed → index with `uploaded` provenance.
 
 ### 2.8 Admin UI ⬜ NOT STARTED

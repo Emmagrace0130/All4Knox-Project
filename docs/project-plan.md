@@ -111,7 +111,7 @@ not built.
 | 2.5.6 | Rate limiting before any agent endpoint is public | ⬜ blocks 2.5.4 — a nearly finished version is parked on `wip/agent-workstreams-2026-08-31`, with a broken test predicate documented in its commit message |
 | 2.5.9 | Reference collections: TN guidelines (Fall 2023), BESMART description (Mar 2023), BESMART education (May 2026) — one search tool each, measured floors | ✅ 2026-09-15 |
 | 2.5.10 | Per-source answer sections (one model call per source type) | ✅ 2026-09-15 — chosen after a single call misattributed thresholds between sources in 3/3 runs |
-| 2.5.11 | A person checks the 8 AI transcriptions against the page images, then sets `checkedBy` | 🟡 Gerald checking (2026-09-15); citations say "not yet checked" until then |
+| 2.5.11 | A person checks the 8 AI transcriptions against the page images, then sets `checkedBy` | 🟡 Gerald checking (2026-09-15) — checklist in `docs/reference/transcription-check.md`; citations say "not yet checked" until then |
 | 2.5.12 | Obtain TennCare's **updated** BESMART Program Description (the Mar 2023 copy is superseded in part) | ⬜ |
 | 2.5.13 | Admin/clinician upload of new reference documents (meeting ask) — same pipeline as `./a4k reference` | ⬜ |
 | 2.5.14 | Server-written section headings render as small labels; make source sections visually distinct | ⬜ |

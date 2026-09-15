@@ -95,7 +95,7 @@ this project could ship (skeleton §21: *no silent rule changes*).
 
 | File | Holds |
 | --- | --- |
-| `version.ts` | `CONTENT_VERSION` (`2026.1`), source document name, the `PENDING_REVIEW` object every block currently uses |
+| `version.ts` | `CONTENT_VERSION` (`2026.2` — its comment lists what each version changed), source document name, the `PENDING_REVIEW` object every block currently uses |
 | `prescribing.ts` | 6 Tennessee prescribing pathways + the form's option lists |
 | `induction.ts` | 5 induction pathways / 8 outcomes, intro text, escalation banner |
 | `uds.ts` | 5 UDS rules + monitoring guidance + the "FENT or other opioid" footnote |
@@ -214,7 +214,7 @@ production, the deployed frontend and backend are on different content versions.
 | `/referrals` | `ReferralDirectory` | Filters → organisation cards |
 | `/resources` | `Resources` | Sections + external links |
 | `/about` | `About` | Governance, privacy, scope |
-| `/clinical-sources` | `ClinicalSources` | All 29 blocks, status and review state |
+| `/clinical-sources` | `ClinicalSources` | All 30 blocks, status and review state |
 
 ### Two pages that are not like the others
 
@@ -248,7 +248,10 @@ Plain CSS, no framework, no CSS-in-JS. Seven stylesheets imported in order by
 | `print.css` | `.print-hide` and print layout — clinicians print result cards |
 
 Conventions: BEM-ish (`.result__section--steps`), tokens for every colour and
-space, `.print-hide` on anything that should not print. The visual direction in
+space, `.print-hide` on anything that should not print. **Anything
+`position: sticky` must offset from `var(--header-h)`**, which `Header.tsx`
+measures and publishes. The header is two rows at every width, and the old
+hard-coded offsets hid the guided-interview progress bar completely. The visual direction in
 `tokens.css` is *"guided-interview product UI in the TurboTax mould"* — friendly,
 high contrast, generous whitespace.
 

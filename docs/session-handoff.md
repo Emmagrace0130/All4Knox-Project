@@ -1,9 +1,10 @@
 # Session Handoff — All4Knox Clinical Provider Toolkit
 
-**Last updated:** 2026-09-15 — logos, and the assistant's reference knowledge base.
+**Last updated:** 2026-09-15, end of session — logos, the assistant's reference
+knowledge base, TennCare dose limits (content 2026.2). **Start at "Where we
+paused" below.**
 
-**Branch:** `gj_dev` — **several commits ahead of `origin/gj_dev` and not
-pushed**. The GitHub repo is private (confirmed 2026-09-15), so the reference
+**Branch:** `gj_dev` — **13 commits ahead of `origin/gj_dev` and not pushed**. The GitHub repo is private (confirmed 2026-09-15), so the reference
 PDFs and their extracted text are committed. `main` is still
 at `36fa675`; the `gj_dev` → `main` merge is pending on GitHub and is Emma's
 call. Unfinished rate limiting, admin UI and CI work is parked on
@@ -12,6 +13,66 @@ of it. Always check `git log --oneline --all` and `git status` before assuming
 which branch has what.
 **Maintainers:** Emma (repo owner, `Emmagrace0130/All4Knox-Project`) · Gerald Jones
 **Partner:** McNabb Center, Knoxville TN — this app is a pilot tool for them.
+
+---
+
+## Where we paused — 2026-09-15
+
+**State.** Everything is committed on `gj_dev`; the working tree is clean; the
+live site runs `HEAD` (API and web both rebuilt this session). Nothing pushed.
+Live status at pause: containers healthy, `/api/sources` reports **0 of 30**
+reviewed, assistant has 3 collections ready (toolkit 32, TN guidelines 70,
+TennCare BESMART 34 passages), `RAG_REFERENCE_ENABLED=true`.
+
+**Waiting on people**
+
+| What | Who | Where |
+| --- | --- | --- |
+| Check the 8 AI transcriptions against their page images, then set `checkedBy` | Gerald — in progress | [`reference/transcription-check.md`](reference/transcription-check.md) |
+| Meeting with Dr. Alexander, **Friday 2026-09-18** | Gerald + Emma | [`meeting_notes/mcnabb_meeting_9_18_26_agenda.md`](meeting_notes/mcnabb_meeting_9_18_26_agenda.md) |
+| Confirm the TennCare dose limits (content 2026.2 follows the May 2026 BESMART update, not his slide 2) | Dr. Alexander, at that meeting | agenda item 1; revert path in project plan "Clinical questions" |
+| Updated BESMART Program Description (ours is Mar 2023, superseded in part) | Dr. Alexander or TennCare | agenda item 6 |
+| Push `gj_dev`; merge to `main` | Gerald / Emma | — |
+
+**Decisions made this session, and why**
+
+- **One model call per source type** in Ask All4Knox. A single call over the
+  toolkit, guideline and BESMART passages misattributed thresholds between
+  sources in 3 of 3 live runs. Gerald chose the structural fix over ~1.5×
+  latency (10–16 s when three sources answer). §3c, §6.
+- **TennCare dose limits follow TennCare's May 28, 2026 BESMART update**
+  (Gerald). Each changed pathway shows the slide 2 figure beside the new one
+  and says they differ. Private-insurance limits unchanged. Pending Dr.
+  Alexander's confirmation.
+- **Repo is private** (Gerald), so the reference PDFs are committed.
+- **Reference collections have an off switch**: `RAG_REFERENCE_ENABLED=false`
+  in `.env`, then `docker compose up -d api`. It was used to hold the live site
+  at toolkit-only while the sections design was built.
+
+**Next development, in rough priority — none started**
+
+1. Whatever Friday's meeting changes (dose limits, the non-BESMART NP/PA
+   pathway, COWS threshold). Content edits go through §3a.
+2. Make the server-written source section headings visually distinct in the
+   answer (project plan 2.5.14). They currently render as small grey labels.
+3. Admin/clinician upload of reference documents (2.5.13, also a 9/1 meeting
+   ask). The pipeline to reuse is `./a4k reference`, and the `documents` table
+   already exists.
+4. The 9/1 meeting backlog in the project plan (feedback channel, changelog
+   tab, acronym hints, survey, colour grouping, usage analytics).
+5. Rate limiting from `wip/agent-workstreams-2026-08-31` (fix its test
+   predicate first) — required before any tool-calling agent (2.5.4). The
+   search tools already expose `schema()` for that agent.
+
+**Loose ends noticed, not acted on**
+
+- `generation_settings` has one user row with `temperature` 1.5 (the clamp
+  maximum), probably from 2026-08-31 testing. If that account is used for a
+  demo, its answers will be erratic — reset it at `/account`.
+- `system_prompts` holds one draft variant, "Terse clinical". It is not
+  published, so it has no effect.
+- Test scripts left 3 empty conversations in throwaway visitor sessions; the
+  2-hour inactivity sweep removes them (`./a4k sweep` to force).
 
 ---
 
@@ -77,7 +138,7 @@ interview.
 | **First admin** | Seeded from `SEED_ADMIN_*` in `.env`. **Blank those out and change the password after first sign-in.** |
 | **Clinical content** | Version **2026.2** — TennCare dose limits follow TennCare's May 2026 BESMART update, not slide 2; pending Dr. Alexander's confirmation |
 | **Clinical review** | **0 of 30 blocks reviewed.** Workflow is built at `/review`. Clinical contact is Dr. Ryan Alexander (medical director, McNabb Center) — sign-off not yet started. |
-| **Tests** | 81 backend tests passing · frontend build + lint clean |
+| **Tests** | 82 backend tests passing · frontend build + lint clean |
 | **Control** | `./a4k` — see `./a4k help` |
 
 ### Routes
@@ -163,8 +224,13 @@ docker compose up -d          # env is read at container start, not per request
   See §6.
 - `LETSENCRYPT_EMAIL` in `.env` is blank; expiry warnings go nowhere.
 - Phase 2 tools (COWS calculator, OUD diagnosis helper, naloxone guide,
-  follow-up checklist) are not built.
-- Two clinical ambiguities remain unresolved (§6).
+  follow-up checklist) are not built. Sources for the COWS calculator and the
+  DSM checklist are now held (TN guidelines appendices C and B).
+- **The 8 AI transcriptions are unchecked** — see "Where we paused".
+- **TennCare dose limits (2026.2) are not yet confirmed by Dr. Alexander.**
+- No way to add reference documents except a developer running
+  `./a4k reference`.
+- Several clinical questions remain unresolved (§6 and the project plan).
 
 ---
 
@@ -216,7 +282,7 @@ All4Knox-Project/
 │   │   ├── core/config.py       # settings from env
 │   │   ├── data/content/*.json  # GENERATED — do not hand-edit
 │   │   └── data/reference/      # manifest.json + transcriptions/ (hand) + passages/ (GENERATED)
-│   ├── tests/                   # 81 tests incl. TS/Python parity
+│   ├── tests/                   # 82 tests incl. TS/Python parity
 │   └── tools/                   # calibrate_threshold.py, extract_reference.py
 ├── frontend/
 │   ├── src/content/             # ← SOURCE OF TRUTH for clinical text
@@ -229,6 +295,8 @@ All4Knox-Project/
 └── docs/
     ├── session-handoff.md       # this file
     ├── rules-of-engagement.md   # READ BEFORE ANY docker COMMAND
+    ├── reference/               # source PDFs the assistant searches + transcription-check.md
+    ├── meeting_notes/           # McNabb meetings: 9/1 notes, 9/18 agenda
     ├── project-plan.md          # phases, milestones, tracking
     ├── source-extraction.md     # what came from which slide
     └── research/publication-plan.md
@@ -428,12 +496,13 @@ asserts no block can claim a reviewer without a date.
 **Before any real clinical use**, a named clinician must review each block and
 record reviewer, review date, effective date, and next review date.
 
-### Two open clinical questions (need a clinician, not a developer)
+### Open clinical questions (need a clinician, not a developer)
 
-The reference documents added two more — dose limits across the toolkit,
-guideline and BESMART, and COWS ≥ 7 vs ≥ 11 within the guideline. They are
-listed in [`project-plan.md`](project-plan.md) under "Clinical questions raised
-by the reference documents".
+The two below predate the reference documents. Those added more — the TennCare
+dose limits (acted on in 2026.2, pending confirmation), whether a non-BESMART
+NP/PA can prescribe for TennCare at all, and COWS ≥ 7 vs ≥ 11 within the
+guideline. All are in [`project-plan.md`](project-plan.md) under "Clinical
+questions raised by the reference documents", and on the 9/18 agenda.
 
 1. **Oxycodone wait time.** Slide 4 says wait 12 hrs; slide 5 branches on
    >24 hrs since last dose. The toolkit surfaces both rather than picking one.
@@ -522,7 +591,7 @@ full phased plan:
 | 2026-08-31 | Gerald + Claude | Accounts + roles (visitor/basic/clinician/admin) on SQLite; persistent assistant conversations with inactivity sweep; per-user generation settings with server-side clamping; admin system-prompt variants with an **immutable safety preamble**; markdown rendering. Fixed three bugs found while building: seed-admin worker race, parallel session-minting race (404 on first question), and an admin being able to publish a prompt with no safety rules. 29/29 API + 8/8 browser checks. |
 | 2026-08-31 | Gerald + Claude | Guided "TurboTax" interview wired up for all four tools (`useInterviewFlow` + the previously-unused `guided/` components and `guided.css`); 12/12 browser click-through checks. Agent design specified in project-plan Phase 2.5 with spike numbers. |
 | 2026-08-31 | Gerald + Claude | `ed3cb88` on `gj_dev` — FastAPI backend; mechanical content export; TS↔Python parity harness (302 cases); RAG assistant on `gpt-oss:20b` with measured refusal threshold; full containerisation; live HTTPS at all4knox.axiomsystemslab.com; docs (handoff, ROE, project plan, publication plan). 73 files, +11,778 lines. `.env` verified absent from history. |
-| 2026-09-15 | Gerald + Claude | Logos: All4Knox lockup in the header, footer acknowledgements band (lab, McNabb Center), partner-card logos. Fixed sticky elements hidden under the two-row header (progress bar fully hidden in production). Reference knowledge base: TN guidelines + TennCare BESMART as separate search tools with measured floors; 8 AI transcriptions of image/table pages (unchecked); per-source answer sections after a single call misattributed thresholds 3/3; context-window budget, truncation notice, `RAG_REFERENCE_ENABLED` kill switch; compose `RAG_MIN_SCORE` default 0.35 → 0.65. Content 2026.2: TennCare dose limits follow the May 2026 BESMART update (pending Dr. Alexander), non-BESMART pathway split by prescriber — 30 blocks. 81 tests. |
+| 2026-09-15 | Gerald + Claude | Logos: All4Knox lockup in the header, footer acknowledgements band (lab, McNabb Center), partner-card logos. Fixed sticky elements hidden under the two-row header (progress bar fully hidden in production). Reference knowledge base: TN guidelines + TennCare BESMART as separate search tools with measured floors; 8 AI transcriptions of image/table pages (unchecked); per-source answer sections after a single call misattributed thresholds 3/3; context-window budget, truncation notice, `RAG_REFERENCE_ENABLED` kill switch; compose `RAG_MIN_SCORE` default 0.35 → 0.65. Content 2026.2: TennCare dose limits follow the May 2026 BESMART update (pending Dr. Alexander), non-BESMART pathway split by prescriber — 30 blocks. Index fingerprint covers citation labels. 9/18 agenda and transcription checklist written. 82 tests. |
 
 **Append a row when you finish a session.** Keep it to what changed and why —
 the git log has the detail.
