@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { RadioGroup } from '../components/forms/RadioGroup';
 import { PageContainer } from '../components/layout/PageContainer';
 import { ResultCard } from '../components/toolkit/ResultCard';
+import { VerificationBadge } from '../components/common/VerificationBadge';
+import { useVerifiedResult } from '../hooks/useVerifiedResult';
+import * as api from '../services/api';
 import { SourceBadge } from '../components/toolkit/SourceBadge';
 import {
   dosingCravingsNo,
@@ -29,6 +32,15 @@ export function DosingTool() {
         ? dosingCravingsNo
         : null;
 
+  const verification = useVerifiedResult(
+    guidance?.id ?? null,
+    () =>
+      api
+        .reviewDosing(cravings === null ? null : cravings === 'yes')
+        .then((r) => r.guidance?.id ?? null),
+    guidance !== null,
+  );
+
   return (
     <PageContainer
       eyebrow="Clinical Decision Support"
@@ -36,8 +48,24 @@ export function DosingTool() {
       lede={`Primary treatment goal: ${dosingOverview.goal.toLowerCase()}`}
       backTo={{ to: '/', label: 'Toolkit' }}
     >
+      <p className="mode-switch print-hide">
+        <Link to="/toolkit/dosing/guided">
+          <span aria-hidden="true">◈</span> Use the guided walkthrough instead
+        </Link>
+      </p>
+
       <div className="tool-layout">
         <div className="tool-layout__steps">
+          <section className="prompt-card print-hide">
+            <RadioGroup
+              name="cravings"
+              legend="Is the patient continuing to experience opioid cravings?"
+              options={cravingOptions}
+              value={cravings}
+              onChange={setCravings}
+            />
+          </section>
+
           <section className="intro-card">
             <h2 className="intro-card__title">Current summary highlights</h2>
             <ul className="list list--dot">
@@ -82,20 +110,11 @@ export function DosingTool() {
               contentVersion={dosingLimits.contentVersion}
             />
           </section>
-
-          <section className="prompt-card print-hide">
-            <RadioGroup
-              name="cravings"
-              legend="Is the patient continuing to experience opioid cravings?"
-              options={cravingOptions}
-              value={cravings}
-              onChange={setCravings}
-            />
-          </section>
         </div>
 
         <div className="tool-layout__result">
           {guidance ? (
+            <>
             <ResultCard
               guidance={guidance}
               inputs={[
@@ -104,6 +123,8 @@ export function DosingTool() {
                   : 'Ongoing cravings: no',
               ]}
             />
+              <VerificationBadge verification={verification} />
+            </>
           ) : (
             <p className="placeholder">
               Answer the cravings prompt to see next steps.

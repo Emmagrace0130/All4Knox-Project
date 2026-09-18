@@ -1,0 +1,24 @@
+{
+  "documentId": "tn-bup-guidelines-2023",
+  "transcribedBy": "Claude (Anthropic AI model) in a working session with Gerald Jones",
+  "transcribedDate": "2026-09-15",
+  "checkedBy": null,
+  "checkedDate": null,
+  "method": "Read from rendered page images at 160 dpi, because the PDF text layer omits this content. Wording, spelling and punctuation follow the page, including its errors (marked [sic]).",
+  "passages": [
+    {
+      "id": "cows-items",
+      "pages": [30],
+      "section": ["Section IV: Appendices", "APPENDIX C - Clinical Opiate Withdrawal Scale (COWS)"],
+      "whyTranscribed": "The COWS item table is an embedded image; the PDF text layer contains only the scoring note below it.",
+      "text": "Clinical Opiate Withdrawal Scale (COWS) items. Source: Wesson, D. R., & Ling, W. (2003). The Clinical Opiate Withdrawal Scale (COWS). J Psychoactive Drugs, 35(2), 253–9.\nResting Pulse Rate: (record beats per minute) Measured after patient is sitting/lying for one minute. 0 pulse rate 80 or below; 1 pulse rate 81-100; 2 pulse rate 101-120; 4 pulse rate greater than 120.\nSweating: Over past ½ hour not accounted for by room temperature or patient activity. 0 no report of chills of [sic] flushing; 1 one subjective report of chills or flushing; 2 flushed or observable moistness on face; 3 beads of sweat on brow or face; 4 sweat streaming off face.\nRestlessness: Observation during assessment. 0 able to sit still; 1 report difficulty sitting still, but is able to do so; 3 frequent shifting or extraneous movements of legs/arms; 5 unable to sit still for more than a few seconds.\nPupil Size: 0 pupils pinned or normal size for room light; 1 pupils possibly larger than normal for room light; 2 pupils moderately dilated; 5 pupils so dilated that only rim of the iris is visible.\nBone or Joint aches: If patient was having pains previously, only the additional component attributed to opiate withdrawal is scored. 0 not present; 1 mild diffuse discomfort; 2 patient reports severe diffuse aching of joints/muscles; 4 patient is rubbing joints or muscles and is unable to sit still because of discomfort.\nRunny nose or tearing: Not accounted for by cold symptoms or allergies. 0 not present; 1 nasal stuffiness or unusually moist eyes; 2 nose running or tearing; 4 nose constantly running or tears streaming down cheeks.\nGI Upset: Over last ½ hour. 0 no GI symptoms; 1 stomach cramps; 2 nausea or loose stools; 3 vomiting or diarrhea; 5 multiple episodes of diarrhea or vomiting.\nTremor: Observation of outstretched hands. 0 no tremor; 1 tremor can be felt, but not observed; 2 slight tremor observable; 4 gross tremor or muscle twitching.\nYawning: Observation during assessment. 0 no yawning; 1 yawning once or twice during assessment; 2 yawning three or more times during assessment; 4 yawning several times/minute.\nAnxiety or Irritability: 0 none; 1 patient reports increasing irritability or anxiousness; 2 patient obviously irritable, anxious; 4 patient so irritable or anxious that participation in the assessment is difficult.\nGooseflesh skin: 0 skin is smooth; 3 piloerection of skin can be felt or hairs standing up on arms; 5 prominent piloerection.\nThe form records, for each date/time: Total Score, Observers Initials, Blood Pressure/Pulse, and Dose of Buprenorphine/naloxone Given."
+    },
+    {
+      "id": "cows-scoring",
+      "pages": [30],
+      "section": ["Section IV: Appendices", "APPENDIX C - Clinical Opiate Withdrawal Scale (COWS)"],
+      "whyTranscribed": "Kept with the COWS items it scores; page 30 is excluded from extraction as a whole.",
+      "text": "COWS scoring note (Appendix C of the Tennessee guidelines): Give first dose when COWS score ≥ 7.\nScore: 5-12 = MILD; 13-24 = MODERATE; 25-36 = MODERATELY SEVERE; More than 36 = SEVERE WITHDRAWAL."
+    }
+  ]
+}

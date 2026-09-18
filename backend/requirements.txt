@@ -1,0 +1,20 @@
+# --- web framework ---------------------------------------------------------
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+pydantic-settings==2.7.0
+# EmailStr in the auth models requires this.
+email-validator==2.2.0
+
+# --- http client (Ollama) --------------------------------------------------
+httpx==0.28.1
+
+# --- retrieval -------------------------------------------------------------
+# The vector index is a plain numpy array persisted to .npz. The corpus is a
+# few hundred chunks, so an exact cosine scan is both faster and far less
+# operationally risky than running a dedicated vector database container.
+# See app/rag/store.py for the swap-out path if the corpus ever outgrows this.
+numpy==2.2.1
+
+# --- testing ---------------------------------------------------------------
+pytest==8.3.4

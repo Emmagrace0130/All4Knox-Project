@@ -20,7 +20,7 @@
   padding: var(--s-3) var(--s-5);
   display: flex;
   align-items: center;
-  gap: var(--s-6);
+  gap: var(--s-4);
   flex-wrap: wrap;
 }
 
@@ -29,48 +29,63 @@
   align-items: center;
   gap: var(--s-3);
   color: inherit;
-  flex-shrink: 0;
+  /* Never shrink and never be overlapped: the brand owns its space. */
+  flex: 0 0 auto;
 }
 
 .brand:hover {
   text-decoration: none;
 }
 
-.brand__mark {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 9px;
-  background: var(--brand);
-  color: #fff;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
+/*
+ * 52px is the smallest height at which the thin ALL4KNOX wordmark stays
+ * legible on a 1x display; at 44px its strokes fall below a pixel.
+ */
+.brand__logo {
+  display: block;
+  height: 52px;
+  width: auto;
 }
 
-.brand__text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
-}
-
-.brand__name {
-  font-weight: 700;
-  font-size: 1.05rem;
-  letter-spacing: -0.015em;
+.brand__divider {
+  width: 1px;
+  height: 32px;
+  background: var(--line-strong);
 }
 
 .brand__tagline {
-  font-size: 0.76rem;
-  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink-2);
+}
+
+/*
+ * On a phone the logo, divider and tagline (~311px) plus the account control
+ * do not fit one row, and the account control would drop to a third header
+ * row. The logo alone carries the brand; the link's aria-label keeps the name.
+ */
+@media (max-width: 480px) {
+  .brand__divider,
+  .brand__tagline {
+    display: none;
+  }
 }
 
 /* Navigation -------------------------------------------------------- */
 
+/*
+ * The nav always takes a row of its own, below the brand and the account
+ * control. Ten items measure ~974px against a 1120px content cap, so they
+ * cannot share a row with the brand at ANY width. This used to apply only
+ * below 1180px; above that the nav wrapped anyway and dragged the account
+ * control down with it, leaving the brand alone on the top row.
+ */
 .nav {
-  flex: 1;
+  flex: 1 0 100%;
+  order: 3;
   min-width: 0;
+  padding-top: var(--s-1);
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -82,7 +97,17 @@
 .nav__list {
   display: flex;
   gap: var(--s-1);
-  justify-content: flex-end;
+  /*
+   * `width: max-content`, and never `justify-content: flex-end`.
+   *
+   * In a scrollable (overflow-x) flex container, `justify-content: flex-end`
+   * pushes any overflow off the LEFT edge, where scrollWidth does not report
+   * it and no amount of scrolling reaches it. The items simply disappear under
+   * whatever sits to the left. This bit the nav the moment an eighth item was
+   * added. With max-content the list keeps its intrinsic width and scrolls
+   * correctly from the left.
+   */
+  width: max-content;
 }
 
 .nav__link {
@@ -105,6 +130,53 @@
   background: var(--brand-soft);
   color: var(--brand-dark);
   font-weight: 600;
+}
+
+/* Header account control -------------------------------------------- */
+
+.site-header__account {
+  flex: 0 0 auto;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.account-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-2);
+  font-size: 0.8125rem;
+  font-weight: 550;
+  cursor: pointer;
+}
+.account-chip:hover {
+  border-color: var(--brand-line);
+  background: var(--brand-soft);
+  color: var(--brand-dark);
+  text-decoration: none;
+}
+.account-chip__role {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+.account-chip__avatar {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-pill);
+  background: var(--brand);
+  color: #fff;
+  font-size: 0.625rem;
+  font-weight: 700;
 }
 
 /* Page -------------------------------------------------------------- */
@@ -180,7 +252,7 @@
   flex-direction: column;
   gap: var(--s-4);
   position: sticky;
-  top: 88px;
+  top: calc(var(--header-h, 0px) + var(--s-4));
 }
 
 @media (max-width: 900px) {
@@ -194,10 +266,6 @@
 
   .site-header__inner {
     gap: var(--s-3);
-  }
-
-  .nav__list {
-    justify-content: flex-start;
   }
 }
 
@@ -240,4 +308,70 @@
   border-top: 1px solid var(--line);
   padding-top: var(--s-3);
   margin-top: var(--s-2);
+}
+
+/* Acknowledgements band ------------------------------------------------ */
+
+.site-ack {
+  background: var(--ink);
+  color: #c9d4df;
+}
+
+.site-ack__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--s-5);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-5) var(--s-6);
+}
+
+.site-ack__item {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  min-width: 0;
+}
+
+.site-ack__plate {
+  flex: none;
+  display: block;
+  padding: var(--s-2) var(--s-3);
+  background: #fff;
+  border-radius: var(--radius-sm);
+}
+
+.site-ack__plate img {
+  display: block;
+  height: 52px;
+  width: auto;
+}
+
+/* A wide wordmark: shorter, so its plate matches the square-ish All4Knox one. */
+.site-ack__plate--wide img {
+  height: 40px;
+}
+
+.site-ack__text {
+  font-size: 0.82rem;
+  line-height: 1.4;
+  max-width: 28ch;
+}
+
+.site-ack__label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8fa3b6;
+}
+
+.site-ack__asl {
+  flex: none;
+  display: block;
+  height: 38px;
+  width: auto;
 }

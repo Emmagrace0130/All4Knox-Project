@@ -2,11 +2,13 @@ import { NavLink } from 'react-router-dom';
 
 /** Main navigation — skeleton §4. */
 const navItems = [
-  { to: '/', label: 'Toolkit', end: true },
+  { to: '/', label: 'Home', end: true },
+  { to: '/toolkit', label: 'Toolkit' },
   { to: '/toolkit/start', label: 'Start Suboxone' },
   { to: '/toolkit/uds', label: 'UDS Interpreter' },
   { to: '/toolkit/dosing', label: 'Dosing' },
   { to: '/toolkit/prescribing', label: 'TN Prescribing' },
+  { to: '/ask', label: 'Ask All4Knox' },
   { to: '/referrals', label: 'Referrals' },
   { to: '/resources', label: 'Resources' },
   { to: '/about', label: 'About' },

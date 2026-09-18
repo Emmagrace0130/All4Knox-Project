@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '../components/common/Button';
 import { CheckboxGroup } from '../components/forms/CheckboxGroup';
 import { PageContainer } from '../components/layout/PageContainer';
@@ -13,6 +14,9 @@ import {
   positiveKeys,
 } from '../services/udsRules';
 import { udsMonitoring } from '../content/uds';
+import { VerificationBadge } from '../components/common/VerificationBadge';
+import { useVerifiedResult } from '../hooks/useVerifiedResult';
+import * as api from '../services/api';
 import { UDS_ANALYTES } from '../types/clinical';
 import type { UDSAnalyteKey, UDSPanel } from '../types/clinical';
 
@@ -35,6 +39,14 @@ export function UDSInterpreter() {
   const result = useMemo(() => interpretUDS(panel), [panel]);
   const selected = positiveKeys(panel);
 
+  // Rendered instantly from the local rules above, then confirmed against
+  // the API. Both run the same logic (see backend/tests/test_parity.py).
+  const verification = useVerifiedResult(
+    result.primary?.id ?? null,
+    () => api.interpretUDS(panel).then((r) => r.primary?.id ?? null),
+    interpreted,
+  );
+
   const toggle = (key: UDSAnalyteKey) => {
     setConfirmedNegative(false);
     setPanel((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -56,6 +68,12 @@ export function UDSInterpreter() {
       lede="Select every substance detected on the screen. Interpretation updates as you go."
       backTo={{ to: '/', label: 'Toolkit' }}
     >
+      <p className="mode-switch print-hide">
+        <Link to="/toolkit/uds/guided">
+          <span aria-hidden="true">◈</span> Use the guided walkthrough instead
+        </Link>
+      </p>
+
       <div className="tool-layout">
         <div className="tool-layout__steps print-hide">
           <CheckboxGroup
@@ -107,6 +125,7 @@ export function UDSInterpreter() {
           ) : result.primary ? (
             <>
               <ResultCard guidance={result.primary} inputs={inputs} />
+              <VerificationBadge verification={verification} />
 
               {result.additional.length > 0 ? (
                 <section className="secondary-results">

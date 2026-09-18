@@ -4,6 +4,11 @@ React + Vite + TypeScript implementation of the All4Knox Clinical Buprenorphine
 Toolkit. See [`../All4Knox_Website_Skeleton.md`](../All4Knox_Website_Skeleton.md)
 for the specification each section below refers to.
 
+> **New to this app? Read [`../docs/frontend-guide.md`](../docs/frontend-guide.md)**
+> — a full walkthrough: how a request flows, what every directory does, the
+> local-first verification pattern, and the known dead code. This file is the
+> quick reference; that one is the tour.
+
 ## Run
 
 ```bash
@@ -18,12 +23,13 @@ npm run lint
 ```
 src/
 ├── app/            router + shell
-├── components/     layout · toolkit · forms · common
+├── components/     layout · toolkit · forms · common · guided (unused — see guide §9)
 ├── content/        ALL clinical guidance lives here (§19)
-├── services/       deterministic rule evaluation (§23)
+├── services/       deterministic rule evaluation (§23) + api.ts (backend client)
+├── hooks/          useBackendStatus · useVerifiedResult
 ├── pages/          one file per route (§14)
 ├── types/          clinical content types
-└── styles/         tokens · base · layout · components · print
+└── styles/         tokens · base · layout · components · assistant · print
 ```
 
 ### Clinical content is data, not JSX
@@ -59,11 +65,22 @@ so rather than smoothing it over:
 - `entryStatus: 'pending'` renders a "guidance not yet entered" panel.
 - No block claims a clinical review that has not happened.
 
+### Backend wiring
+
+The FastAPI backend **is** built ([`../backend/`](../backend/)) and this app is
+wired to it. Each tool computes its result locally for instant response, then
+confirms it against the API in the background and reports which path served the
+answer — see [`../docs/frontend-guide.md`](../docs/frontend-guide.md) §6.
+
+Both implementations of the clinical logic are held identical by exhaustive
+parity tests (256 UDS panels, 36 prescribing combinations, 10 induction
+combinations). See `../backend/tests/test_parity.py`.
+
 ### What is not built yet
 
-The FastAPI backend, the Phase 2 tools (COWS calculator, OUD diagnosis helper,
-naloxone guide, safety check, follow-up checklist, referral finder), search, and
-the printable handouts and forms.
+The Phase 2 tools (COWS calculator, OUD diagnosis helper, naloxone guide, safety
+check, follow-up checklist, referral finder), search, and the printable handouts
+and forms. See [`../docs/project-plan.md`](../docs/project-plan.md) Phase 3.
 
 ## Routes
 
@@ -74,6 +91,7 @@ the printable handouts and forms.
 | `/toolkit/start` | Induction decision aid (§7) |
 | `/toolkit/uds` | UDS interpreter (§8) |
 | `/toolkit/dosing` | Maintenance dosing (§9) |
+| `/ask` | Ask All4Knox — retrieval-grounded assistant (§23) |
 | `/learn/buprenorphine` | Buprenorphine-naloxone basics (§10) |
 | `/referrals` | Referral directory (§11) |
 | `/resources` | Resources (§12) |

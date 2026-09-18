@@ -37,6 +37,12 @@ export function ClinicalSources() {
       lede="Every clinical block in this toolkit, with its source, entry status and review state."
       backTo={{ to: '/', label: 'Toolkit' }}
     >
+      <p className="mode-switch print-hide">
+        <Link to="/review">
+          <span aria-hidden="true">◈</span> Open the clinical review workspace
+        </Link>
+      </p>
+
       <section className="version-summary">
         <dl className="version-summary__grid">
           <div>

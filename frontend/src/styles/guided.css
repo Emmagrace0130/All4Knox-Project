@@ -4,7 +4,8 @@
 
 .progress {
   position: sticky;
-  top: 0;
+  /* Directly under the sticky site header, which publishes its height. */
+  top: var(--header-h, 0px);
   z-index: 15;
   background: var(--surface);
   border-bottom: 1px solid var(--line);
@@ -363,4 +364,100 @@
   margin-top: var(--s-6);
   padding-top: var(--s-5);
   border-top: 1px solid var(--line);
+}
+
+/* --------------------------------------------------------------------------
+   Buttons used only by the guided interview.
+   QuestionScreen renders `btn btn--back` and `btn btn--primary btn--lg`;
+   the base .btn / .btn--primary live in components.css, these two modifiers
+   are specific to the interview's bottom navigation bar.
+   -------------------------------------------------------------------------- */
+
+/* Quiet back control — present but never competing with Continue. */
+.btn--back {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--muted);
+  padding-left: var(--s-2);
+  padding-right: var(--s-3);
+}
+.btn--back:hover {
+  color: var(--ink);
+  background: var(--surface-sunken);
+}
+.btn--back:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--brand-ring);
+}
+
+/* The primary forward action. Deliberately large: it is the one thing the
+   provider needs to hit on every screen, often on a tablet mid-visit. */
+.btn--lg {
+  font-size: 1.0625rem;
+  padding: var(--s-3) var(--s-6);
+  border-radius: var(--radius-pill);
+  min-width: 10rem;
+}
+.btn--lg:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (max-width: 560px) {
+  .btn--lg {
+    width: 100%;
+    min-width: 0;
+  }
+  .screen__nav {
+    gap: var(--s-3);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Entry points between the two presentations of the same tool.
+   -------------------------------------------------------------------------- */
+
+/* On a landing-page tool card, below the card's own link. */
+.tool-card__guided {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  /* Sits BELOW the card link as a sibling row, not inside it. */
+  align-self: flex-start;
+  margin: var(--s-2) 0 0;
+  padding: var(--s-2) var(--s-3);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--brand-dark);
+  background: var(--brand-soft);
+  border: 1px solid var(--brand-line);
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+}
+.tool-card__guided:hover {
+  background: var(--surface);
+  border-color: var(--brand);
+}
+.tool-card__guided:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--brand-ring);
+}
+
+/* At the top of a classic tool page. */
+.mode-switch {
+  margin: 0 0 var(--s-5);
+  font-size: 0.875rem;
+}
+.mode-switch a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--brand-dark);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid var(--brand-line);
+  padding-bottom: 1px;
+}
+.mode-switch a:hover {
+  border-bottom-color: var(--brand);
 }

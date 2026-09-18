@@ -17,6 +17,9 @@ import {
   isPrescribingComplete,
   needsBesmart,
 } from '../services/prescribingRules';
+import { VerificationBadge } from '../components/common/VerificationBadge';
+import { useVerifiedResult } from '../hooks/useVerifiedResult';
+import * as api from '../services/api';
 import type {
   BesmartStatus,
   Coverage,
@@ -44,6 +47,12 @@ export function PrescribingTool() {
     [complete, input],
   );
 
+  const verification = useVerifiedResult(
+    pathway?.id ?? null,
+    () => api.evaluatePrescribing(input).then((r) => r.pathway?.id ?? null),
+    complete,
+  );
+
   const setCoverage = (coverage: Coverage) =>
     // Clear BESMART when leaving TennCare so a stale answer can't drive a result.
     setInput((prev) => ({
@@ -69,6 +78,12 @@ export function PrescribingTool() {
       lede="Answer up to three questions to see the prescribing pathway recorded in the current All4Knox summary."
       backTo={{ to: '/', label: 'Toolkit' }}
     >
+      <p className="mode-switch print-hide">
+        <Link to="/toolkit/prescribing/guided">
+          <span aria-hidden="true">◈</span> Use the guided walkthrough instead
+        </Link>
+      </p>
+
       <div className="tool-layout">
         <div className="tool-layout__steps print-hide">
           <ClinicalAlert tone="info" title="Applies to">
@@ -141,6 +156,7 @@ export function PrescribingTool() {
                 inputs={inputSummary}
                 details={pathway.details}
               />
+              <VerificationBadge verification={verification} />
               {input.coverage === 'uninsured' ? (
                 <p className="result-followup print-hide">
                   <Link to="/referrals">

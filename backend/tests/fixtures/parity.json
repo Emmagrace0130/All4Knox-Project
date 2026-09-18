@@ -1,0 +1,4894 @@
+{
+  "_generated": "DO NOT EDIT BY HAND. Generated from the TypeScript rule engines by frontend/tools/parityFixtures.ts.",
+  "_regenerate": "cd frontend && npm run export:parity",
+  "_purpose": "Locks backend/app/services/rules.py to frontend/src/services/*.ts. A failure here means the two implementations disagree.",
+  "uds": [
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_negative",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_only",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_negative",
+      "additional": [],
+      "unaddressed": [
+        "met"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_stimulant",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_negative",
+      "additional": [],
+      "unaddressed": [
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_stimulant",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_negative",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_stimulant",
+      "additional": [],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": false
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": []
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_negative",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": null,
+      "additional": [],
+      "unaddressed": [
+        "bup",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_negative",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_stimulant",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": false,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_negative",
+      "additional": [],
+      "unaddressed": [
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_stimulant",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": false,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_negative",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_stimulant",
+      "additional": [],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": false,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": false,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": false,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": false,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": false,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_neg_opioid",
+      "additional": [],
+      "unaddressed": [
+        "met",
+        "coc",
+        "other"
+      ]
+    },
+    {
+      "panel": {
+        "bup": true,
+        "fent": true,
+        "opi": true,
+        "oxy": true,
+        "mtd": true,
+        "met": true,
+        "coc": true,
+        "other": true
+      },
+      "primary": "uds_bup_opioid",
+      "additional": [
+        "uds_bup_stimulant"
+      ],
+      "unaddressed": [
+        "other"
+      ]
+    }
+  ],
+  "prescribing": [
+    {
+      "input": {
+        "coverage": "private",
+        "prescriber": "md_do",
+        "besmart": "enrolled"
+      },
+      "pathway": "rx_private_mddo",
+      "complete": true,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": "private",
+        "prescriber": "md_do",
+        "besmart": "not_enrolled"
+      },
+      "pathway": "rx_private_mddo",
+      "complete": true,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": "private",
+        "prescriber": "md_do",
+        "besmart": null
+      },
+      "pathway": "rx_private_mddo",
+      "complete": true,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": "private",
+        "prescriber": "np_pa",
+        "besmart": "enrolled"
+      },
+      "pathway": "rx_private_nppa",
+      "complete": true,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": "private",
+        "prescriber": "np_pa",
+        "besmart": "not_enrolled"
+      },
+      "pathway": "rx_private_nppa",
+      "complete": true,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": "private",
+        "prescriber": "np_pa",
+        "besmart": null
+      },
+      "pathway": "rx_private_nppa",
+      "complete": true,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": "private",
+        "prescriber": null,
+        "besmart": "enrolled"
+      },
+      "pathway": null,
+      "complete": false,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": "private",
+        "prescriber": null,
+        "besmart": "not_enrolled"
+      },
+      "pathway": null,
+      "complete": false,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": "private",
+        "prescriber": null,
+        "besmart": null
+      },
+      "pathway": null,
+      "complete": false,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": "tenncare",
+        "prescriber": "md_do",
+        "besmart": "enrolled"
+      },
+      "pathway": "rx_tenncare_besmart_mddo",
+      "complete": true,
+      "needsBesmart": true
+    },
+    {
+      "input": {
+        "coverage": "tenncare",
+        "prescriber": "md_do",
+        "besmart": "not_enrolled"
+      },
+      "pathway": "rx_tenncare_not_besmart_mddo",
+      "complete": true,
+      "needsBesmart": true
+    },
+    {
+      "input": {
+        "coverage": "tenncare",
+        "prescriber": "md_do",
+        "besmart": null
+      },
+      "pathway": null,
+      "complete": false,
+      "needsBesmart": true
+    },
+    {
+      "input": {
+        "coverage": "tenncare",
+        "prescriber": "np_pa",
+        "besmart": "enrolled"
+      },
+      "pathway": "rx_tenncare_besmart_nppa",
+      "complete": true,
+      "needsBesmart": true
+    },
+    {
+      "input": {
+        "coverage": "tenncare",
+        "prescriber": "np_pa",
+        "besmart": "not_enrolled"
+      },
+      "pathway": "rx_tenncare_not_besmart_nppa",
+      "complete": true,
+      "needsBesmart": true
+    },
+    {
+      "input": {
+        "coverage": "tenncare",
+        "prescriber": "np_pa",
+        "besmart": null
+      },
+      "pathway": null,
+      "complete": false,
+      "needsBesmart": true
+    },
+    {
+      "input": {
+        "coverage": "tenncare",
+        "prescriber": null,
+        "besmart": "enrolled"
+      },
+      "pathway": null,
+      "complete": false,
+      "needsBesmart": true
+    },
+    {
+      "input": {
+        "coverage": "tenncare",
+        "prescriber": null,
+        "besmart": "not_enrolled"
+      },
+      "pathway": null,
+      "complete": false,
+      "needsBesmart": true
+    },
+    {
+      "input": {
+        "coverage": "tenncare",
+        "prescriber": null,
+        "besmart": null
+      },
+      "pathway": null,
+      "complete": false,
+      "needsBesmart": true
+    },
+    {
+      "input": {
+        "coverage": "uninsured",
+        "prescriber": "md_do",
+        "besmart": "enrolled"
+      },
+      "pathway": "rx_uninsured",
+      "complete": true,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": "uninsured",
+        "prescriber": "md_do",
+        "besmart": "not_enrolled"
+      },
+      "pathway": "rx_uninsured",
+      "complete": true,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": "uninsured",
+        "prescriber": "md_do",
+        "besmart": null
+      },
+      "pathway": "rx_uninsured",
+      "complete": true,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": "uninsured",
+        "prescriber": "np_pa",
+        "besmart": "enrolled"
+      },
+      "pathway": "rx_uninsured",
+      "complete": true,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": "uninsured",
+        "prescriber": "np_pa",
+        "besmart": "not_enrolled"
+      },
+      "pathway": "rx_uninsured",
+      "complete": true,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": "uninsured",
+        "prescriber": "np_pa",
+        "besmart": null
+      },
+      "pathway": "rx_uninsured",
+      "complete": true,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": "uninsured",
+        "prescriber": null,
+        "besmart": "enrolled"
+      },
+      "pathway": "rx_uninsured",
+      "complete": false,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": "uninsured",
+        "prescriber": null,
+        "besmart": "not_enrolled"
+      },
+      "pathway": "rx_uninsured",
+      "complete": false,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": "uninsured",
+        "prescriber": null,
+        "besmart": null
+      },
+      "pathway": "rx_uninsured",
+      "complete": false,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": null,
+        "prescriber": "md_do",
+        "besmart": "enrolled"
+      },
+      "pathway": null,
+      "complete": false,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": null,
+        "prescriber": "md_do",
+        "besmart": "not_enrolled"
+      },
+      "pathway": null,
+      "complete": false,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": null,
+        "prescriber": "md_do",
+        "besmart": null
+      },
+      "pathway": null,
+      "complete": false,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": null,
+        "prescriber": "np_pa",
+        "besmart": "enrolled"
+      },
+      "pathway": null,
+      "complete": false,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": null,
+        "prescriber": "np_pa",
+        "besmart": "not_enrolled"
+      },
+      "pathway": null,
+      "complete": false,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": null,
+        "prescriber": "np_pa",
+        "besmart": null
+      },
+      "pathway": null,
+      "complete": false,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": null,
+        "prescriber": null,
+        "besmart": "enrolled"
+      },
+      "pathway": null,
+      "complete": false,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": null,
+        "prescriber": null,
+        "besmart": "not_enrolled"
+      },
+      "pathway": null,
+      "complete": false,
+      "needsBesmart": false
+    },
+    {
+      "input": {
+        "coverage": null,
+        "prescriber": null,
+        "besmart": null
+      },
+      "pathway": null,
+      "complete": false,
+      "needsBesmart": false
+    }
+  ],
+  "induction": [
+    {
+      "situation": "fentanyl",
+      "answers": {},
+      "outcome": null,
+      "complete": false
+    },
+    {
+      "situation": "fentanyl",
+      "answers": {
+        "fent_last_use": "gte_24h"
+      },
+      "outcome": "induction_fentanyl_24h",
+      "complete": true
+    },
+    {
+      "situation": "fentanyl",
+      "answers": {
+        "fent_last_use": "lt_24h"
+      },
+      "outcome": "induction_fentanyl_lt24h",
+      "complete": true
+    },
+    {
+      "situation": "rx_opioid",
+      "answers": {},
+      "outcome": null,
+      "complete": false
+    },
+    {
+      "situation": "rx_opioid",
+      "answers": {
+        "rx_uds": "oxy"
+      },
+      "outcome": "induction_rx_oxy",
+      "complete": true
+    },
+    {
+      "situation": "rx_opioid",
+      "answers": {
+        "rx_uds": "opi"
+      },
+      "outcome": "induction_rx_opi",
+      "complete": true
+    },
+    {
+      "situation": "rx_opioid",
+      "answers": {
+        "rx_uds": "negative"
+      },
+      "outcome": "induction_rx_negative",
+      "complete": true
+    },
+    {
+      "situation": "opioid_negative",
+      "answers": {},
+      "outcome": "induction_opioid_negative_result",
+      "complete": true
+    },
+    {
+      "situation": "on_suboxone",
+      "answers": {},
+      "outcome": "induction_on_suboxone_result",
+      "complete": true
+    },
+    {
+      "situation": "methadone",
+      "answers": {},
+      "outcome": "induction_methadone_result",
+      "complete": true
+    }
+  ]
+}

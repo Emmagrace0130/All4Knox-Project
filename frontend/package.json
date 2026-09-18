@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "export:content": "vite build -c vite.export.config.ts && node .export-build/exportContent.js",
+    "export:parity": "EXPORT_ENTRY=tools/parityFixtures.ts vite build -c vite.export.config.ts && node .export-build/parityFixtures.js"
   },
   "dependencies": {
     "react": "^19.2.8",

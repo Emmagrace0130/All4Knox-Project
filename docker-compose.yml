@@ -1,0 +1,121 @@
+# =============================================================================
+# All4Knox Clinical Provider Toolkit
+# =============================================================================
+# This stack runs on a SHARED GPU server (viridian). Before changing ports,
+# networks or container names, read docs/rules-of-engagement.md.
+#
+#   Internet
+#     -> nginx-proxy        (shared, already running, owns :80/:443)
+#        -> all4knox-web    (this stack: nginx serving the SPA)
+#           /api/*          -> all4knox-api (FastAPI)
+#                              -> Ollama on the host (:11434)
+#
+# Only the web container joins viridian_network — that is all nginx-proxy needs
+# to see. The API is reachable only from the web container, so the clinical API
+# is not exposed to the internet except through the paths nginx allows.
+# =============================================================================
+
+services:
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: all4knox-api:latest
+    container_name: all4knox-api
+    restart: unless-stopped
+    # Bound to localhost only: this is a debugging door on a shared machine,
+    # not a public endpoint. Public traffic goes through nginx-proxy -> web.
+    ports:
+      - "127.0.0.1:${ALL4KNOX_API_PORT:-8410}:8000"
+    environment:
+      APP_ENV: ${APP_ENV:-production}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173,http://localhost:8411}
+
+      # Ollama
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      OLLAMA_USERNAME: ${OLLAMA_USERNAME:-}
+      OLLAMA_PASSWORD: ${OLLAMA_PASSWORD:-}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-gpt-oss:20b}
+      OLLAMA_EMBEDDING_MODEL: ${OLLAMA_EMBEDDING_MODEL:-nomic-embed-text:latest}
+      OLLAMA_TIMEOUT: ${OLLAMA_TIMEOUT:-120}
+      OLLAMA_NUM_CTX: ${OLLAMA_NUM_CTX:-8192}
+
+      # Retrieval
+      VECTOR_STORE_PATH: ${VECTOR_STORE_PATH:-/data/vector_store/all4knox_index.npz}
+      RAG_TOP_K: ${RAG_TOP_K:-6}
+      # Measured floor (backend/tools/calibrate_threshold.py). The old 0.35
+      # default let off-corpus clinical questions reach the model.
+      RAG_MIN_SCORE: ${RAG_MIN_SCORE:-0.65}
+      RAG_AUTO_INGEST: ${RAG_AUTO_INGEST:-true}
+      RAG_REFERENCE_ENABLED: ${RAG_REFERENCE_ENABLED:-true}
+      ASSISTANT_ENABLED: ${ASSISTANT_ENABLED:-true}
+
+      # Accounts, sessions, conversations, settings, prompts
+      DATABASE_PATH: ${DATABASE_PATH:-/data/all4knox.db}
+      VISITOR_SESSION_TTL_MINUTES: ${VISITOR_SESSION_TTL_MINUTES:-120}
+      ACCOUNT_SESSION_TTL_DAYS: ${ACCOUNT_SESSION_TTL_DAYS:-30}
+      COOKIE_SECURE: ${COOKIE_SECURE:-true}
+      SEED_ADMIN_EMAIL: ${SEED_ADMIN_EMAIL:-}
+      SEED_ADMIN_PASSWORD: ${SEED_ADMIN_PASSWORD:-}
+    volumes:
+      - all4knox-vector-store:/data/vector_store
+      # SQLite lives on its own volume: accounts and conversations must survive
+      # a rebuild, and must NOT be discarded when the index is rebuilt.
+      - all4knox-data:/data
+    extra_hosts:
+      # Lets the container reach the host's Ollama daemon on Linux.
+      - "host.docker.internal:host-gateway"
+    networks:
+      - all4knox-net
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/api/health', timeout=5).status==200 else 1)\""]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: all4knox-web:latest
+    container_name: all4knox-web
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:${ALL4KNOX_WEB_PORT:-8411}:80"
+    environment:
+      # Picked up by the shared nginx-proxy + acme-companion. Every hostname
+      # listed MUST already resolve to this server or cert issuance fails.
+      VIRTUAL_HOST: ${FRONTEND_VIRTUAL_HOST:-all4knox.axiomsystemslab.com}
+      VIRTUAL_PORT: "80"
+      LETSENCRYPT_HOST: ${FRONTEND_VIRTUAL_HOST:-all4knox.axiomsystemslab.com}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL:-}
+    networks:
+      - all4knox-net
+      - viridian_network
+    healthcheck:
+      # 127.0.0.1, not localhost: inside the container localhost resolves to
+      # ::1 first and nginx's `listen 80` binds IPv4 only, so the IPv6
+      # attempt is refused and the container reports unhealthy while
+      # actually serving fine.
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1/ >/dev/null || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  # Embeddings are expensive to recompute; keep them across restarts.
+  all4knox-vector-store: {}
+  # Accounts, sessions, conversations, settings and prompts.
+  all4knox-data: {}
+
+networks:
+  # Private to this stack — the API is not reachable from other projects.
+  all4knox-net:
+  # The shared proxy network. NEVER redefine this; it belongs to the host.
+  viridian_network:
+    external: true

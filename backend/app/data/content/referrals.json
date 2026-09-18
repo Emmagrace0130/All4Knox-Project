@@ -1,0 +1,174 @@
+{
+  "_generated": "DO NOT EDIT BY HAND. Generated from frontend/src/content by tools/exportContent.ts.",
+  "_regenerate": "cd frontend && npm run export:content",
+  "_sourceOfTruth": "frontend/src/content/",
+  "organizations": [
+    {
+      "id": "mcnabb",
+      "name": "McNabb",
+      "organizationType": "Addiction treatment specialist",
+      "address": null,
+      "county": null,
+      "region": [
+        "knoxville",
+        "east_tennessee"
+      ],
+      "phone": null,
+      "website": null,
+      "acceptsTenncare": null,
+      "acceptsPrivate": null,
+      "uninsuredOptions": "Named as a grant funded clinic for uninsured patients.",
+      "grantFunded": true,
+      "services": [
+        "addiction_specialist",
+        "grant_funded",
+        "outpatient_oud"
+      ],
+      "matAvailable": null,
+      "detoxAvailable": null,
+      "notes": "Slide 2: refer uninsured patients to a grant funded clinic — McNabb or Cherokee. Slide 11: addiction treatment specialist for patients requiring doses above the Tennessee limit.",
+      "lastVerified": null,
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Prescribing decision tree — Uninsured; Suboxone Dosing",
+        "slide": 2
+      }
+    },
+    {
+      "id": "cherokee",
+      "name": "Cherokee / River Valley",
+      "organizationType": "Addiction treatment specialist",
+      "address": null,
+      "county": null,
+      "region": [
+        "knoxville",
+        "east_tennessee"
+      ],
+      "phone": null,
+      "website": null,
+      "acceptsTenncare": null,
+      "acceptsPrivate": null,
+      "uninsuredOptions": "Named as a grant funded clinic for uninsured patients.",
+      "grantFunded": true,
+      "services": [
+        "addiction_specialist",
+        "grant_funded",
+        "outpatient_oud"
+      ],
+      "matAvailable": null,
+      "detoxAvailable": null,
+      "notes": "Slide 2: refer uninsured patients to a grant funded clinic — McNabb or Cherokee. Slide 11: addiction treatment specialist for patients requiring doses above the Tennessee limit.",
+      "lastVerified": null,
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Prescribing decision tree — Uninsured; Suboxone Dosing",
+        "slide": 2
+      }
+    },
+    {
+      "id": "revida",
+      "name": "ReVida",
+      "organizationType": "Addiction treatment specialist",
+      "address": null,
+      "county": null,
+      "region": [
+        "east_tennessee",
+        "tennessee"
+      ],
+      "phone": null,
+      "website": null,
+      "acceptsTenncare": null,
+      "acceptsPrivate": null,
+      "uninsuredOptions": null,
+      "grantFunded": null,
+      "services": [
+        "addiction_specialist",
+        "outpatient_oud"
+      ],
+      "matAvailable": null,
+      "detoxAvailable": null,
+      "notes": "Slide 11: addiction treatment specialist for patients requiring doses above the Tennessee limit.",
+      "lastVerified": null,
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Suboxone Dosing — referral options",
+        "slide": 11
+      }
+    },
+    {
+      "id": "cedar-recovery",
+      "name": "Cedar Recovery",
+      "organizationType": "Addiction treatment specialist",
+      "address": null,
+      "county": null,
+      "region": [
+        "east_tennessee",
+        "tennessee"
+      ],
+      "phone": null,
+      "website": null,
+      "acceptsTenncare": null,
+      "acceptsPrivate": null,
+      "uninsuredOptions": null,
+      "grantFunded": null,
+      "services": [
+        "addiction_specialist",
+        "outpatient_oud"
+      ],
+      "matAvailable": null,
+      "detoxAvailable": null,
+      "notes": "Slide 11: addiction treatment specialist for patients requiring doses above the Tennessee limit.",
+      "lastVerified": null,
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Suboxone Dosing — referral options",
+        "slide": 11
+      }
+    }
+  ],
+  "regionOptions": [
+    {
+      "value": "knoxville",
+      "label": "Knoxville"
+    },
+    {
+      "value": "east_tennessee",
+      "label": "East Tennessee"
+    },
+    {
+      "value": "tennessee",
+      "label": "Tennessee"
+    }
+  ],
+  "needOptions": [
+    {
+      "value": "addiction_specialist",
+      "label": "Addiction specialist"
+    },
+    {
+      "value": "inpatient_detox",
+      "label": "Inpatient detox"
+    },
+    {
+      "value": "outpatient_oud",
+      "label": "Outpatient OUD treatment"
+    },
+    {
+      "value": "grant_funded",
+      "label": "Grant-funded treatment"
+    },
+    {
+      "value": "psychiatry",
+      "label": "Psychiatry"
+    },
+    {
+      "value": "counseling",
+      "label": "Counseling"
+    },
+    {
+      "value": "recovery_support",
+      "label": "Recovery support"
+    }
+  ],
+  "notExhaustiveNotice": "The clinical summary lists these organisations followed by \"etc.\", so this directory is not a complete list of Tennessee options."
+}

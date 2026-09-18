@@ -1,0 +1,13 @@
+{
+  "_generated": "DO NOT EDIT BY HAND. Generated from frontend/src/content by tools/exportContent.ts.",
+  "_regenerate": "cd frontend && npm run export:content",
+  "_sourceOfTruth": "frontend/src/content/",
+  "contentVersion": "2026.2",
+  "sourceDocument": "All4Knox Clinical Summary 2026",
+  "review": {
+    "reviewedBy": null,
+    "reviewedDate": null,
+    "effectiveDate": null,
+    "nextReviewDate": null
+  }
+}

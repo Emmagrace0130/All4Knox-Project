@@ -1,0 +1,212 @@
+{
+  "_generated": "DO NOT EDIT BY HAND. Generated from frontend/src/content by tools/exportContent.ts.",
+  "_regenerate": "cd frontend && npm run export:content",
+  "_sourceOfTruth": "frontend/src/content/",
+  "monitoring": {
+    "title": "UDS at each appointment",
+    "points": [
+      "Patients ideally should provide a UDS at each appointment.",
+      "Some debate this because a UDS may not change the treatment plan — Suboxone is still provided whether the screen is positive or negative for opiates, methamphetamine and so on.",
+      "A UDS at each appointment is nonetheless the gold standard: it helps confirm patients are taking Suboxone (BUP positive) and helps risk-stratify patients who may need additional resources, such as referral to a higher level of care."
+    ],
+    "source": {
+      "document": "All4Knox Clinical Summary 2026",
+      "location": "Interpreting UDS Results",
+      "slide": 12
+    },
+    "review": {
+      "reviewedBy": null,
+      "reviewedDate": null,
+      "effectiveDate": null,
+      "nextReviewDate": null
+    },
+    "contentVersion": "2026.2"
+  },
+  "opioidFootnote": "Slide 7 footnotes this row \"*FENT or other opioid\", so it applies to fentanyl, opiates, oxycodone or methadone on the screen.",
+  "rules": [
+    {
+      "id": "uds_bup_only",
+      "title": "BUP positive only",
+      "match": {
+        "bup": true,
+        "allOthersNegative": true
+      },
+      "priority": 10,
+      "addresses": [
+        "bup"
+      ],
+      "interpretation": "Appropriate — the expected result for a patient taking prescribed buprenorphine.",
+      "actions": [
+        "Continue BUP."
+      ],
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Interpreting UDS Results — BUP +",
+        "slide": 7
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.2",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "uds_bup_negative",
+      "title": "BUP negative",
+      "match": {
+        "bup": false
+      },
+      "priority": 5,
+      "addresses": [
+        "bup"
+      ],
+      "interpretation": "Not taking prescribed Suboxone.",
+      "considerations": [
+        "Concern for diversion.",
+        "Unable to start treatment.",
+        "Other barriers."
+      ],
+      "actions": [],
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Interpreting UDS Results — BUP −",
+        "slide": 7
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.2",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "uds_bup_stimulant",
+      "title": "BUP positive + stimulant positive",
+      "match": {
+        "bup": true,
+        "anyStimulant": true
+      },
+      "priority": 20,
+      "addresses": [
+        "bup",
+        "met",
+        "coc"
+      ],
+      "interpretation": "Taking Suboxone and using a stimulant.",
+      "actions": [
+        "Continue BUP.",
+        "Continue Suboxone for OUD and address stimulant use."
+      ],
+      "considerations": [
+        "Consider Wellbutrin if methamphetamine cravings.",
+        "Frequent appointments while using methamphetamine."
+      ],
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Interpreting UDS Results — BUP+, MET/COC+",
+        "slide": 7
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.2",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "uds_bup_opioid",
+      "title": "BUP positive + opioid positive",
+      "match": {
+        "bup": true,
+        "anyOpioid": true
+      },
+      "priority": 30,
+      "addresses": [
+        "bup",
+        "fent",
+        "opi",
+        "oxy",
+        "mtd"
+      ],
+      "interpretation": "Taking Suboxone with continued opioid use.",
+      "actions": [
+        "Continue BUP."
+      ],
+      "considerations": [
+        "Consider dose increase if ongoing opioid cravings.",
+        "Frequent appointments, close follow-up.",
+        "Narcan prescription."
+      ],
+      "escalation": [
+        "Consider a higher dose if ongoing cravings, or higher level of care."
+      ],
+      "gaps": [
+        "Slide 7 footnotes this row \"*FENT or other opioid\", so it applies to fentanyl, opiates, oxycodone or methadone on the screen."
+      ],
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Interpreting UDS Results — BUP+, FENT*+",
+        "slide": 7
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.2",
+      "entryStatus": "documented"
+    },
+    {
+      "id": "uds_bup_neg_opioid",
+      "title": "BUP negative + opioid positive",
+      "match": {
+        "bup": false,
+        "anyOpioid": true
+      },
+      "priority": 40,
+      "supersedes": [
+        "uds_bup_negative"
+      ],
+      "addresses": [
+        "bup",
+        "fent",
+        "opi",
+        "oxy",
+        "mtd"
+      ],
+      "interpretation": "Not taking Suboxone, with ongoing opioid use — the patient may have been unable to start BUP because of concern for precipitated withdrawal, or may be diverting.",
+      "actions": [
+        "Advise the patient to wait 24 hrs, then rapid induction.",
+        "Frequent appointments, close follow-up.",
+        "Narcan prescription."
+      ],
+      "escalation": [
+        "Consider higher level of care (inpatient detox) versus the patient being unable to start BUP due to concern for precipitated withdrawal."
+      ],
+      "gaps": [
+        "Slide 7 footnotes this row \"*FENT or other opioid\", so it applies to fentanyl, opiates, oxycodone or methadone on the screen."
+      ],
+      "source": {
+        "document": "All4Knox Clinical Summary 2026",
+        "location": "Interpreting UDS Results — BUP −, FENT*+",
+        "slide": 7
+      },
+      "review": {
+        "reviewedBy": null,
+        "reviewedDate": null,
+        "effectiveDate": null,
+        "nextReviewDate": null
+      },
+      "contentVersion": "2026.2",
+      "entryStatus": "documented"
+    }
+  ]
+}

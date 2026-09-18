@@ -150,10 +150,25 @@
   margin-bottom: var(--s-7);
 }
 
+/*
+ * The grid item is the column; the link is one row of it and the guided
+ * walkthrough pill is another.
+ *
+ * Previously there was no `.tool-card` rule and `.tool-card__link` took
+ * `height: 100%`, so the link filled the entire grid cell and anything added
+ * after it overflowed past the bottom edge — where the next grid row painted
+ * straight over it.
+ */
+.tool-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
 .tool-card__link {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  flex: 1 1 auto;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);

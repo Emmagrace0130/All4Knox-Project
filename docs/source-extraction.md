@@ -52,6 +52,16 @@ Person with OUD, >18yo
 Note the tree branches on BESMART status *before* prescriber type, so the
 non-BESMART outcome is the same for MD/DO and NP/PA.
 
+**Changed in content version 2026.2 (2026-09-15) — no longer a faithful
+transcription of this slide for TennCare.** The TennCare MD/DO limits now
+follow TennCare's BESMART Provider Education of May 28, 2026 (slides 4–5):
+BESMART MD/DO 32 mg for preferred products without prior authorization;
+non-BESMART MD/DO 16 mg without PA, up to 32 mg with it. The non-BESMART branch
+is split by prescriber type, and NP/PA keeps this slide's outcome. Each changed
+pathway cites the TennCare deck and shows this slide's figure beside it. The
+decision is Gerald's, pending Dr. Alexander's confirmation (9/18 agenda). The
+private-insurance branches remain exactly as above.
+
 ## Slide 4 — induction methods, and the star legend
 
 Five columns, each a patient situation with its method underneath:
