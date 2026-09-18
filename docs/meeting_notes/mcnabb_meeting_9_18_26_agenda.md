@@ -104,6 +104,17 @@ induction tool doesn't use COWS.
 - **Anything else the assistant should draw on,** e.g. McNabb internal
   protocols?
 
+## 7. McNabb's process for approving an externally hosted app
+
+McNabb has an internal process for this, separate from clinical content
+review and any IRB determination — see
+[`compliance-readiness-plan.md`](../compliance-readiness-plan.md) for our
+self-assessment against what such a review typically covers.
+
+**Ask:** what does that process actually require (checklist, certifications,
+turnaround, who signs off), and does it run in parallel with clinical review
+or gate it?
+
 ## For the demo: known limitation to say out loud
 
 Sections stop the assistant attributing one source's rule to another. They do

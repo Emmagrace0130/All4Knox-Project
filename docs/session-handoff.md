@@ -33,6 +33,7 @@ TennCare BESMART 34 passages), `RAG_REFERENCE_ENABLED=true`.
 | Confirm the TennCare dose limits (content 2026.2 follows the May 2026 BESMART update, not his slide 2) | Dr. Alexander, at that meeting | agenda item 1; revert path in project plan "Clinical questions" |
 | Updated BESMART Program Description (ours is Mar 2023, superseded in part) | Dr. Alexander or TennCare | agenda item 6 |
 | Push `gj_dev`; merge to `main` | Gerald / Emma | — |
+| McNabb's internal external-hosting/compliance approval criteria | McNabb's team | [`compliance-readiness-plan.md`](compliance-readiness-plan.md) |
 
 **Decisions made this session, and why**
 
@@ -297,8 +298,7 @@ All4Knox-Project/
     ├── rules-of-engagement.md   # READ BEFORE ANY docker COMMAND
     ├── reference/               # source PDFs the assistant searches + transcription-check.md
     ├── meeting_notes/           # McNabb meetings: 9/1 notes, 9/18 agenda
-    ├── project-plan.md          # phases, milestones, tracking
-    ├── source-extraction.md     # what came from which slide
+    ├── project-plan.md          # phases, milestones, tracking    ├── compliance-readiness-plan.md  # McNabb hosting approval, self-assessment, pilot survey plan    ├── source-extraction.md     # what came from which slide
     └── research/publication-plan.md
 ```
 

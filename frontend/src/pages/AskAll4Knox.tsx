@@ -28,8 +28,9 @@ import { DECISION_SUPPORT_NOTE } from '../content/governance';
 const SUGGESTIONS = [
   'How should I interpret BUP positive with fentanyl on the same screen?',
   'My patient has TennCare and I am not BESMART enrolled. Can I prescribe?',
+  'What is the maximum daily buprenorphine dose for BESMART MD or DO providers?',
+  'What COWS score is recommended before an office-based buprenorphine induction?',
   'What should I do when a patient is still having cravings on 16 mg?',
-  'How do I start buprenorphine for someone using fentanyl?',
 ];
 
 /** A turn being streamed right now, before it lands in the transcript. */

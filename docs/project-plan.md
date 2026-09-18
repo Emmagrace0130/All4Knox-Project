@@ -179,17 +179,21 @@ guarantee is only worth anything if it is total.
 
 | # | Item |
 | --- | --- |
+| 4.0 | **McNabb's internal hosting/compliance approval** — see [`compliance-readiness-plan.md`](compliance-readiness-plan.md) | raised 9/18; a separate gate from IRB and from clinical content review |
 | 4.1 | Define the pilot cohort (how many providers, which sites) |
 | 4.2 | IRB determination — human-subjects review for any provider data collection |
 | 4.3 | Baseline measures before providers use the tool |
 | 4.4 | Privacy-preserving usage analytics (no PHI — skeleton §22) |
-| 4.5 | Structured provider feedback instrument |
+| 4.5 | Structured provider feedback instrument — draft scope in [`compliance-readiness-plan.md`](compliance-readiness-plan.md) §4 |
 | 4.6 | Training/onboarding materials |
 | 4.7 | Support + escalation path during the pilot |
 
-**Note on 4.2:** anything that collects data *from providers* for research
-almost certainly needs IRB review. Start this early — it is the longest
-lead-time item in the whole plan and it gates publication.
+**Note on 4.0 and 4.2:** these are two different reviews with two different
+owners (McNabb's internal team vs. an IRB) and neither substitutes for the
+other — see [`compliance-readiness-plan.md`](compliance-readiness-plan.md) §1.
+Anything that collects data *from providers* for research almost certainly
+needs IRB review. Start both early — IRB in particular is a long-lead-time
+item that gates publication.
 
 **Exit criteria:** an approved protocol, a consented cohort, and instrumented
 baseline + follow-up measures.
@@ -250,6 +254,7 @@ Lightweight, because two people do not need Jira.
 | --- | --- | --- | --- |
 | B1 | Push `gj_dev` (several local commits ahead of origin); merge `gj_dev` → `main` | Gerald/Emma | everything downstream |
 | B8 | Clinical questions raised by the reference documents (below) — on the agenda for 9/18 (`docs/meeting_notes/mcnabb_meeting_9_18_26_agenda.md`) | Dr. Alexander | confirming the 2026.2 dose limits |
+| B9 | McNabb's external-hosting/compliance approval criteria — unknown until their team reports back; self-assessment ready in `docs/compliance-readiness-plan.md` | McNabb's internal team | Phase 4.0, the pilot |
 | B2 | **Confirm the named clinical reviewer** — Dr. Ryan Alexander is the contact; settle whether he signs off or nominates | Gerald/Emma | all of Phase 2, the pilot, both field papers |
 | B3 | Decide PHI-in-conversations policy (retention / encryption / refuse-to-store) | Gerald | the pilot |
 | B5 | `LETSENCRYPT_EMAIL` in `.env` | Gerald | cert-expiry warnings reaching a human |

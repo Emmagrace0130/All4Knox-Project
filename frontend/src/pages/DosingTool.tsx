@@ -56,6 +56,16 @@ export function DosingTool() {
 
       <div className="tool-layout">
         <div className="tool-layout__steps">
+          <section className="prompt-card print-hide">
+            <RadioGroup
+              name="cravings"
+              legend="Is the patient continuing to experience opioid cravings?"
+              options={cravingOptions}
+              value={cravings}
+              onChange={setCravings}
+            />
+          </section>
+
           <section className="intro-card">
             <h2 className="intro-card__title">Current summary highlights</h2>
             <ul className="list list--dot">
@@ -98,16 +108,6 @@ export function DosingTool() {
               source={dosingLimits.source}
               review={dosingLimits.review}
               contentVersion={dosingLimits.contentVersion}
-            />
-          </section>
-
-          <section className="prompt-card print-hide">
-            <RadioGroup
-              name="cravings"
-              legend="Is the patient continuing to experience opioid cravings?"
-              options={cravingOptions}
-              value={cravings}
-              onChange={setCravings}
             />
           </section>
         </div>
