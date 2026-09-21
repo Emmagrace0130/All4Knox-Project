@@ -115,6 +115,9 @@ not built.
 | 2.5.12 | Obtain TennCare's **updated** BESMART Program Description (the Mar 2023 copy is superseded in part) | ⬜ |
 | 2.5.13 | Admin/clinician upload of new reference documents (meeting ask) — same pipeline as `./a4k reference` | ⬜ |
 | 2.5.14 | Server-written section headings render as small labels; make source sections visually distinct | ⬜ |
+| 2.5.15 | Enrich the four existing guided interviews with approved checklist-derived clinical context and result actions; add questions only when an answer changes the deterministic pathway | ⬜ depends on clinical review of the new material |
+| 2.5.16 | Add a separate guided MAT clinic-readiness interview using the Design → Build → Enable → Connect → Pilot → Scale roadmap | ⬜ separate from patient-care tools; content and compliance review required |
+| 2.5.17 | Add a separate MAT implementation/readiness assistant collection; do not mix operational guidance into clinical or payer sections | ⬜ deduplicate formats and assign provenance first |
 
 ### The agent design, and why it depends on the interview
 
