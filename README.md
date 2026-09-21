@@ -21,7 +21,9 @@ Built with the **McNabb Center**, Knoxville TN.
 | [`frontend/`](frontend/) | React + Vite + TypeScript toolkit |
 | [`backend/`](backend/) | FastAPI service — clinical rules + RAG assistant |
 | [`docker-compose.yml`](docker-compose.yml) | Both services, wired for the shared server |
-| [`docs/session-handoff.md`](docs/session-handoff.md) | **Start here** — project state, gotchas, common tasks |
+| [`CLAUDE.md`](CLAUDE.md) | **Team working agreements**: whose handoff is whose; shared vs personal docs |
+| `docs/<name>_sessions/session-handoff.md` | **Start here.** Each maintainer keeps their own ([Gerald](docs/gerald_sessions/session-handoff.md), [Emma](docs/emma_sessions/session-handoff.md)) covering project state, gotchas and common tasks. `docs/session-handoff.md` is the old shared copy, frozen at 2026-09-15. |
+| [`docs/reference-incorporation-plan.md`](docs/reference-incorporation-plan.md) | How the Sept 2026 BESMART, MAT checklist and readiness documents get into the app |
 | [`docs/frontend-guide.md`](docs/frontend-guide.md) | Walkthrough of the React app — structure, patterns, conventions |
 | [`docs/rules-of-engagement.md`](docs/rules-of-engagement.md) | **Read before any `docker` command** — shared server |
 | [`docs/project-plan.md`](docs/project-plan.md) | Phases, milestones, tracking |

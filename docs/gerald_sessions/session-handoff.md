@@ -1,45 +1,81 @@
 # Session Handoff — All4Knox Clinical Provider Toolkit
 
-**Last updated:** 2026-09-21, end of session — new McNabb/TDOH reference
-documents classified; guided clinical expansion and separate clinic-readiness
-workflow planned. **Start at "Where we
-paused" below.**
+**Last updated:** 2026-09-21, before a break. The reference batch is
+classified, the plan to incorporate it is written, and the questions email is
+drafted. **Start at "Where we paused" below.**
 
-**Branch:** `gj_dev` — **13 commits ahead of `origin/gj_dev` and not pushed**. The GitHub repo is private (confirmed 2026-09-15), so the reference
-PDFs and their extracted text are committed. `main` is still
-at `36fa675`; the `gj_dev` → `main` merge is pending on GitHub and is Emma's
-call. Unfinished rate limiting, admin UI and CI work is parked on
-`wip/agent-workstreams-2026-08-31` — read its commit message before using any
-of it. Always check `git log --oneline --all` and `git status` before assuming
-which branch has what.
+> **This is Gerald's handoff. The repo is a team repo.** Emma keeps her own
+> copy at `docs/emma_sessions/session-handoff.md`. Gerald's sessions read and
+> update only this file, and never edit Emma's copy or the frozen root
+> `docs/session-handoff.md`. Shared docs (project plan, compliance plan,
+> reference-incorporation plan, meeting notes) belong to both of us. The rules
+> are in [`CLAUDE.md`](../../CLAUDE.md) at the repo root.
+
+**Branch:** `gj_dev`, pushed to `origin/gj_dev`. Work reaches `main` through
+GitHub PRs: #1 was merged 2026-09-18 and #2 on 2026-09-21, both by Gerald.
+`b8b97ec` (the handoff split) and this session's docs are on `gj_dev` but not
+yet in `main`. The local `main` ref is stale, so compare against `origin/main`.
+The GitHub repo is private (confirmed 2026-09-15), so the reference PDFs and
+their extracted text are committed. Unfinished rate limiting, admin UI and CI
+work is parked on `wip/agent-workstreams-2026-08-31`; read its commit message
+before using any of it. Always check `git log --oneline --all` and
+`git status` before assuming which branch has what.
 **Maintainers:** Emma (repo owner, `Emmagrace0130/All4Knox-Project`) · Gerald Jones
 **Partner:** McNabb Center, Knoxville TN — this app is a pilot tool for them.
 
 ---
 
-## Where we paused — 2026-09-15
+## Where we paused — 2026-09-21
 
-**State.** The new reference-document commit is on `gj_dev`; the working tree
-also contains Gerald's untracked handoff-folder copy. Do not update the root
-or Emma's handoff copy. The live site still runs the previous deployed `HEAD`
-until the new planning changes are pushed and rebuilt.
-Live status at pause: containers healthy, `/api/sources` reports **0 of 30**
-reviewed, assistant has 3 collections ready (toolkit 32, TN guidelines 70,
-TennCare BESMART 34 passages), `RAG_REFERENCE_ENABLED=true`.
+**State.** Code has not changed since 9/18. This session changed docs only:
+the plan, the email draft, `CLAUDE.md`, the README, and this file. **Nothing
+from this session is committed yet**, so check `git status`. The live site
+matches the code (verified 9/21): web was rebuilt 9/18 with the Dosing layout
+change and the new Ask suggestions; api was rebuilt 9/15; containers are
+healthy; `/api/sources` reports **0 of 30** reviewed. The assistant has 3
+collections ready (toolkit 32, TN guidelines 70, TennCare BESMART 34
+passages), and `RAG_REFERENCE_ENABLED=true`.
+
+**The 9/18 meeting settled nothing** (Gerald, 9/21). Its agenda items are
+still open and are carried into the 9/21 email. The 9/18 notes file is still
+the blank template.
+
+**The 9/21 reference batch** has 10 files: 6 documents plus 4 duplicate
+formats. It is classified, and the plan for it is written in
+[`../reference-incorporation-plan.md`](../reference-incorporation-plan.md).
+Reading it turned up two conflicts with content 2026.2:
+
+- The BESMART guide says non-BESMART NP/PAs **cannot** prescribe for TennCare
+  patients. The toolkit says prior authorization, 16 mg (Q1).
+- The guide's "below 16/20mg" line predates TennCare's May 2026 32 mg limit
+  (Q2).
+
+Two of the files name no author, and parts of the roadmap read as if written
+for another organization (Q5).
 
 **Waiting on people**
 
 | What | Who | Where |
 | --- | --- | --- |
-| Check the 8 AI transcriptions against their page images, then set `checkedBy` | Gerald — in progress | [`reference/transcription-check.md`](reference/transcription-check.md) |
-| Meeting with Dr. Alexander, **Friday 2026-09-18** | Gerald + Emma | [`meeting_notes/mcnabb_meeting_9_18_26_agenda.md`](meeting_notes/mcnabb_meeting_9_18_26_agenda.md) |
-| Confirm the TennCare dose limits (content 2026.2 follows the May 2026 BESMART update, not his slide 2) | Dr. Alexander, at that meeting | agenda item 1; revert path in project plan "Clinical questions" |
-| Updated BESMART Program Description (ours is Mar 2023, superseded in part) | Dr. Alexander or TennCare | agenda item 6 |
-| Push `gj_dev`; merge to `main` | Gerald / Emma | — |
-| McNabb's internal external-hosting/compliance approval criteria | McNabb's team | [`compliance-readiness-plan.md`](compliance-readiness-plan.md) |
+| **Send the questions email** (Q1–Q10: the new-document conflicts plus every open 9/18 item) | Gerald, cc Emma | [`../meeting_notes/mcnabb_email_9_21_26_open_questions.md`](../meeting_notes/mcnabb_email_9_21_26_open_questions.md) |
+| Answers to Q1–Q10. Q1 and Q2 decide the TennCare pathways; Q5 decides whether any new file can be ingested | Dr. Alexander | answer table in the email file |
+| Check the 8 AI transcriptions against their page images, then set `checkedBy` | Gerald — in progress | [`../reference/transcription-check.md`](../reference/transcription-check.md) |
+| Open a PR to merge `b8b97ec` and this session's docs to `main` | Gerald | — |
+| McNabb's internal external-hosting/compliance approval criteria (Q10 asks who to contact) | McNabb's team | [`../compliance-readiness-plan.md`](../compliance-readiness-plan.md) |
 
-**Decisions made this session, and why**
+**Decisions, and why** (2026-09-21 first, then 2026-09-15)
 
+- **This is a team repo; each maintainer has their own handoff** (Gerald,
+  9/21). Emma and Gerald each keep their own status and session log; shared
+  plans stay in shared docs. The rules are in `CLAUDE.md`, which every Claude
+  session loads.
+- **New material is split three ways** (9/21, in the plan's §2): payer and
+  eligibility content goes to the prescribing tool; patient-care checklist
+  items go into the four tools' results; clinic-implementation content goes to
+  a separate readiness walkthrough and a separate assistant collection.
+  *Recommended but not yet agreed:* do not ingest the BESMART guide or the care
+  checklists as reference collections. Approved items enter as toolkit content,
+  so they get per-block, hash-bound review.
 - **One model call per source type** in Ask All4Knox. A single call over the
   toolkit, guideline and BESMART passages misattributed thresholds between
   sources in 3 of 3 live runs. Gerald chose the structural fix over ~1.5×
@@ -53,18 +89,25 @@ TennCare BESMART 34 passages), `RAG_REFERENCE_ENABLED=true`.
   in `.env`, then `docker compose up -d api`. It was used to hold the live site
   at toolkit-only while the sections design was built.
 
-**Next development, in rough priority — none started**
+**Next development, in rough priority — none started.** Workstreams W0–W5 are
+in [`../reference-incorporation-plan.md`](../reference-incorporation-plan.md) §4.
 
-1. Classify and incorporate the new McNabb/TDOH material: enrich the existing
-  guided clinical tools only with approved missing clinical content; keep the
-  MAT readiness documents and phased roadmap in a separate implementation
-  collection.
-2. Update the existing guided flows where new approved content changes or
-  explains a result; do not add questions unless answers change a pathway.
-3. Add a separate guided clinic-readiness workflow based on Design → Build →
-  Enable → Connect → Pilot → Scale. Planned route: `/implementation/readiness/guided`.
-4. Whatever Friday's meeting changes (dose limits, the non-BESMART NP/PA
-   pathway, COWS threshold). Content edits go through §3a.
+1. **Can start now, without answers:**
+   - Send the email (W1). W0's canonical-file choice is already made (plan §1);
+     only its provenance line waits on Q5.
+   - Build the guided clinic-readiness walkthrough at
+     `/implementation/readiness/guided`, labelled Draft, with content in a new
+     `content/readiness.ts` kept apart from the clinical blocks (W5).
+   - Build the implementation assistant collection with transcriptions, its
+     own floor and its own model call, behind `RAG_IMPLEMENTATION_ENABLED`,
+     which defaults to false (W4).
+2. **After Q1, Q2 and Q5:** prescribing tool BESMART eligibility and
+   prior-authorization detail, and the non-BESMART NP/PA outcome (W2).
+3. **After Q5, Q6 and Q7:** add care-checklist items to the induction, UDS and
+   dosing results as content 2026.3, following the item mapping in plan §5
+   (W3). Add no new questions unless an answer changes a pathway. Content
+   edits go through §3a.
+4. Whatever Q3 (COWS) and Q4 (oxycodone wait time) settle.
 5. Make the server-written source section headings visually distinct in the
    answer (project plan 2.5.14). They currently render as small grey labels.
 6. Admin/clinician upload of reference documents (2.5.13, also a 9/1 meeting
@@ -124,11 +167,11 @@ ls frontend/src/pages/                    # what the UI already has
 grep -rn "TODO\|FIXME" backend/app frontend/src --include='*.py' --include='*.ts*'
 ```
 
-**Read [`rules-of-engagement.md`](rules-of-engagement.md) before running any
+**Read [`rules-of-engagement.md`](../rules-of-engagement.md) before running any
 `docker` command.** This is a shared server with ~100 containers belonging to
 other people.
 
-**Working on the React app?** [`frontend-guide.md`](frontend-guide.md) is a full
+**Working on the React app?** [`frontend-guide.md`](../frontend-guide.md) is a full
 walkthrough of its structure, patterns and conventions — §9 covers the guided
 interview.
 
@@ -145,11 +188,11 @@ interview.
 | **Local debug** | API `127.0.0.1:8410`, web `127.0.0.1:8411` |
 | **Containers** | `all4knox-api`, `all4knox-web` — both healthy |
 | **Assistant** | `gpt-oss:20b` via host Ollama; three collections — toolkit (32 passages), TN guidelines (70), TennCare BESMART (34); one answer section per source; ~3 s single-source, 10–16 s when all three answer |
-| **Branch** | `gj_dev`, local commits not pushed. `main` at `36fa675` — merge pending |
+| **Branch** | `gj_dev`, pushed. `origin/main` at `7579d20` (PR #2). `b8b97ec` and the 9/21 docs are not yet in `main` |
 | **Database** | SQLite at `/data/all4knox.db` on the `all4knox-data` volume |
 | **First admin** | Seeded from `SEED_ADMIN_*` in `.env`. **Blank those out and change the password after first sign-in.** |
 | **Clinical content** | Version **2026.2** — TennCare dose limits follow TennCare's May 2026 BESMART update, not slide 2; pending Dr. Alexander's confirmation |
-| **Clinical review** | **0 of 30 blocks reviewed.** Workflow is built at `/review`. Clinical contact is Dr. Ryan Alexander (medical director, McNabb Center) — sign-off not yet started. |
+| **Clinical review** | **0 of 30 blocks reviewed** (re-verified 2026-09-21). Workflow is built at `/review`. Clinical contact is Dr. Ryan Alexander (medical director, McNabb Center). Sign-off has not started; who signs off is Q9 in the 9/21 email. |
 | **Tests** | 82 backend tests passing · frontend build + lint clean |
 | **Control** | `./a4k` — see `./a4k help` |
 
@@ -195,7 +238,7 @@ docker compose up -d          # env is read at container start, not per request
   session-scoped conversation that survives tab switches and is wiped after
   inactivity; basic/clinician/admin accounts; per-user generation settings;
   admin-managed system prompts. See
-  [`accounts-and-assistant-plan.md`](accounts-and-assistant-plan.md).
+  [`accounts-and-assistant-plan.md`](../accounts-and-assistant-plan.md).
 - **Markdown rendering** of assistant answers, via a renderer that structurally
   cannot emit raw HTML.
 - **Landing page at `/`** — mission, partners (McNabb Center, Applied Systems
@@ -204,7 +247,7 @@ docker compose up -d          # env is read at container start, not per request
 - **Clinical review workspace** at `/review` — clinicians record authoritative
   sign-off, admins record internal QA that never counts. Reviews bind to a hash
   of the reviewed text, so editing content invalidates the approval. See
-  [`clinical-review-plan.md`](clinical-review-plan.md).
+  [`clinical-review-plan.md`](../clinical-review-plan.md).
 - **`./a4k`** — one CLI for start/stop/rebuild/logs/health/tests, scoped to
   this project's containers.
 - **Guided "TurboTax" interview** for all four tools at
@@ -304,12 +347,18 @@ All4Knox-Project/
 │   ├── tools/exportContent.ts   # content → backend JSON
 │   ├── tools/parityFixtures.ts  # TS answers → parity fixture
 │   └── nginx.conf               # SPA + /api proxy
+├── CLAUDE.md                    # team working agreements — whose handoff is whose
 └── docs/
-    ├── session-handoff.md       # this file
+    ├── gerald_sessions/session-handoff.md   # this file (Gerald's only)
+    ├── emma_sessions/session-handoff.md     # Emma's — don't edit
+    ├── session-handoff.md       # old shared copy, frozen 2026-09-15 — don't edit
     ├── rules-of-engagement.md   # READ BEFORE ANY docker COMMAND
-    ├── reference/               # source PDFs the assistant searches + transcription-check.md
-    ├── meeting_notes/           # McNabb meetings: 9/1 notes, 9/18 agenda
-    ├── project-plan.md          # phases, milestones, tracking    ├── compliance-readiness-plan.md  # McNabb hosting approval, self-assessment, pilot survey plan    ├── source-extraction.md     # what came from which slide
+    ├── reference/               # source PDFs/decks + transcription-check.md (9/21 batch not yet ingested)
+    ├── meeting_notes/           # McNabb: 9/1 notes, 9/18 agenda + notes, 9/21 questions email
+    ├── project-plan.md          # phases, milestones, tracking
+    ├── reference-incorporation-plan.md  # 9/21 batch: inventory, Q1–Q10, workstreams W0–W5
+    ├── compliance-readiness-plan.md     # McNabb hosting approval, self-assessment, pilot survey plan
+    ├── source-extraction.md     # what came from which slide
     └── research/publication-plan.md
 ```
 
@@ -512,7 +561,7 @@ record reviewer, review date, effective date, and next review date.
 The two below predate the reference documents. Those added more — the TennCare
 dose limits (acted on in 2026.2, pending confirmation), whether a non-BESMART
 NP/PA can prescribe for TennCare at all, and COWS ≥ 7 vs ≥ 11 within the
-guideline. All are in [`project-plan.md`](project-plan.md) under "Clinical
+guideline. All are in [`project-plan.md`](../project-plan.md) under "Clinical
 questions raised by the reference documents", and on the 9/18 agenda.
 
 1. **Oxycodone wait time.** Slide 4 says wait 12 hrs; slide 5 branches on
@@ -567,10 +616,10 @@ answer citing slide 7 at 0.82.
 ## 7. Immediate next steps
 
 **Before the demo:** run the pre-demo checklist in
-[`rules-of-engagement.md` §7](rules-of-engagement.md) — especially **warming the
+[`rules-of-engagement.md` §7](../rules-of-engagement.md) — especially **warming the
 model**, since a cold `gpt-oss:20b` load is a visible pause.
 
-**Then, in priority order** — see [`project-plan.md`](project-plan.md) for the
+**Then, in priority order** — see [`project-plan.md`](../project-plan.md) for the
 full phased plan:
 
 0. **Sign in as the seeded admin, change the password, and blank
@@ -581,15 +630,16 @@ full phased plan:
 3. Confirm with **Dr. Ryan Alexander** who signs off the 30 blocks — him or
    someone he names — then create that person's clinician account
    (`POST /api/admin/users`, role `clinician`) and walk them through `/review`.
-4. **Friday 9/18 with Dr. Alexander** — agenda in
-   `docs/meeting_notes/mcnabb_meeting_9_18_26_agenda.md`. Top item: content
-   version 2026.2 moved the TennCare dose limits to TennCare's May 2026 BESMART
-   update ahead of his confirmation.
+4. **Send the 9/21 questions email to Dr. Alexander**
+   (`docs/meeting_notes/mcnabb_email_9_21_26_open_questions.md`). The 9/18
+   meeting settled nothing, so the email carries its items (dose limits,
+   non-BESMART NP/PA, COWS, oxycodone, sign-off) plus the new-document
+   questions. Content 2026.2's TennCare dose limits are still unconfirmed.
 5. Gerald is checking the 8 AI transcriptions against their page images
    (`backend/app/data/reference/transcriptions/`); set `checkedBy` when done.
 6. Get the updated BESMART Program Description from TennCare.
 7. Begin the literature review track — see
-   [`research/publication-plan.md`](research/publication-plan.md).
+   [`research/publication-plan.md`](../research/publication-plan.md).
 
 ---
 
@@ -597,13 +647,15 @@ full phased plan:
 
 | Date | Who | What changed |
 | --- | --- | --- |
-| 2026-09-21 | Gerald + Claude | Classified the new McNabb/TDOH reference batch; planned clinical enrichment for the four existing guided interviews, a separate MAT clinic-readiness guided workflow, and a separate implementation/readiness assistant collection. Updated the project plan and compliance/readiness plan. |
 | 2026-08-30 | Emma | Initial commit, website skeleton, React/Vite frontend (Phase 1 tools, local content) |
 | 2026-08-31 | Gerald + Claude | Clinical review workspace (`/review`): clinician sign-off vs admin QA enforced in code, content-hash invalidation, append-only audit trail. Landing page at `/`, sign-in + account pages, `./a4k` CLI. Fixed the header nav clipping and the toolkit card overlap. 44 tests. |
 | 2026-08-31 | Gerald + Claude | Accounts + roles (visitor/basic/clinician/admin) on SQLite; persistent assistant conversations with inactivity sweep; per-user generation settings with server-side clamping; admin system-prompt variants with an **immutable safety preamble**; markdown rendering. Fixed three bugs found while building: seed-admin worker race, parallel session-minting race (404 on first question), and an admin being able to publish a prompt with no safety rules. 29/29 API + 8/8 browser checks. |
 | 2026-08-31 | Gerald + Claude | Guided "TurboTax" interview wired up for all four tools (`useInterviewFlow` + the previously-unused `guided/` components and `guided.css`); 12/12 browser click-through checks. Agent design specified in project-plan Phase 2.5 with spike numbers. |
 | 2026-08-31 | Gerald + Claude | `ed3cb88` on `gj_dev` — FastAPI backend; mechanical content export; TS↔Python parity harness (302 cases); RAG assistant on `gpt-oss:20b` with measured refusal threshold; full containerisation; live HTTPS at all4knox.axiomsystemslab.com; docs (handoff, ROE, project plan, publication plan). 73 files, +11,778 lines. `.env` verified absent from history. |
 | 2026-09-15 | Gerald + Claude | Logos: All4Knox lockup in the header, footer acknowledgements band (lab, McNabb Center), partner-card logos. Fixed sticky elements hidden under the two-row header (progress bar fully hidden in production). Reference knowledge base: TN guidelines + TennCare BESMART as separate search tools with measured floors; 8 AI transcriptions of image/table pages (unchecked); per-source answer sections after a single call misattributed thresholds 3/3; context-window budget, truncation notice, `RAG_REFERENCE_ENABLED` kill switch; compose `RAG_MIN_SCORE` default 0.35 → 0.65. Content 2026.2: TennCare dose limits follow the May 2026 BESMART update (pending Dr. Alexander), non-BESMART pathway split by prescriber — 30 blocks. Index fingerprint covers citation labels. 9/18 agenda and transcription checklist written. 82 tests. |
+| 2026-09-18 | Gerald | Demo script, slides and project-state page for the 9/18 meeting; compliance-readiness plan; meeting-notes convention. Dosing tool asks the cravings question first; two new Ask suggestions (BESMART max dose, COWS). Web rebuilt. PR #1 merged to `main`. |
+| 2026-09-21 | Gerald + Claude | Classified the new McNabb/TDOH reference batch; planned clinical enrichment for the four existing guided interviews, a separate MAT clinic-readiness guided workflow, and a separate implementation/readiness assistant collection. Updated the project plan and compliance/readiness plan. Split the handoff per maintainer. PR #2 merged. |
+| 2026-09-21 | Gerald + Claude | Read all 10 new files: 6 documents plus 4 duplicate formats, with two conflicts against 2026.2 (non-BESMART NP/PA; the guide's pre-May 16/20 mg) and unconfirmed authorship. Wrote `reference-incorporation-plan.md` (Q1–Q10, W0–W5, item mapping) and the questions email for Dr. Alexander. Added `CLAUDE.md` with the team-repo and handoff rules; updated the README. Fixed this file's stale git state and its relative links, which broke when it moved into `gerald_sessions/`. Docs only; no code changes. |
 
 **Append a row when you finish a session.** Keep it to what changed and why —
 the git log has the detail.
