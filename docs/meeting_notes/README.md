@@ -18,7 +18,8 @@ If there was no agenda (an internal or ad hoc meeting), a single
 | Date | Meeting | Agenda | Notes | Key outcomes |
 | --- | --- | --- | --- | --- |
 | 2026-09-01 | McNabb — Dr. Alexander | — | [mcnabb_meeting_9_1_26.md](mcnabb_meeting_9_1_26.md) | UX/backlog ask list; named clinical contact groundwork |
-| 2026-09-18 | McNabb — Dr. Alexander | [mcnabb_meeting_9_18_26_agenda.md](mcnabb_meeting_9_18_26_agenda.md) | [mcnabb_meeting_9_18_26_notes.md](mcnabb_meeting_9_18_26_notes.md) | pending |
+| 2026-09-18 | McNabb — Dr. Alexander | [mcnabb_meeting_9_18_26_agenda.md](mcnabb_meeting_9_18_26_agenda.md) | [mcnabb_meeting_9_18_26_notes.md](mcnabb_meeting_9_18_26_notes.md) (not filled in) | No agenda item settled (Gerald, 9/21); all carried into the 9/21 email |
+| 2026-09-21 | Email to Dr. Alexander *(not a meeting)* | — | [mcnabb_email_9_21_26_open_questions.md](mcnabb_email_9_21_26_open_questions.md) | Q1–Q10: 9/18 carry-overs + new MAT/BESMART documents. Draft; answers recorded in the same file |
 
 ## After every meeting
 
@@ -26,5 +27,9 @@ If there was no agenda (an internal or ad hoc meeting), a single
 2. Add a row to the index table above.
 3. Update `docs/project-plan.md` — status columns and the blocker table —
    for anything the meeting resolved or changed.
-4. Append a row to `docs/session-handoff.md` §8 if code or content changed as
-   a result.
+4. Append a row to **your own** handoff's §8
+   (`docs/<name>_sessions/session-handoff.md`, see `CLAUDE.md`) if code or
+   content changed as a result.
+
+An email that asks or settles questions is filed the same way, as
+`<group>_email_<m>_<d>_<yy>_<topic>.md`, with an answer table at the bottom.

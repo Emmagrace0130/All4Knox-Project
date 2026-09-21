@@ -115,7 +115,7 @@ not built.
 | 2.5.12 | Obtain TennCare's **updated** BESMART Program Description (the Mar 2023 copy is superseded in part) | ⬜ |
 | 2.5.13 | Admin/clinician upload of new reference documents (meeting ask) — same pipeline as `./a4k reference` | ⬜ |
 | 2.5.14 | Server-written section headings render as small labels; make source sections visually distinct | ⬜ |
-| 2.5.15 | Enrich the four existing guided interviews with approved checklist-derived clinical context and result actions; add questions only when an answer changes the deterministic pathway | ⬜ depends on clinical review of the new material |
+| 2.5.15 | *(Detail, question IDs and workstreams for 2.5.15–2.5.17: `docs/reference-incorporation-plan.md`, W2/W3/W4/W5.)* Enrich the four existing guided interviews with approved checklist-derived clinical context and result actions; add questions only when an answer changes the deterministic pathway | ⬜ depends on clinical review of the new material |
 | 2.5.16 | Add a separate guided MAT clinic-readiness interview using the Design → Build → Enable → Connect → Pilot → Scale roadmap | ⬜ separate from patient-care tools; content and compliance review required |
 | 2.5.17 | Add a separate MAT implementation/readiness assistant collection; do not mix operational guidance into clinical or payer sections | ⬜ deduplicate formats and assign provenance first |
 
@@ -246,7 +246,10 @@ Lightweight, because two people do not need Jira.
 
 - **This file** is the plan of record. Update the status column in the same
   commit as the work.
-- **`docs/session-handoff.md` §8** is the session log — append a row per session.
+- **Each maintainer's own handoff** (`docs/<name>_sessions/session-handoff.md`) §8
+  is their session log. Append a row there, never to the other maintainer's
+  copy (see `CLAUDE.md`). The root `docs/session-handoff.md` is frozen at
+  2026-09-15.
 - **Git history** is the detail. Write commit messages that explain *why*.
 - **`GET /api/sources`** is the live clinical-content tracker: it reports the
   real review state of all 30 blocks and cannot drift from reality.
@@ -255,8 +258,8 @@ Lightweight, because two people do not need Jira.
 
 | # | Blocker | Owner | Unblocks |
 | --- | --- | --- | --- |
-| B1 | Push `gj_dev` (several local commits ahead of origin); merge `gj_dev` → `main` | Gerald/Emma | everything downstream |
-| B8 | Clinical questions raised by the reference documents (below) — on the agenda for 9/18 (`docs/meeting_notes/mcnabb_meeting_9_18_26_agenda.md`) | Dr. Alexander | confirming the 2026.2 dose limits |
+| B1 | Merge `gj_dev` → `main` by PR as work lands (#1 merged 9/18 and #2 on 9/21; `b8b97ec` and the 9/21 docs are pending) | Gerald/Emma | everything downstream |
+| B8 | Clinical questions raised by the reference documents (below). The 9/18 meeting settled none; they are Q1–Q4 and Q9 of the 9/21 email (`docs/meeting_notes/mcnabb_email_9_21_26_open_questions.md`), alongside Q5–Q8 on the new MAT/BESMART documents | Dr. Alexander | confirming the 2026.2 dose limits; plan W2/W3 (`docs/reference-incorporation-plan.md`) |
 | B9 | McNabb's external-hosting/compliance approval criteria — unknown until their team reports back; self-assessment ready in `docs/compliance-readiness-plan.md` | McNabb's internal team | Phase 4.0, the pilot |
 | B2 | **Confirm the named clinical reviewer** — Dr. Ryan Alexander is the contact; settle whether he signs off or nominates | Gerald/Emma | all of Phase 2, the pilot, both field papers |
 | B3 | Decide PHI-in-conversations policy (retention / encryption / refuse-to-store) | Gerald | the pilot |
@@ -312,5 +315,6 @@ From `docs/meeting_notes/mcnabb_meeting_9_1_26.md`:
 2. `npm run export:content` **and** `npm run export:parity` re-run.
 3. Backend tests pass, parity included.
 4. Frontend typechecks and builds.
-5. `docs/session-handoff.md` updated if the shape of the project changed.
+5. Your own handoff (`docs/<name>_sessions/session-handoff.md`) updated if the
+   shape of the project changed.
 6. Reviewer + review date recorded if the change touches clinical guidance.
