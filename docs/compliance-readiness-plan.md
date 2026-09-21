@@ -109,6 +109,33 @@ be worth the engineering.
 **Owner:** Gerald/Emma to draft the instrument; Dr. Alexander (or his
 nominee) to review it for clinical framing before it goes to any provider.
 
+### 4.1 Planned guided clinic-readiness workflow
+
+The existing TurboTax-style flows are patient-care tools: prescribing,
+induction, UDS, and dosing. They should be enriched with approved clinical
+checklist details only where those details explain or change a result. They
+should not become clinic implementation checklists.
+
+The readiness documents support a separate guided workflow, proposed at
+`/implementation/readiness/guided`, with one question per screen and a result
+that reports clinic gaps rather than making patient-specific clinical claims:
+
+1. Current MAT program stage: exploring, designing, preparing to launch,
+   operating, or expanding.
+2. Clinical lead and governance.
+3. Written MAT policies, consent, and treatment-agreement workflows.
+4. Escalation, higher-level-of-care, and transfer workflows.
+5. UDS, PDMP, naloxone, safety, and diversion-response workflows.
+6. EHR templates and documentation processes.
+7. Staffing, training, behavioral-health, and referral workflows.
+8. Pilot, quality-improvement, and scale-readiness gaps.
+
+The result should identify missing preparation areas and point to the relevant
+implementation material. It must label this as operational readiness guidance,
+not a state requirement or patient-care recommendation. The workflow should
+reuse the existing guided interview components and remain separate from the
+four deterministic clinical engines.
+
 ---
 
 ## 5. Action items
@@ -121,6 +148,8 @@ nominee) to review it for clinical framing before it goes to any provider.
 | 4 | Add rate limiting before any URL sharing beyond the demo audience (5.6) | Gerald | — |
 | 5 | Draft the clinician feedback survey instrument | Gerald/Emma | clinical review substantially underway |
 | 6 | Confirm IRB determination is being pursued in parallel, not instead of, hosting approval | Gerald | #1 |
+| 7 | Decide which new checklist items are approved for clinical-tool results versus the separate readiness workflow | Gerald/Emma + named clinician | new documents and clinical review |
+| 8 | Choose the canonical readiness documents and remove duplicate formats from ingestion candidates | Gerald/Emma + McNabb | provenance and scope confirmation |
 
 ---
 
