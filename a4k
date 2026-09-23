@@ -56,6 +56,9 @@ a4k — All4Knox control script
     ./a4k check              content + test + build-web + lint, in order
     ./a4k shell [svc]        shell inside a running container
 
+  Feedback
+    ./a4k feedback           copy new survey responses into feedback/inbox/
+
   Assistant
     ./a4k reindex            rebuild every collection index (toolkit + reference docs)
     ./a4k reference          re-extract reference PDFs into passages (then read the diff)
@@ -230,6 +233,35 @@ cmd_reindex() {
   curl -sS --max-time 300 -X POST "$API_LOCAL/api/assistant/reindex" | python3 -m json.tool
 }
 
+cmd_feedback() {
+  b "Exporting survey responses into feedback/inbox/"
+  mkdir -p feedback/inbox feedback/planned feedback/done feedback/declined
+  # Read straight from the database inside the api container: no admin
+  # session needed, and the Markdown comes from the same question labels the
+  # form used (backend/app/services/feedback.py).
+  docker compose exec -T api python -c '
+import json
+from app.core import db
+from app.core.config import get_settings
+from app.services import feedback
+db.configure(get_settings().database_path)
+print(json.dumps(feedback.export()))
+' | python3 -c '
+import json, sys
+from pathlib import Path
+root = Path("feedback")
+# A response already filed anywhere under feedback/ is never re-exported, so
+# moving a file to planned/ or declined/ is how you mark it handled.
+seen = {p.name for p in root.rglob("*.md")}
+items = json.load(sys.stdin)
+new = [i for i in items if i["filename"] not in seen]
+for i in new:
+    (root / "inbox" / i["filename"]).write_text(i["markdown"])
+    print("  + inbox/" + i["filename"])
+print(f"  {len(new)} new, {len(items)} total responses")
+'
+}
+
 cmd_sweep() {
   b "Expiring idle visitor sessions…"
   info "requires an admin session; use the API directly if this 403s"
@@ -278,6 +310,7 @@ case "${1:-help}" in
   reference)   shift; cmd_reference "$@" ;;
   calibrate)   shift; cmd_calibrate "$@" ;;
   sweep)       shift; cmd_sweep "$@" ;;
+  feedback)    shift; cmd_feedback "$@" ;;
   reset-index) shift; cmd_reset_index "$@" ;;
   reset-data)  shift; cmd_reset_data "$@" ;;
   help|-h|--help) cmd_help ;;

@@ -25,6 +25,7 @@ from app.api import (
     auth_routes,
     clinical,
     content_routes,
+    feedback_routes,
     review_routes,
     settings_routes,
 )
@@ -146,6 +147,7 @@ app.include_router(assistant_routes.router, prefix="/api")
 app.include_router(auth_routes.router, prefix="/api")
 app.include_router(settings_routes.router, prefix="/api")
 app.include_router(review_routes.router, prefix="/api")
+app.include_router(feedback_routes.router, prefix="/api")
 
 
 @app.get("/api/health", response_model=HealthResult, tags=["meta"])
