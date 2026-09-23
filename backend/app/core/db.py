@@ -163,6 +163,27 @@ CREATE TABLE IF NOT EXISTS document_chunks (
     text        TEXT NOT NULL
 );
 CREATE INDEX IF NOT EXISTS idx_chunks_document ON document_chunks(document_id, ordinal);
+
+-- Site feedback from the header "Feedback" survey. Deliberately NOT tied to
+-- sessions: a visitor's session is swept after inactivity, and their feedback
+-- must outlive it. Nothing identifies a visitor unless they leave an email.
+CREATE TABLE IF NOT EXISTS feedback (
+    id              TEXT PRIMARY KEY,
+    created_at      TEXT NOT NULL,
+    -- the route the survey was opened from, e.g. /toolkit/uds
+    page            TEXT,
+    content_version TEXT,
+    user_id         TEXT REFERENCES users(id) ON DELETE SET NULL,
+    user_role       TEXT NOT NULL,
+    -- JSON object of 1-5 scores keyed by question id
+    ratings         TEXT NOT NULL,
+    -- JSON object of the multiple-choice and free-text answers
+    answers         TEXT NOT NULL,
+    contact_email   TEXT,
+    user_agent      TEXT,
+    viewport        TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_feedback_created ON feedback(created_at);
 """
 
 

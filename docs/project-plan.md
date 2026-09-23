@@ -301,7 +301,11 @@ From `docs/meeting_notes/mcnabb_meeting_9_1_26.md`:
   acknowledgements band (2026-09-15)
 - ⬜ Interactive components easier to see; colour/domain grouping (e.g. Admin vs
   Clinician blocks on the home page)
-- ⬜ In-app bugs / comments / suggestions channel the team can track
+- 🟡 In-app bugs / comments / suggestions channel the team can track — built on
+  `emma_dev` 2026-09-23 (header Feedback button → `./a4k feedback` →
+  `feedback/inbox/`); not yet deployed. A usability channel for testers, not
+  the Phase 4.5 pilot instrument, which still needs Dr. Alexander's review
+  and the IRB determination (4.2)
 - ⬜ Usage analytics (tools used, return visits) — needs a PHI and consent decision first
 - ⬜ Changelog / versions tab
 - ⬜ Prior authorization forms and examples (Dr. Alexander to provide)

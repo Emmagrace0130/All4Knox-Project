@@ -614,3 +614,32 @@ export const saveReviewerProfile = (profile: ReviewerProfile) =>
     method: 'PUT',
     body: JSON.stringify(profile),
   });
+
+/* ------------------------------------------------------------------ */
+/* Site feedback — the question set is served by the API               */
+/* ------------------------------------------------------------------ */
+
+export interface FeedbackQuestions {
+  ratings: { id: string; question: string; low: string; high: string }[];
+  choices: {
+    id: string;
+    question: string;
+    options: { value: string; label: string }[];
+  }[];
+  texts: { id: string; question: string }[];
+  maxText: number;
+}
+
+export interface FeedbackSubmission {
+  ratings: Record<string, number>;
+  answers: Record<string, string>;
+  page: string;
+  contactEmail?: string;
+  viewport?: string;
+}
+
+export const getFeedbackQuestions = () =>
+  request<FeedbackQuestions>('/feedback/questions');
+
+export const submitFeedback = (body: FeedbackSubmission) =>
+  post<{ id: string; createdAt: string }>('/feedback', body);

@@ -24,3 +24,9 @@ backend/app/data/vector_store/
 # --- os / editor -------------------------------------------------------------
 .DS_Store
 *.swp
+
+# --- site feedback -----------------------------------------------------------
+# Survey responses exported by ./a4k feedback. May hold emails or patient
+# details, so they stay on the server. Only the README is committed.
+feedback/**
+!feedback/README.md
